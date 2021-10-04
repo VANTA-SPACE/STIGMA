@@ -511,7 +511,7 @@ MonoBehaviour:
   Path: Stigmasound/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637689793523363727
+  lastModified: 637689829847057823
   FileSizes:
   - Name: Desktop
     Value: 794
@@ -536,7 +536,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: -6725595719437885169}
+  - {fileID: 6114537809496983848}
   MinDistance: 0
   MaxDistance: 0
   Length: 97000
@@ -1261,7 +1261,7 @@ MonoBehaviour:
   - {fileID: 4992714546795194317}
   StringsBanks:
   - {fileID: -5276533044246846363}
-  stringsBankWriteTime: 637689793523363727
+  stringsBankWriteTime: 637689829847057823
   cacheVersion: 8
 --- !u!114 &44069667091147403
 MonoBehaviour:
@@ -1804,7 +1804,7 @@ MonoBehaviour:
   Path: Stigmasound/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637689793523363727
+  lastModified: 637689829847037875
   FileSizes:
   - Name: Desktop
     Value: 1395328
@@ -1897,6 +1897,28 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 0
   Exists: 0
+--- !u!114 &6114537809496983848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Title/Transition
+  m_EditorClassIdentifier: 
+  Name: Transition
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 1
+  IsGlobal: 0
+  Exists: 1
 --- !u!114 &6195172618042984916
 MonoBehaviour:
   m_ObjectHideFlags: 0
