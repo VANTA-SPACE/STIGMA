@@ -469,7 +469,8 @@ namespace MiniJSON {
 
 			private void SerializeObject(IDictionary obj) {
 				foreach (var value in obj.Values) {
-					if (value is IDictionary) {
+					if (value is IDictionary dictionary && dictionary.Count > 0 ||
+					    value is IList list && list.Count > 0) {
 						SerializeObjectWithNL(obj);
 						return;
 					}
@@ -493,6 +494,15 @@ namespace MiniJSON {
 
 			}
 			private void SerializeArray(IList anArray) {
+
+				foreach (var value in anArray) {
+					if (value is IDictionary dictionary && dictionary.Count > 0 ||
+					    value is IList list && list.Count > 0) {
+						SerializeArrayWithNL(anArray);
+						return;
+					}
+				}
+
 				Indent();
 				AppendBuilder('[');
 				bool flag = true;
@@ -511,6 +521,27 @@ namespace MiniJSON {
 
 				UnIndent();
 				AppendBuilder(']');
+			}
+			
+			private void SerializeArrayWithNL(IList anArray) {
+				Indent();
+				AppendBuilder("[\n");
+				bool flag = true;
+				if (anArray.Count > 0) {
+					foreach (object value in anArray) {
+						if (!flag) {
+							AppendBuilder(", \n");
+						}
+
+						SerializeValue(value);
+						flag = false;
+					}
+				} else {
+					AppendBuilder(' ');
+				}
+
+				UnIndent();
+				AppendBuilder("\n]");
 			}
 			
 			

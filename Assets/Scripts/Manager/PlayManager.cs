@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Core.Components;
 using Core.Level;
@@ -11,13 +12,14 @@ namespace Manager {
         private static PlayManager _instance;
 
         public NoteGenerator generator;
-        public LevelData LevelData;
         public double rawBeat;
         public double beatOffset;
         public double currentBeat => rawBeat - beatOffset;
         public bool isPlayingLevel;
         public double currentBpm;
         public Text exampleText;
+        
+        public LevelData levelData = null;
 
         public JudgmentLine JudgmentLine => JudgmentLine.Instance;
 
@@ -31,8 +33,8 @@ namespace Manager {
         }
 
         public void LoadLevel(LevelData levelData) {
-            LevelData = levelData;
-            currentBpm = LevelData.BPM;
+            this.levelData = levelData;
+            currentBpm = this.levelData.BPM;
             const int beatDelay = 2;
             Instance.beatOffset = -levelData.Offset * levelData.BPM / 6000d + beatDelay;
             SoundManager.Instance.PlayEvent(levelData.EventName, 60 / (float) levelData.BPM * beatDelay);
@@ -43,13 +45,7 @@ namespace Manager {
         public void StartPlay() {
             isPlayingLevel = true;
             rawBeat = 0;
-            LoadLevel(new LevelData(
-                150, -25, new List<NoteData>() {
-                    new NoteData(NoteType.Normal, 0, NotePos.POS_0),
-                    new NoteData(NoteType.Normal, 1, NotePos.POS_1),
-                    new NoteData(NoteType.Normal, 2, NotePos.POS_2),
-                    new NoteData(NoteType.Normal, 3, NotePos.POS_3),
-                }, Constants.TitleEvent));
+            LoadLevel(levelData);
             Debug.Log("Started Playing");
         }
 

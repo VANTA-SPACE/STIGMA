@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using Utils;
 
 namespace Core.Level {
+    [Serializable]
     public struct NoteData: IEncodable<Dictionary<string, object>> {
         public NoteType NoteType;
         public double StartBeat;
@@ -28,7 +30,7 @@ namespace Core.Level {
             return new Dictionary<string, object> {
                 {"NoteType", NoteType},
                 {"StartBeat", StartBeat},
-                {"NotePos", NotePos},
+                {"NotePos", (int) NotePos},
                 {"AdditionalData", AdditionalData},
             };
         }
@@ -36,7 +38,7 @@ namespace Core.Level {
         public void Decode(Dictionary<string, object> data) {
             NoteType = data["NoteType"].As<NoteType>();
             StartBeat = data["StartBeat"].As<double>();
-            NotePos = data["NotePos"].As<NotePos>();
+            NotePos = (NotePos) data["NotePos"].As<int>();
             AdditionalData = data["AdditionalData"].As<Dictionary<string, object>>() ?? new Dictionary<string, object>();
         }
     }
