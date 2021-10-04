@@ -20,6 +20,7 @@ namespace Manager {
         public double currentBpm;
         public Text exampleText;
         public Image pausePanel;
+        public RectTransform pauseMenu;
         public bool Paused { get; private set; }
         
         public LevelData levelData = null;
@@ -47,10 +48,18 @@ namespace Manager {
         }
 
         public void StartPlay() {
+            EndPlay();
             isPlayingLevel = true;
             rawBeat = 0;
             LoadLevel(levelData);
             Debug.Log("Started Playing");
+        }
+        
+        public void EndPlay() {
+            isPlayingLevel = false;
+            rawBeat = 0;
+            SoundManager.Instance.StopEvent();
+            Debug.Log("Stopped Playing");
         }
 
         // Update is called once per frame
@@ -77,15 +86,17 @@ namespace Manager {
         public void PauseGame() {
             Paused = true;
             SoundManager.Instance.Pause();
+            pauseMenu.localScale = new Vector3(0, 0, 0);
             pausePanel.gameObject.SetActive(true);
-            pausePanel.DOColor(new Color(0, 0, 0, 0.8f), 0.1f);
+            pausePanel.DOColor(new Color(0, 0, 0, 0.8f), 0.2f);
+            pauseMenu.DOScale(Vector3.one, 0.15f).SetEase(Ease.OutExpo);
         }
         
         public void UnpauseGame() {
             Paused = false;
             SoundManager.Instance.Unpause();
-            pausePanel.gameObject.SetActive(false);
-            pausePanel.DOColor(Color.clear, 0.1f);
+            pausePanel.DOColor(Color.clear, 0.2f).OnComplete(() => pausePanel.gameObject.SetActive(false));
+            pauseMenu.DOScale(Vector3.zero, 0.15f).SetEase(Ease.OutExpo);
         }
     }
 }
