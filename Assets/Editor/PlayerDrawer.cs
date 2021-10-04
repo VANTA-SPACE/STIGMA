@@ -14,7 +14,6 @@ public class PlayerDrawer : Editor {
     public override void OnInspectorGUI() {
         base.OnInspectorGUI();
         var level = (PlayManager) target;
-
         if (GUILayout.Button("Build Level")) {
             Result = Json.Serialize(level.levelData.Encode());
         }

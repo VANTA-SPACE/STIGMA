@@ -485,7 +485,7 @@ namespace MiniJSON {
 						}
 
 						SerializeString(obj2.ToString());
-						AppendBuilder(':');
+						AppendBuilder(": ");
 						SerializeValue(obj[obj2]);
 						flag = false;
 					}

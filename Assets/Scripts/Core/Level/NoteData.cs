@@ -31,7 +31,7 @@ namespace Core.Level {
                 {"NoteType", NoteType},
                 {"StartBeat", StartBeat},
                 {"NotePos", (int) NotePos},
-                {"AdditionalData", AdditionalData},
+                {"AdditionalData", AdditionalData ?? new Dictionary<string, object>()},
             };
         }
 
