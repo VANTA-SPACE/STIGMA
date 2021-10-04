@@ -8,7 +8,7 @@ using System.Text;
 using Manager;
 using UnityEngine;
 
-namespace GDMiniJSON {
+namespace MiniJSON {
 	public static class Json {
 		public static object Deserialize(string json) {
 			if (json == null) {

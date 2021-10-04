@@ -7,5 +7,10 @@ public static class Constants {
     public const double NOTEJUDGMENT_ELOFFSET = 2;
     
     //노트 너비
-    public const float NOTE_WIDTH = 5;
+    public const float NOTE_WIDTH = 3;
+    
+    //노트 속도
+    public const float NOTE_SPEED_MODIFIER = 4;
+    
+    public const string TitleEvent = "event:/Title";
 }

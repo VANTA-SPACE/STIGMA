@@ -153,12 +153,5 @@ namespace Manager {
         public void LoadScene(string sceneToLoad, Trans transitionType = Trans.FromRight | Trans.ToLeft) {
             Transition(transitionType, () => SceneManager.LoadScene(sceneToLoad));
         }
-    
-        public NoteGenerator Generator;
-        public LevelData LevelData;
-        public double CurrentBeat;
-        public bool IsPlayingLevel;
-        public double CurrentBPM;
-        public Text ExampleText;
     }
 }

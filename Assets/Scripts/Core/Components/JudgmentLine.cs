@@ -4,13 +4,14 @@ using System.Linq;
 using Core.Level;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Utils;
 
 namespace Core.Components {
     public class JudgmentLine : MonoBehaviour {
-        public readonly Queue<NoteNormal> AssignedNotes = new Queue<NoteNormal>();
-        public static JudgmentLine Instance;
+        public Dictionary<NotePos, Queue<NoteNormal>> AssignedNotes;
+        public static JudgmentLine Instance => _instance;
         private static JudgmentLine _instance;
-        public Vector2[] positions;
+        public Dictionary<NotePos, Vector2> Positions;
 
         private void Awake() {
             if (_instance != null) {
@@ -19,7 +20,13 @@ namespace Core.Components {
             }
 
             _instance = this;
-            positions = new Vector2[4];
+            AssignedNotes = new Dictionary<NotePos, Queue<NoteNormal>> {
+                {NotePos.POS_0, new Queue<NoteNormal>()},
+                {NotePos.POS_1, new Queue<NoteNormal>()},
+                {NotePos.POS_2, new Queue<NoteNormal>()},
+                {NotePos.POS_3, new Queue<NoteNormal>()},
+            };
+            Positions = new Dictionary<NotePos, Vector2>();
         }
 
         // Update is called once per frame
@@ -28,23 +35,34 @@ namespace Core.Components {
             var x = position.x;
             var y = position.y;
             var angle = transform.eulerAngles.z;
-            positions[0] = new Vector2(x, y) + new Vector2(Constants.NOTE_WIDTH * -1.5f, 0).Rotate(angle);
-            positions[1] = new Vector2(x, y) + new Vector2(Constants.NOTE_WIDTH * -0.5f, 0).Rotate(angle);
-            positions[2] = new Vector2(x, y) + new Vector2(Constants.NOTE_WIDTH * 0.5f, 0).Rotate(angle);
-            positions[3] = new Vector2(x, y) + new Vector2(Constants.NOTE_WIDTH * 1.5f, 0).Rotate(angle);
-            
-            if (AssignedNotes.Any()) {
-                if (AssignedNotes.Peek().CheckMiss()) {
-                    AssignedNotes.Dequeue().MissNote();
+            Positions[NotePos.POS_0] = new Vector2(x, y) + new Vector2(Constants.NOTE_WIDTH * -1.5f, 0).Rotate(angle);
+            Positions[NotePos.POS_1] = new Vector2(x, y) + new Vector2(Constants.NOTE_WIDTH * -0.5f, 0).Rotate(angle);
+            Positions[NotePos.POS_2] = new Vector2(x, y) + new Vector2(Constants.NOTE_WIDTH * 0.5f, 0).Rotate(angle);
+            Positions[NotePos.POS_3] = new Vector2(x, y) + new Vector2(Constants.NOTE_WIDTH * 1.5f, 0).Rotate(angle);
+
+            foreach (var queue in AssignedNotes.Values) {
+                if (queue.Any()) {
+                    if (queue.Peek().CheckMiss()) {
+                        queue.Dequeue().MissNote();
+                    }
                 }
             }
+            
+            CheckKeyPress();
         }
 
-        public void OnKeyPress() {
-            if (AssignedNotes.Any()) {
-                var judgment = AssignedNotes.Peek().CheckJudgment();
+        public void CheckKeyPress() {
+            foreach (var (pos, queue) in AssignedNotes) {
+                if (!Input.GetKeyDown(Settings.Keymap[pos])) {
+                    continue;
+                }
+
+                Debug.Log($"Key {Settings.Keymap[pos]} pressed");
+                if (!queue.Any()) continue;
+                
+                var judgment = queue.Peek().CheckJudgment();
                 if (judgment == Judgment.None) return;
-                AssignedNotes.Peek().DestroyNote(judgment);
+                queue.Peek().DestroyNote(judgment);
             }
         }
     }
