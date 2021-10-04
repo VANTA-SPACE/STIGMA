@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Core.Components;
+using Core;
 using Core.Level;
 using UnityEngine;
 using UnityEngine.Serialization;

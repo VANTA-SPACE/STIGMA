@@ -24,12 +24,12 @@ namespace Manager {
             _instance = this;
         }
 
-        public void PlayEvent(string eventName, float delay = 0) {
-            StartCoroutine(_playEventCo(eventName, delay));
+        public void PlayEvent(string eventName, Func<bool> wait = null) {
+            StartCoroutine(_playEventCo(eventName, wait));
         }
 
-        private IEnumerator _playEventCo(string eventName, float delay) {
-            yield return new WaitForSecondsRealtime(delay);
+        private IEnumerator _playEventCo(string eventName, Func<bool> wait) {
+            if (wait != null) yield return new WaitUntil(wait);
             if (Playing) {
                 RuntimeManager.DetachInstanceFromGameObject(_eventInstance);
             }
