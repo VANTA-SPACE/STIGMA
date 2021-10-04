@@ -333,10 +333,10 @@ MonoBehaviour:
   m_Name: FMODStudioSettings
   m_EditorClassIdentifier: 
   SwitchSettingsMigration: 1
-  HasSourceProject: 0
-  HasPlatforms: 0
-  sourceProjectPath: 
-  sourceBankPath: Assets/Streamingassets
+  HasSourceProject: 1
+  HasPlatforms: 1
+  sourceProjectPath: Stigmasound/Stigmasound.fspro
+  sourceBankPath: Stigmasound/Build
   SourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 0
