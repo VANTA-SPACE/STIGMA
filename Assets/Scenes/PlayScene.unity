@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2b759142722bcb43ba01143caeea74f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalNotePrefab: {fileID: 0}
+  normalNotePrefab: {fileID: 9072385421867217097, guid: e715d93669183c14599eca67b2354f33, type: 3}
 --- !u!1 &681345472
 GameObject:
   m_ObjectHideFlags: 0
