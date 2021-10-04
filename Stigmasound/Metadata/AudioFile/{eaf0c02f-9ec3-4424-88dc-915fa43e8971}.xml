@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{eaf0c02f-9ec3-4424-88dc-915fa43e8971}">
+		<property name="assetPath">
+			<value>Title Theme.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>96</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{1065a78a-b7e7-42f3-a1d1-c82b586ca0e3}</destination>
+		</relationship>
+	</object>
+</objects>
