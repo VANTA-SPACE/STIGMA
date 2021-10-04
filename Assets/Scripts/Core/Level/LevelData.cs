@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using Core;
 
-namespace Level {
+namespace Core.Level {
     public class LevelData: IEncodable<Dictionary<string, object>> {
         public double BPM;
         public List<NoteData> NoteDatas;

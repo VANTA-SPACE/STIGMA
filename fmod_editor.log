@@ -18,11 +18,11 @@
 [LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
 [LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
 [LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
-[LOG] SoundI::release                          : Maintheme (000001AFA3D07068)
-[LOG] SoundI::release                          :     Maintheme (000001ADF6D94C38)
-[LOG] SoundI::release                          :     Maintheme (000001AFA3D04EA8)
-[LOG] SoundI::release                          :  (000001AFA354CEC8)
-[LOG] SoundI::release                          :     2 (000001AFA3DF6228)
+[LOG] SoundI::release                          : Maintheme (000001AFA3D08B68)
+[LOG] SoundI::release                          :     Maintheme (000001AFA4478728)
+[LOG] SoundI::release                          :     Maintheme (000001AFA3D07C38)
+[LOG] SoundI::release                          :  (000001ADF0714378)
+[LOG] SoundI::release                          :     2 (000001AFA4478C08)
 [LOG] Thread::callback                         : FMOD Studio update thread finished.
 [LOG] Thread::callback                         : FMOD Studio bank load thread finished.
 [LOG] Profile::disconnectAll                   : Profiler disconnecting all clients

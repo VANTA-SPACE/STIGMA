@@ -1,4 +1,4 @@
-namespace Level {
+namespace Core.Level {
     public enum NotePos {
         POS_0,
         POS_1,

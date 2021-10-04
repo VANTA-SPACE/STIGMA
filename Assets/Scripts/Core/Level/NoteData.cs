@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using Core;
 
-namespace Level {
+namespace Core.Level {
     public struct NoteData: IEncodable<Dictionary<string, object>> {
         public NoteType NoteType;
         public double StartBeat;
