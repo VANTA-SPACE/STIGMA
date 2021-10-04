@@ -8,7 +8,12 @@ using UnityEngine.UIElements;
 
 public class FMODTest : MonoBehaviour
 {
-    [FMODUnity.EventRef] public string TitleEvent = "event:/Title";
+
+    bool Paused = false;
+
+    int PauseDelay = 0;
+
+[EventRef] public string TitleEvent = "event:/Title";
     private FMOD.Studio.EventInstance _titleEvent;
     private FMOD.Studio.PARAMETER_ID _titleParamterId;
 
@@ -23,7 +28,7 @@ public class FMODTest : MonoBehaviour
         _titleEvent = FMODUnity.RuntimeManager.CreateInstance(TitleEvent);
         _titleEvent.start();
 
-        FMODUnity.RuntimeManager.AttachInstanceToGameObject(_titleEvent, GetComponent<Transform>());
+        RuntimeManager.AttachInstanceToGameObject(_titleEvent, GetComponent<Transform>());
 
         FMOD.Studio.EventDescription _titleEventDescription;
         _titleEvent.getDescription(out _titleEventDescription);
@@ -34,5 +39,33 @@ public class FMODTest : MonoBehaviour
 
     private void Update()
     {
+        if (!Paused && Input.GetKeyDown(KeyCode.Escape) && PauseDelay == 0)
+        {
+            _titleEvent.setPaused(true);
+            Paused = true;
+            StartCoroutine(Delay());
+        }
+
+        if (Paused && Input.GetKeyDown(KeyCode.Escape) && PauseDelay == 0)
+        {
+            StartCoroutine(ResumeAfterDelay());
+        }
     }
+
+    private IEnumerator Delay()
+    {
+        PauseDelay = 1;
+        yield return new WaitForSeconds(0.25f);
+        PauseDelay = 0;
+    }
+
+    private IEnumerator ResumeAfterDelay()
+    {
+        PauseDelay = 1;
+        yield return new WaitForSeconds(0.7f);
+        _titleEvent.setPaused(false);
+        Paused = false;
+        PauseDelay = 0;
+    }
+
 }
