@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.01.00">
+<objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{e525c10e-84d3-4530-a27c-c9e4b42fd3d0}">
 		<property name="name">
 			<value>Title</value>
@@ -124,7 +124,7 @@
 			<value>96</value>
 		</property>
 		<relationship name="audioFile">
-			<destination>{7487b29f-05ac-424e-b7de-c545d7632492}</destination>
+			<destination>{eaf0c02f-9ec3-4424-88dc-915fa43e8971}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{f2079e11-3441-4e26-80c0-11d2a27c2f4c}">
