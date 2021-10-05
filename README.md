@@ -15,6 +15,11 @@ PC 리듬 게임이며, 본 게임은 무료이다.
  * 배드 판정 범위는 18프레임
  * 얼리, 레이트 범위는 각각 4프레임
 
+만점은 1,000,000이며 콤보는 점수에 영향을 미치지 않는다.
+
+점수 반영 비율 / 정확도 반영 비율
+ * Perfect 100% / Good 70% / Bad 30% / Miss 0%
+
 난이도 분류는 Pure/Neutral/Corrupt
  
  **[Web Demo](https://papertoy1127.github.io/Stigma/)** 
