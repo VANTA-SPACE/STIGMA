@@ -15,10 +15,10 @@ public static class Constants {
     public const string TitleEvent = "event:/Title";
     
     // 각 노트별 판정 (60프레임)
-    public const double NOTEJUDGMENT_PERFECT = 6;
-    public const double NOTEJUDGMENT_NORMAL = 12;
-    public const double NOTEJUDGMENT_BAD = 18;
-    public const double NOTEJUDGMENT_ELOFFSET = 4;
+    public const double NOTEJUDGMENT_PERFECT = 8;
+    public const double NOTEJUDGMENT_NORMAL = 16;
+    public const double NOTEJUDGMENT_BAD = 24;
+    public const double NOTEJUDGMENT_ELOFFSET = 6;
     
     //노트 너비
     public const float NOTE_WIDTH = 2;
