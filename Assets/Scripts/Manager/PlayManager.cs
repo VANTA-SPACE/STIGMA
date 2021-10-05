@@ -27,10 +27,12 @@ namespace Manager {
         public float Accurary;
         public int Totalnote = 0;
         public int Combo = 0;
+        public float Score = 0;
 
         public LevelData levelData = null; 
         public List<(Judgment judgment, int missCount)> judgmentList = new List<(Judgment judgment, int missCount)>();
         public int totalMisses;
+
 
         public JudgmentLine JudgmentLine => JudgmentLine.Instance;
 
@@ -86,12 +88,12 @@ namespace Manager {
 
             if(Totalnote == 0)
             {
-                exampleText.text = $"CurrentBeat: {curr}\nPaused: {Paused}\nAccurary: 100.00%";
+                exampleText.text = $"CurrentBeat: {curr}\nPaused: {Paused}\nAccurary: 100.00%\nScore: 0";
                 comboText.text = $"Combo: {Combo}";
             }
             else
             {
-                exampleText.text = $"CurrentBeat: {curr}\nPaused: {Paused}\nAccurary: " + (Accurary / Totalnote).ToString("0.00") + "%";
+                exampleText.text = $"CurrentBeat: {curr}\nPaused: {Paused}\nAccurary: " + (Accurary / Totalnote).ToString("0.00") + $"%\nScore: " + Score.ToString("#,###,##0");
                 comboText.text =  $"Combo: {Combo}";
             }
         }

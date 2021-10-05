@@ -71,18 +71,21 @@ namespace Core {
                 PlayManager.Instance.Accurary += 100;
                 PlayManager.Instance.Totalnote += 1;
                 PlayManager.Instance.Combo += 1;
+                PlayManager.Instance.Score += 1000000f / PlayManager.Instance.levelData.NoteDatas.Count;
             }
             else if (judgment == Judgment.Good || judgment == Judgment.GoodEarly || judgment == Judgment.GoodLate)
             {
                 PlayManager.Instance.Accurary += 70;
                 PlayManager.Instance.Totalnote += 1;
                 PlayManager.Instance.Combo += 1;
+                PlayManager.Instance.Score += 700000f / PlayManager.Instance.levelData.NoteDatas.Count;
             }
             else if (judgment == Judgment.Bad)
             {
                 PlayManager.Instance.Accurary += 30;
                 PlayManager.Instance.Totalnote += 1;
                 PlayManager.Instance.Combo = 0;
+                PlayManager.Instance.Score += 300000f / PlayManager.Instance.levelData.NoteDatas.Count;
             }
             else
             {
