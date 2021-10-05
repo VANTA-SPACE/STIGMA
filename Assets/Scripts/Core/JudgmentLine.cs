@@ -11,7 +11,6 @@ namespace Core {
         public static JudgmentLine Instance => _instance;
         private static JudgmentLine _instance;
         public Dictionary<NotePos, Vector2> Positions;
-        private Dictionary<NotePos, int> _currMisses;
 
         private void Awake() {
             if (_instance != null) {
@@ -27,12 +26,6 @@ namespace Core {
                 {NotePos.POS_3, new Queue<NoteNormal>()},
             };
             Positions = new Dictionary<NotePos, Vector2>();
-            _currMisses = new Dictionary<NotePos, int> {
-                {NotePos.POS_0, 0},
-                {NotePos.POS_1, 0},
-                {NotePos.POS_2, 0},
-                {NotePos.POS_3, 0},
-            };
         }
 
         // Update is called once per frame
@@ -50,7 +43,7 @@ namespace Core {
                 if (queue.Any()) {
                     if (queue.Peek().CheckMiss()) {
                         queue.Dequeue().MissNote();
-                        _currMisses[key] += 1;
+                        PlayManager.Instance.judgmentList.Add(Judgment.Miss);
                         PlayManager.Instance.totalMisses += 1;
                     }
                 }
@@ -71,8 +64,7 @@ namespace Core {
                 var judgment = queue.Peek().CheckJudgment();
                 if (judgment == Judgment.None) return;
                 queue.Dequeue().DestroyNote(judgment);
-                PlayManager.Instance.judgmentList.Add((judgment, _currMisses[pos]));
-                _currMisses[pos] = 0;
+                PlayManager.Instance.judgmentList.Add(judgment);
             }
         }
     }

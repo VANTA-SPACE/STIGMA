@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 
 namespace UI {
-    public class PauseMenuButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler {
+    public class PauseMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler {
         public TMP_Text text;
         public ButtonType buttonType;
         public enum ButtonType {
@@ -27,7 +27,7 @@ namespace UI {
                     break;
                 case ButtonType.Retry:
                     PlayManager.Instance.UnpauseGame();
-                    PlayManager.Instance.StartPlay();
+                    PlayManager.Instance.Retry();
                     break;
                 case ButtonType.Exit:
                     var transition = Trans.FromLeft | Trans.FromRight | Trans.ToUp | Trans.ToDown;

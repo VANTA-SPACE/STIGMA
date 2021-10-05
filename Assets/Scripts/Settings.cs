@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Core.Level;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public static class Settings {
     public static Dictionary<NotePos, KeyCode> Keymap = new Dictionary<NotePos, KeyCode> {

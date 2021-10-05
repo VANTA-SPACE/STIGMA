@@ -5,11 +5,19 @@ using System.Linq;
 using System.Text;
 using Serialization;
 using UnityEngine;
+using UnityEngine.Events;
 using Utils;
 
 namespace Locale {
     public class Translate : MonoBehaviour {
-        public static SystemLanguage CurrentLanguage;
+        public static SystemLanguage CurrentLanguage {
+            get => _currentLanguage;
+            set {
+                _currentLanguage = value;
+                Events.OnLanguageChange.Invoke();
+            }
+        }
+        private static SystemLanguage _currentLanguage;
         public static Dictionary<string, Dictionary<SystemLanguage, string>> TranslationsDict;
         public SystemLanguage currentLanguage;
 
@@ -41,6 +49,7 @@ namespace Locale {
 
         public static bool TryGetFormatted(string key, out string value, SystemLanguage? language = null,
             params object[] formats) {
+            if (formats == null) return TryGet(key, out value, language);
             if (!TryGet(key, out value, language)) return false;
             value = string.Format(value, formats);
             return true;
@@ -50,12 +59,16 @@ namespace Locale {
             TryGetFormatted(key, out string value, language, formats) ? value : $"KeyNotFound {key}";
 
         public static Dictionary<string, Dictionary<SystemLanguage, string>> LoadLanguages() {
+            #if UNITY_EDITOR
             var path = Path.Combine(Constants.ResourcePath, "translation.csv");
             File.Delete(path + ".tmp");
             File.Copy(path, path + ".tmp");
             path = path + ".tmp";
             var result = File.ReadAllBytes(path).Encode(Encoding.GetEncoding(65001)).Replace("\r", "");
             File.Delete(path);
+            #else
+            var result = Resources.Load<TextAsset>("translation").text.Replace("\r", "");
+            #endif
             var csv = new Csv(result);
             var keys = new List<string>();
             var langs = new List<string>();
