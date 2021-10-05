@@ -22,7 +22,11 @@ namespace Manager {
         public Image pausePanel;
         public RectTransform pauseMenu;
         public bool Paused { get; private set; }
-        
+
+        public float Accurary;
+        public int Totalnote = 0;
+        public int Combo = 0;
+
         public LevelData levelData = null; 
         public List<(Judgment judgment, int missCount)> judgmentList = new List<(Judgment judgment, int missCount)>();
         public int totalMisses;
@@ -78,7 +82,15 @@ namespace Manager {
             }
 
             var curr = isPlayingLevel ? $"{currentBeat}" : "Not playing";
-            exampleText.text = $"CurrentBeat: {curr}\nPaused: {Paused}";
+
+            if(Totalnote == 0)
+            {
+                exampleText.text = $"CurrentBeat: {curr}\nPaused: {Paused}\nAccurary: 100.00%\nCombo: {Combo}";
+            }
+            else
+            {
+                exampleText.text = $"CurrentBeat: {curr}\nPaused: {Paused}\nAccurary: " + (Accurary / Totalnote).ToString("0.00") + $"%\nCombo: {Combo}";
+            }
         }
 
         public void TogglePause() {

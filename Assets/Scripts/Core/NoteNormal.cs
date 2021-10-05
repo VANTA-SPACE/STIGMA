@@ -48,7 +48,7 @@ namespace Core {
 
         public void ShowJudgementText(Judgment judgment) {
             var obj = Instantiate(judgmentPrefab);
-            obj.transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f);
+            obj.transform.position = new Vector3(transform.position.x, 1f);
             var tmp = obj.transform.GetChild(0).GetComponent<TMP_Text>();
             if (judgment == Judgment.Perfect) {
                 tmp.colorGradient = new VertexGradient(new Color(1, 1, 0.6f), new Color(0.9f, 0.6f, 1)
@@ -64,6 +64,30 @@ namespace Core {
             else if (judge.Length == 2) {
                 if (judge[0] == "Good") tmp.text = judge[1].ToUpper();
                 else tmp.text = judge[0].ToUpper() + "\n" + judge[1].ToLower();
+            }
+
+            if (judgment == Judgment.Perfect || judgment == Judgment.PerfectEarly || judgment == Judgment.PerfectLate)
+            {
+                PlayManager.Instance.Accurary += 100;
+                PlayManager.Instance.Totalnote += 1;
+                PlayManager.Instance.Combo += 1;
+            }
+            else if (judgment == Judgment.Good || judgment == Judgment.GoodEarly || judgment == Judgment.GoodLate)
+            {
+                PlayManager.Instance.Accurary += 70;
+                PlayManager.Instance.Totalnote += 1;
+                PlayManager.Instance.Combo += 1;
+            }
+            else if (judgment == Judgment.Bad)
+            {
+                PlayManager.Instance.Accurary += 30;
+                PlayManager.Instance.Totalnote += 1;
+                PlayManager.Instance.Combo = 0;
+            }
+            else
+            {
+                PlayManager.Instance.Totalnote += 1;
+                PlayManager.Instance.Combo = 0;
             }
         }
     }
