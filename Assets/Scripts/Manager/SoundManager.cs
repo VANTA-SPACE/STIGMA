@@ -3,6 +3,7 @@ using System.Collections;
 using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 namespace Manager {
@@ -11,7 +12,7 @@ namespace Manager {
         private static SoundManager _instance;
         public double offset;
         
-        private EventInstance _eventInstance;
+        public EventInstance EventInstance;
         private PARAMETER_ID _parameterID;
         public bool Playing { get; private set; }
         public bool Paused { get; private set; }
@@ -22,6 +23,9 @@ namespace Manager {
                 return;
             }
 
+            SceneManager.sceneLoaded += (scene, mode) => {
+                StopEvent();
+            };
             _instance = this;
         }
 
@@ -33,38 +37,38 @@ namespace Manager {
         private IEnumerator _playMainEventCo(string eventName) {
             yield return new WaitUntil(() => PlayManager.Instance.currentBeat >= offset);
             if (Playing) {
-                RuntimeManager.DetachInstanceFromGameObject(_eventInstance);
+                RuntimeManager.DetachInstanceFromGameObject(EventInstance);
             }
             
             Playing = true;
 
-            _eventInstance = RuntimeManager.CreateInstance(eventName);
-            _eventInstance.start();
+            EventInstance = RuntimeManager.CreateInstance(eventName);
+            EventInstance.start();
 
-            RuntimeManager.AttachInstanceToGameObject(_eventInstance, transform);
+            RuntimeManager.AttachInstanceToGameObject(EventInstance, transform);
 
-            _eventInstance.getDescription(out var titleEventDescription);
+            EventInstance.getDescription(out var titleEventDescription);
             titleEventDescription.getParameterDescriptionByName("Transition", out var titleParameterDescription);
             _parameterID = titleParameterDescription.id;
         }
 
         public void StopEvent(bool fadeOut = false) {
-            _eventInstance.stop(fadeOut ? STOP_MODE.ALLOWFADEOUT : STOP_MODE.IMMEDIATE);
-            RuntimeManager.DetachInstanceFromGameObject(_eventInstance);
+            EventInstance.stop(fadeOut ? STOP_MODE.ALLOWFADEOUT : STOP_MODE.IMMEDIATE);
+            RuntimeManager.DetachInstanceFromGameObject(EventInstance);
             Playing = false;
         }
 
         public void Pause() {
-            _eventInstance.setPaused(true);
+            EventInstance.setPaused(true);
             Paused = true;
         }
 
         public void Unpause(bool fixSinc = false) {
-            _eventInstance.setPaused(false);
+            EventInstance.setPaused(false);
             if (fixSinc) {
                 int timelinePos = (int) Math.Round((PlayManager.Instance.currentBeat - offset) * 60 /
                     PlayManager.Instance.levelData.BPM * 1000);
-                _eventInstance.setTimelinePosition(timelinePos);
+                EventInstance.setTimelinePosition(timelinePos);
             }
 
             Paused = false;

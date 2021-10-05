@@ -23,7 +23,9 @@ namespace Manager {
         public RectTransform pauseMenu;
         public bool Paused { get; private set; }
         
-        public LevelData levelData = null;
+        public LevelData levelData = null; 
+        public List<(Judgment judgment, int missCount)> judgmentList = new List<(Judgment judgment, int missCount)>();
+        public int totalMisses;
 
         public JudgmentLine JudgmentLine => JudgmentLine.Instance;
 
@@ -68,13 +70,15 @@ namespace Manager {
             if (!Paused) {
                 if (isPlayingLevel) {
                     rawBeat += currentBpm / 60d * Time.deltaTime;
-                    exampleText.text = $"{currentBeat}";
                 } else {
                     if (Input.GetKeyDown(KeyCode.Space)) {
                         StartPlay();
                     }
                 }
             }
+
+            var curr = isPlayingLevel ? $"{currentBeat}" : "Not playing";
+            exampleText.text = $"CurrentBeat: {curr}\nPaused: {Paused}";
         }
 
         public void TogglePause() {

@@ -30,6 +30,8 @@ namespace UI {
                     PlayManager.Instance.StartPlay();
                     break;
                 case ButtonType.Exit:
+                    var transition = Trans.FromLeft | Trans.FromRight | Trans.ToUp | Trans.ToDown;
+                    GameManager.Instance.LoadScene(Constants.INTRO_SCENE, transition);
                     break;
             }
         }

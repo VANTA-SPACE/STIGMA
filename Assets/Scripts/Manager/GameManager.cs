@@ -64,6 +64,11 @@ namespace Manager {
             panel3.color = Color.clear;
             panel4.color = Color.clear;
             panel5.color = Color.clear;
+            panel1.gameObject.SetActive(false);
+            panel2.gameObject.SetActive(false);
+            panel3.gameObject.SetActive(false);
+            panel4.gameObject.SetActive(false);
+            panel5.gameObject.SetActive(false);
 
             if (resetPosition) {
                 _panel1Rect.anchoredPosition = new Vector2(0, 0);
@@ -84,30 +89,35 @@ namespace Manager {
             if (transitionType.HasFlag(Trans.FromUp)) {
                 flag = true;
                 panel1.color = Color.black;
+                panel1.gameObject.SetActive(true);
                 _panel1Rect.anchoredPosition = new Vector2(0, 1080);
                 _panel1Rect.DOAnchorPosY(transitionType.HasFlag(Trans.FromDown) ? 540 : 0, transitionLength);
             }
             if (transitionType.HasFlag(Trans.FromDown)) {
                 flag = true;
                 panel2.color = Color.black;
+                panel2.gameObject.SetActive(true);
                 _panel2Rect.anchoredPosition = new Vector2(0, -1080);
                 _panel2Rect.DOAnchorPosY(transitionType.HasFlag(Trans.FromUp) ? -540 : 0, transitionLength);
             }
             if (transitionType.HasFlag(Trans.FromLeft)) {
                 flag = true;
                 panel3.color = Color.black;
+                panel3.gameObject.SetActive(true);
                 _panel3Rect.anchoredPosition = new Vector2(-1920, 0);
                 _panel3Rect.DOAnchorPosX(transitionType.HasFlag(Trans.FromRight) ? -960 : 0, transitionLength);
             }
             if (transitionType.HasFlag(Trans.FromRight)) {
                 flag = true;
                 panel4.color = Color.black;
+                panel4.gameObject.SetActive(true);
                 _panel4Rect.anchoredPosition = new Vector2(1920, 0);
                 _panel4Rect.DOAnchorPosX(transitionType.HasFlag(Trans.FromLeft) ? 960 : 0, transitionLength);
             }
             if (transitionType.HasFlag(Trans.FadeStart)) {
                 flag = true;
                 panel5.color = Color.clear;
+                panel5.gameObject.SetActive(true);
                 panel5.DOColor(Color.black, transitionLength);
             }
 
@@ -119,25 +129,31 @@ namespace Manager {
         public void Undarken(Trans transitionType) {
             ResetPanel(false);
             Debug.Log("Undarken");
-            DOTween.Sequence().AppendCallback(() => _doingEffect = false).SetDelay(transitionLength);
+            DOTween.Sequence().AppendCallback(() => {
+                _doingEffect = false; ResetPanel();}).SetDelay(transitionLength);
             if (transitionType.HasFlag(Trans.ToUp)) {
                 panel1.color = Color.black;
+                panel1.gameObject.SetActive(true);
                 _panel1Rect.DOAnchorPosY(1080, transitionLength);
             }
             if (transitionType.HasFlag(Trans.ToDown)) {
                 panel2.color = Color.black;
+                panel2.gameObject.SetActive(true);
                 _panel2Rect.DOAnchorPosY(-1080, transitionLength);
             }
             if (transitionType.HasFlag(Trans.ToLeft)) {
                 panel3.color = Color.black;
+                panel3.gameObject.SetActive(true);
                 _panel3Rect.DOAnchorPosX(-1920, transitionLength);
             }
             if (transitionType.HasFlag(Trans.ToRight)) {
                 panel4.color = Color.black;
+                panel4.gameObject.SetActive(true);
                 _panel4Rect.DOAnchorPosX(1920, transitionLength);
             }
             if (transitionType.HasFlag(Trans.FadeEnd)) {
                 panel5.color = Color.black;
+                panel5.gameObject.SetActive(true);
                 panel5.DOColor(Color.clear, transitionLength);
             }
         }

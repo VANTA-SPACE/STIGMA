@@ -5,11 +5,19 @@ using UnityEngine;
 using Utils;
 
 public static class Constants {
+    //씬
+    public const string STARTUP_SCENE = "SceneStartup";
+    public const string INTRO_SCENE = "SceneIntro";
+    public const string PLAY_SCENE = "PlayScene";
+    
+    //이벤트
+    public const string TitleEvent = "event:/Title";
+    
     // 각 노트별 판정 (60프레임)
-    public const double NOTEJUDGMENT_PERFECT = 2.5;
-    public const double NOTEJUDGMENT_NORMAL = 8;
-    public const double NOTEJUDGMENT_BAD = 15;
-    public const double NOTEJUDGMENT_ELOFFSET = 2;
+    public const double NOTEJUDGMENT_PERFECT = 6;
+    public const double NOTEJUDGMENT_NORMAL = 12;
+    public const double NOTEJUDGMENT_BAD = 18;
+    public const double NOTEJUDGMENT_ELOFFSET = 4;
     
     //노트 너비
     public const float NOTE_WIDTH = 3;
@@ -17,7 +25,6 @@ public static class Constants {
     //노트 속도
     public const float NOTE_SPEED_MODIFIER = 4;
     
-    public const string TitleEvent = "event:/Title";
 
     public static readonly ConstDict<Judgment, Color> JudgmentColors = new ConstDict<Judgment, Color>(
         (Judgment.PerfectEarly, new Color(1f, 1f, 0.6f)),

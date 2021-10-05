@@ -11,7 +11,7 @@ namespace Core {
         private void Start() {
             var duration = (float) (60 / PlayManager.Instance.currentBpm * 2);
             text.DOColor(new Color(text.color.r, text.color.g, text.color.b, 0), duration);
-            transform.DOMoveY(this.transform.position.y - duration / 8, duration);
+            transform.DOMoveY(this.transform.position.y - duration / 8, duration).OnComplete(() => Destroy(gameObject));
         }
     }
 }
