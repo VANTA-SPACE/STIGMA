@@ -9,6 +9,7 @@ namespace Manager {
     public class SoundManager : MonoBehaviour {
         public static SoundManager Instance => _instance;
         private static SoundManager _instance;
+        public double offset;
         
         private EventInstance _eventInstance;
         private PARAMETER_ID _parameterID;
@@ -24,12 +25,14 @@ namespace Manager {
             _instance = this;
         }
 
-        public void PlayEvent(string eventName, Func<bool> wait = null) {
-            StartCoroutine(_playEventCo(eventName, wait));
+        public void PlayMainEvent(string eventName, double offset = 0) {
+            this.offset = offset * PlayManager.Instance.currentBpm / 6000;
+            StartCoroutine(_playMainEventCo(eventName));
         }
 
-        private IEnumerator _playEventCo(string eventName, Func<bool> wait) {
-            if (wait != null) yield return new WaitUntil(wait);
+        private IEnumerator _playMainEventCo(string eventName) {
+            yield return new WaitUntil(() => PlayManager.Instance.currentBeat >= offset);
+            Debug.LogError("Play Event");
             if (Playing) {
                 RuntimeManager.DetachInstanceFromGameObject(_eventInstance);
             }
@@ -57,8 +60,14 @@ namespace Manager {
             Paused = true;
         }
 
-        public void Unpause() {
+        public void Unpause(bool fixSinc = false) {
             _eventInstance.setPaused(false);
+            if (fixSinc) {
+                int timelinePos = (int) Math.Round((PlayManager.Instance.currentBeat - offset) * 60 /
+                    PlayManager.Instance.levelData.BPM * 1000);
+                _eventInstance.setTimelinePosition(timelinePos);
+            }
+
             Paused = false;
         }
     }

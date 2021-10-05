@@ -42,7 +42,7 @@ namespace Manager {
             currentBpm = this.levelData.BPM;
             const int beatDelay = 2;
             Instance.beatOffset = -levelData.Offset * levelData.BPM / 6000d + beatDelay;
-            SoundManager.Instance.PlayEvent(levelData.EventName, () => currentBeat >= levelData.Offset * levelData.BPM / 6000);
+            SoundManager.Instance.PlayMainEvent(levelData.EventName, levelData.Offset);
             generator.GenerateNotes(levelData.NoteDatas);
             //Other tasks
         }
@@ -84,19 +84,21 @@ namespace Manager {
         }
         
         public void PauseGame() {
+            DOTween.Kill("UnpauseGame", true);
             Paused = true;
             SoundManager.Instance.Pause();
             pauseMenu.localScale = new Vector3(0, 0, 0);
             pausePanel.gameObject.SetActive(true);
-            pausePanel.DOColor(new Color(0, 0, 0, 0.8f), 0.2f);
-            pauseMenu.DOScale(Vector3.one, 0.15f).SetEase(Ease.OutExpo);
+            pausePanel.DOColor(new Color(0, 0, 0, 0.8f), 0.2f).SetId("PauseGame");
+            pauseMenu.DOScale(Vector3.one, 0.15f).SetEase(Ease.OutExpo).SetId("PauseGame");
         }
         
         public void UnpauseGame() {
+            DOTween.Kill("PauseGame", true);
             Paused = false;
-            SoundManager.Instance.Unpause();
-            pausePanel.DOColor(Color.clear, 0.2f).OnComplete(() => pausePanel.gameObject.SetActive(false));
-            pauseMenu.DOScale(Vector3.zero, 0.15f).SetEase(Ease.OutExpo);
+            SoundManager.Instance.Unpause(true);
+            pausePanel.DOColor(Color.clear, 0.2f).OnComplete(() => pausePanel.gameObject.SetActive(false)).SetId("UnpauseGame");
+            pauseMenu.DOScale(Vector3.zero, 0.15f).SetEase(Ease.OutExpo).SetId("UnpauseGame");
         }
     }
 }
