@@ -101,7 +101,7 @@ namespace Manager {
             {
                 exampleText.text = $"CurrentBeat: {curr}\nPaused: {Paused}\nAccurary: 100.00%";
                 ScoreText.text = "0";
-                comboText.text = $"Combo: <color=#ffff7f>{Combo}</color>";
+                comboText.text = $"<color=#ffff7f>{Combo}</color>";
             }
             else
             {
@@ -109,15 +109,15 @@ namespace Manager {
                 ScoreText.text = Score.ToString("#,###,##0");
                 if((Accurary / Totalnote) == 100)
                 {
-                    comboText.text = $"Combo: <color=#ffff7f>{Combo}</color>";
+                    comboText.text = $"<color=#ffff7f>{Combo}</color>";
                 }
                 else if(totalMisses == 0)
                 {
-                    comboText.text = $"Combo: <color=#7fbfff>{Combo}</color>";
+                    comboText.text = $"<color=#7fbfff>{Combo}</color>";
                 }
                 else
                 {
-                    comboText.text = $"Combo: {Combo}";
+                    comboText.text = $"{Combo}";
                 }
             }
         }
