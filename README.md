@@ -45,7 +45,7 @@ PC 리듬 게임이며, 본 게임은 무료이다.
 ### TODO
 **버전별 목표**
  * **r10** - 레이아웃 정렬
- * **r11** - 
+ * **r11** - 롱노트 구현
 
 ## ISSUE
 **[레포지토리 이슈 페이지](https://github.com/sqUve-kr/STIGMA/issues)**
