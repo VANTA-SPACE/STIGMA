@@ -39,7 +39,7 @@ PC 리듬 게임이며, 본 게임은 무료이다.
  * **r10** - 점수 체계 및 점수 표시 구현
 
 ## ISSUE
-이슈는 **[레포지토리 이슈 페이지](https://github.com/sqUve-kr/STIGMA/issues)**에서  만들고, 편집 및 참여가 가능합니다.
+이슈는 **[레포지토리 이슈 페이지](https://github.com/sqUve-kr/STIGMA/issues)** 에서  만들고, 편집 및 참여가 가능합니다.
 ### ISSUE 제목
 
  * BUG ) - 버그 리포트
