@@ -20,6 +20,7 @@ namespace Manager {
         public double currentBpm;
         public Text exampleText;
         public Text comboText;
+        public Text ScoreText;
         public Image pausePanel;
         public RectTransform pauseMenu;
         public bool Paused { get; private set; }
@@ -62,6 +63,16 @@ namespace Manager {
             rawBeat = 0;
             LoadLevel(levelData);
             Debug.Log("Started Playing");
+
+            Accurary = 0;
+            Totalnote = 0;
+            Combo = 0;
+            Score = 0;
+
+            exampleText.text = $"CurrentBeat: Not playing\nPaused: {Paused}\nAccurary: 100.00%";
+            ScoreText.text = "0";
+            comboText.text = $"Combo: <color=#ffff7f>{Combo}</color>";
+
         }
         
         public void EndPlay() {
@@ -88,13 +99,26 @@ namespace Manager {
 
             if(Totalnote == 0)
             {
-                exampleText.text = $"CurrentBeat: {curr}\nPaused: {Paused}\nAccurary: 100.00%\nScore: 0";
-                comboText.text = $"Combo: {Combo}";
+                exampleText.text = $"CurrentBeat: {curr}\nPaused: {Paused}\nAccurary: 100.00%";
+                ScoreText.text = "0";
+                comboText.text = $"Combo: <color=#ffff7f>{Combo}</color>";
             }
             else
             {
-                exampleText.text = $"CurrentBeat: {curr}\nPaused: {Paused}\nAccurary: " + (Accurary / Totalnote).ToString("0.00") + $"%\nScore: " + Score.ToString("#,###,##0");
-                comboText.text =  $"Combo: {Combo}";
+                exampleText.text = $"CurrentBeat: {curr}\nPaused: {Paused}\nAccurary: " + (Accurary / Totalnote).ToString("0.00") + "%";
+                ScoreText.text = Score.ToString("#,###,##0");
+                if((Accurary / Totalnote) == 100)
+                {
+                    comboText.text = $"Combo: <color=#ffff7f>{Combo}</color>";
+                }
+                else if(totalMisses == 0)
+                {
+                    comboText.text = $"Combo: <color=#7fbfff>{Combo}</color>";
+                }
+                else
+                {
+                    comboText.text = $"Combo: {Combo}";
+                }
             }
         }
 
