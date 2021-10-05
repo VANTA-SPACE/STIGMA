@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{71bc9056-f14d-402e-a375-9bd97e268556}">
+		<property name="assetPath">
+			<value>Calibration.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>2</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{1065a78a-b7e7-42f3-a1d1-c82b586ca0e3}</destination>
+		</relationship>
+	</object>
+</objects>

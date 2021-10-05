@@ -2,11 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Locale {
-    public class Translate : MonoBehaviour {
+    public class Translate {
         public static SystemLanguage CurrentLanguage;
-        private static Dictionary<string, Dictionary<SystemLanguage, string>> translationsDict;
-
-        public List<Translation> Translations;
-        
+        public static Dictionary<SystemLanguage, Dictionary<string, string>> translationsDict;
     }
 }

@@ -1,5 +1,6 @@
 // ReSharper disable InconsistentNaming
 
+using System.IO;
 using Core;
 using UnityEngine;
 using Utils;
@@ -35,4 +36,6 @@ public static class Constants {
         (Judgment.Bad, new Color(0.8f, 0.2f, 0.1f)),
         (Judgment.Miss, new Color(0.6f, 0.6f, 0.6f))
     );
+
+    public static string ResourcePath => Path.Combine(Application.dataPath, "Resources");
 }
