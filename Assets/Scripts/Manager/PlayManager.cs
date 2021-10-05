@@ -19,6 +19,7 @@ namespace Manager {
         public bool isPlayingLevel;
         public double currentBpm;
         public Text exampleText;
+        public Text comboText;
         public Image pausePanel;
         public RectTransform pauseMenu;
         public bool Paused { get; private set; }
@@ -85,11 +86,13 @@ namespace Manager {
 
             if(Totalnote == 0)
             {
-                exampleText.text = $"CurrentBeat: {curr}\nPaused: {Paused}\nAccurary: 100.00%\nCombo: {Combo}";
+                exampleText.text = $"CurrentBeat: {curr}\nPaused: {Paused}\nAccurary: 100.00%";
+                comboText.text = $"Combo: {Combo}";
             }
             else
             {
-                exampleText.text = $"CurrentBeat: {curr}\nPaused: {Paused}\nAccurary: " + (Accurary / Totalnote).ToString("0.00") + $"%\nCombo: {Combo}";
+                exampleText.text = $"CurrentBeat: {curr}\nPaused: {Paused}\nAccurary: " + (Accurary / Totalnote).ToString("0.00") + "%";
+                comboText.text =  $"Combo: {Combo}";
             }
         }
 
