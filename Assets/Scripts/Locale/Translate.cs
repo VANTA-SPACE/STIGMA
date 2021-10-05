@@ -51,8 +51,11 @@ namespace Locale {
 
         public static Dictionary<string, Dictionary<SystemLanguage, string>> LoadLanguages() {
             var path = Path.Combine(Constants.ResourcePath, "translation.csv");
-            var result = File.ReadAllBytes(path).Encode(Encoding.GetEncoding(51949))
-                .Encode(Encoding.GetEncoding(51949), Encoding.UTF8).Replace("\r", "");
+            File.Delete(path + ".tmp");
+            File.Copy(path, path + ".tmp");
+            path = path + ".tmp";
+            var result = File.ReadAllBytes(path).Encode(Encoding.GetEncoding(65001)).Replace("\r", "");
+            File.Delete(path);
             var csv = new Csv(result);
             var keys = new List<string>();
             var langs = new List<string>();
