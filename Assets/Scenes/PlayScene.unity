@@ -884,6 +884,9 @@ MonoBehaviour:
   exampleText: {fileID: 1950084057}
   pausePanel: {fileID: 2132720368}
   pauseMenu: {fileID: 1245038021}
+  Accurary: 0
+  Totalnote: 0
+  Combo: 0
   levelData:
     BPM: 155
     Offset: -15
@@ -998,6 +1001,7 @@ GameObject:
   - component: {fileID: 1611598291}
   - component: {fileID: 1611598290}
   - component: {fileID: 1611598292}
+  - component: {fileID: 1611598293}
   m_Layer: 5
   m_Name: Text (TMP) (3)
   m_TagString: Untagged
@@ -1135,6 +1139,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 0}
   buttonType: 2
+--- !u!114 &1611598293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611598288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca6c743b96e547aa8703ed8007b308df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localeKey: Exit
 --- !u!1 &1681517846
 GameObject:
   m_ObjectHideFlags: 0
@@ -1236,6 +1253,7 @@ GameObject:
   - component: {fileID: 1726621099}
   - component: {fileID: 1726621098}
   - component: {fileID: 1726621101}
+  - component: {fileID: 1726621100}
   m_Layer: 5
   m_Name: Text (TMP) (1)
   m_TagString: Untagged
@@ -1282,7 +1300,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Resume
+  m_text: "\uD55C\uAE00\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4d5e9331eb276c9498820ea0b4d253ff, type: 2}
   m_sharedMaterial: {fileID: -2433880763625079312, guid: 4d5e9331eb276c9498820ea0b4d253ff, type: 2}
@@ -1359,6 +1377,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1726621096}
   m_CullTransparentMesh: 1
+--- !u!114 &1726621100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1726621096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca6c743b96e547aa8703ed8007b308df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localeKey: Resume
 --- !u!114 &1726621101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1688,6 +1719,7 @@ GameObject:
   - component: {fileID: 2105105177}
   - component: {fileID: 2105105176}
   - component: {fileID: 2105105178}
+  - component: {fileID: 2105105179}
   m_Layer: 5
   m_Name: Text (TMP) (2)
   m_TagString: Untagged
@@ -1825,6 +1857,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 0}
   buttonType: 1
+--- !u!114 &2105105179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105105174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca6c743b96e547aa8703ed8007b308df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localeKey: Retry
 --- !u!1 &2132720366
 GameObject:
   m_ObjectHideFlags: 0
