@@ -21,7 +21,7 @@ public static class Constants {
     public const double NOTEJUDGMENT_ELOFFSET = 6;
     
     //노트 너비
-    public const float NOTE_WIDTH = 2;
+    public const float NOTE_WIDTH = 1.6f;
     
     //노트 속도
     public const float NOTE_SPEED_MODIFIER = 3;
