@@ -43,6 +43,7 @@ PC 리듬 게임이며, 본 게임은 무료이다.
 
 ## ISSUE
 **[레포지토리 이슈 페이지](https://github.com/sqUve-kr/STIGMA/issues)**
+
 위 페이지에서 이슈를 만들고, 참여가 가능합니다.
 ### ISSUE 제목
 
