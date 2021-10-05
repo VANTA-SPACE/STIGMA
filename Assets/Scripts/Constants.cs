@@ -21,10 +21,10 @@ public static class Constants {
     public const double NOTEJUDGMENT_ELOFFSET = 4;
     
     //노트 너비
-    public const float NOTE_WIDTH = 3;
+    public const float NOTE_WIDTH = 2;
     
     //노트 속도
-    public const float NOTE_SPEED_MODIFIER = 4;
+    public const float NOTE_SPEED_MODIFIER = 3;
     
 
     public static readonly ConstDict<Judgment, Color> JudgmentColors = new ConstDict<Judgment, Color>(
