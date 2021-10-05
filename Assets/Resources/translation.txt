@@ -1,0 +1,5 @@
+	korean	English
+example key	wa	sans
+example key #2	not	asi
+k3	asdf	fda
+k4	qwer	rqwe
