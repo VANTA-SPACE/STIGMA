@@ -99,3 +99,4 @@ MonoBehaviour:
     NoteType: 0
     StartBeat: 0
     NotePos: 0
+  judgmentPrefab: {fileID: 7842399672895959261, guid: dff60777c9cc14747a4a82cc9c35e99e, type: 3}

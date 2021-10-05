@@ -32,7 +32,6 @@ namespace Manager {
 
         private IEnumerator _playMainEventCo(string eventName) {
             yield return new WaitUntil(() => PlayManager.Instance.currentBeat >= offset);
-            Debug.LogError("Play Event");
             if (Playing) {
                 RuntimeManager.DetachInstanceFromGameObject(_eventInstance);
             }

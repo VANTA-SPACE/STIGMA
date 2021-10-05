@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 using Core;
 using UnityEngine;
 
@@ -133,6 +134,18 @@ namespace Utils {
                 (float) Math.Round(v.x * Mathf.Cos(delta) - v.y * Mathf.Sin(delta), 6),
                 (float) Math.Round(v.x * Mathf.Sin(delta) + v.y * Mathf.Cos(delta), 6)
             );
+        }
+
+        public static string SplitCapital(this string str) {
+            var result = new StringBuilder();
+            bool start = false;
+            foreach (var chr in str) {
+                if (start && char.IsUpper(chr)) result.Append(" ");
+                start = true;
+                result.Append(chr);
+            }
+
+            return result.ToString();
         }
     }
 }
