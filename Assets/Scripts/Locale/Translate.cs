@@ -1,51 +1,21 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
+using Serialization;
 using UnityEngine;
+using Utils;
 
 namespace Locale {
     public class Translate : MonoBehaviour {
         public static SystemLanguage CurrentLanguage;
         public static Dictionary<string, Dictionary<SystemLanguage, string>> TranslationsDict;
-        public SystemLanguage currentLanguage = Application.systemLanguage;
+        public SystemLanguage currentLanguage;
 
         private void Awake() {
-            var result = Resources.Load<TextAsset>("translation").text.Replace("\r", "");
-            var keys = new List<string>();
-            var rawrows = result.Split('\n').ToList();
-            var langs = rawrows[0].Split(new []{"\t"}, StringSplitOptions.RemoveEmptyEntries);
-            rawrows.RemoveAt(0);
-            var rows = new List<List<string>>();
-            foreach (var colstr in rawrows) {
-                var cols = colstr.Split('\t').ToList();
-                if (cols[0] != "") keys.Add(cols[0]);
-                cols.RemoveAt(0);
-                rows.Add(cols);
-            }
-
-            var datas = new Dictionary<string, Dictionary<SystemLanguage, string>>();
-            var rowc = 0;
-            foreach (var key in keys) {
-                var colc = 0;
-                datas[key] = new Dictionary<SystemLanguage, string>();
-                foreach (var langst in langs) {
-                    var langstra = langst.ToLower().ToCharArray();
-                    langstra[0] = langstra[0].ToString().ToUpper()[0];
-                    var langstr = new string((char[]) langstra);
-                    if (Enum.TryParse<SystemLanguage>(langstr, out var lang)) {
-                        datas[key][lang] = rows[rowc][colc];
-                        Debug.Log($"datas[{key}][{lang}] = {rows[rowc][colc]}");
-                    } else {
-                        Debug.Log($"cannot parse {langstr}");
-                    }
-
-                    colc++;
-                }
-
-                rowc++;
-            }
-
-            Translate.TranslationsDict = datas;
+            currentLanguage = Application.systemLanguage;
+            TranslationsDict = LoadLanguages();
         }
 
         private void Update() {
@@ -53,6 +23,7 @@ namespace Locale {
         }
 
         public static bool TryGet(string key, out string value, SystemLanguage? language = null) {
+            if (TranslationsDict == null) TranslationsDict = LoadLanguages();
             language ??= CurrentLanguage;
             if (!TranslationsDict.ContainsKey(key)) {
                 value = null;
@@ -65,12 +36,54 @@ namespace Locale {
             return dict2.TryGetValue(SystemLanguage.English, out value);
         }
 
-        public static string Get(string key, SystemLanguage? language = null) {
-            if (TryGet(key, out var value, language)) {
-                return value;
+        public static string Get(string key, SystemLanguage? language = null) =>
+            TryGet(key, out string value, language) ? value : $"KeyNotFound {key}";
+
+        public static bool TryGetFormatted(string key, out string value, SystemLanguage? language = null,
+            params object[] formats) {
+            if (!TryGet(key, out value, language)) return false;
+            value = string.Format(value, formats);
+            return true;
+        }
+
+        public static string GetFormatted(string key, SystemLanguage? language = null, params object[] formats) =>
+            TryGetFormatted(key, out string value, language, formats) ? value : $"KeyNotFound {key}";
+
+        public static Dictionary<string, Dictionary<SystemLanguage, string>> LoadLanguages() {
+            var path = Path.Combine(Constants.ResourcePath, "translation.csv");
+            var result = File.ReadAllBytes(path).Encode(Encoding.GetEncoding(51949))
+                .Encode(Encoding.GetEncoding(51949), Encoding.UTF8).Replace("\r", "");
+            var csv = new Csv(result);
+            var keys = new List<string>();
+            var langs = new List<string>();
+            var cols = new List<List<string>>();
+            var data = csv.Data;
+            langs = data[0];
+            langs.RemoveAt(0);
+            data.RemoveAt(0);
+            foreach (var rows in data) {
+                keys.Add(rows[0]);
+                rows.RemoveAt(0);
+                cols.Add(rows);
             }
 
-            return $"KeyNotFound {key}";
+            var datas = new Dictionary<string, Dictionary<SystemLanguage, string>>();
+            var col = 0;
+            foreach (var key in keys) {
+                datas[key] = new Dictionary<SystemLanguage, string>();
+                var row = 0;
+                foreach (var langstr in langs) {
+                    if (Enum.TryParse<SystemLanguage>(langstr.FirstCapital(), out var lang)) {
+                        datas[key][lang] = cols[col][row];
+                    }
+
+                    row++;
+                }
+
+                col++;
+            }
+
+            return datas;
         }
     }
 }

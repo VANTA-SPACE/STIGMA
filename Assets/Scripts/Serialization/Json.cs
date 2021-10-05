@@ -8,7 +8,7 @@ using System.Text;
 using Manager;
 using UnityEngine;
 
-namespace MiniJSON {
+namespace Serialization {
 	public static class Json {
 		public static object Deserialize(string json) {
 			if (json == null) {
@@ -18,8 +18,8 @@ namespace MiniJSON {
 			return Parser.Parse(json);
 		}
 
-		public static string Serialize(object obj) {
-			return Serializer.Serialize(obj);
+		public static string Serialize(object obj, bool ensureAscii = true) {
+			return Serializer.Serialize(obj, ensureAscii);
 		}
 
 		private sealed class Parser : IDisposable {
@@ -402,6 +402,7 @@ namespace MiniJSON {
 		private sealed class Serializer {
 			private const int INDENT = 4;
 			private int _currIndent = 0;
+			internal bool EnsureAscii = true;
 
 			private void Indent(int indent = INDENT) {
 				_currIndent += indent;
@@ -424,8 +425,9 @@ namespace MiniJSON {
 			}
 
 
-			public static string Serialize(object obj) {
+			public static string Serialize(object obj, bool ensureAscii = true) {
 				Serializer serializer = new Serializer();
+				serializer.EnsureAscii = ensureAscii;
 				serializer.SerializeValue(obj);
 				return serializer.builder.ToString();
 			}
@@ -609,7 +611,7 @@ namespace MiniJSON {
 					continue;
 					END:
 					int num = Convert.ToInt32(c);
-					if (num >= 32 && num <= 126) {
+					if (num >= 32 && num <= 126 || !EnsureAscii) {
 						AppendBuilder(c);
 						goto LOOP;
 					}

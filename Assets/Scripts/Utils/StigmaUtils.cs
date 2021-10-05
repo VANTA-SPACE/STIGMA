@@ -147,5 +147,35 @@ namespace Utils {
 
             return result.ToString();
         }
+
+        public static string FirstCapital(this string str) {
+            var builder = new StringBuilder();
+            var flag = true;
+            foreach (var chr in str) {
+                if (flag) {
+                    flag = false;
+                    builder.Append(chr.ToString().ToUpper());
+                } else {
+                    builder.Append(chr.ToString().ToLower());
+                }
+            }
+
+            return builder.ToString();
+        }
+
+        public static string Encode(this string str, Encoding from, Encoding to) {
+            var bytes = from.GetBytes(str);
+            bytes = Encoding.Convert(from, to, bytes);
+            return to.GetString(bytes);
+        }
+        
+        public static string Encode(this byte[] bytes, Encoding to) {
+            return to.GetString(bytes);
+        }
+        
+        public static string Encode(this byte[] bytes, Encoding from, Encoding to) {
+            bytes = Encoding.Convert(from, to, bytes);
+            return to.GetString(bytes);
+        }
     }
 }
