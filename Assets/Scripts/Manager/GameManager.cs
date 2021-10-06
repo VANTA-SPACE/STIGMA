@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Core.Level;
 using DG.Tweening;
 using UnityEngine;
@@ -35,7 +36,19 @@ namespace Manager {
         private RectTransform _panel3Rect;
         private RectTransform _panel4Rect;
         private RectTransform _panel5Rect;
-    
+
+        public List<KeyCode> invalidKeys = new List<KeyCode> {
+            KeyCode.None
+        };
+        public List<KeyCode> mouseKeys = new List<KeyCode> {
+            KeyCode.Mouse0,
+            KeyCode.Mouse1,
+            KeyCode.Mouse2,
+            KeyCode.Mouse3,
+            KeyCode.Mouse4,
+            KeyCode.Mouse5,
+            KeyCode.Mouse6
+        };
     
         public float transitionLength = 3;
         private bool _doingEffect = false;
@@ -168,6 +181,30 @@ namespace Manager {
 
         public void LoadScene(string sceneToLoad, Trans transitionType = Trans.FromRight | Trans.ToLeft) {
             Transition(transitionType, () => SceneManager.LoadScene(sceneToLoad));
+        }
+
+        public bool ValidAnyKeyDown(bool checkMouseKey = true) {
+            if (!Input.anyKey) return false;
+            foreach (KeyCode key in Enum.GetValues(typeof(KeyCode))) {
+                if (invalidKeys.Contains(key)) continue;
+                if (!checkMouseKey && mouseKeys.Contains(key)) continue;
+                if (!Input.GetKeyDown(key)) continue;
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool ValidAnyKey(bool checkMouseKey = true) {
+            if (!Input.anyKey) return false;
+            foreach (KeyCode key in Enum.GetValues(typeof(KeyCode))) {
+                if (invalidKeys.Contains(key)) continue;
+                if (!checkMouseKey && mouseKeys.Contains(key)) continue;
+                if (!Input.GetKey(key)) continue;
+                return true;
+            }
+
+            return false;
         }
     }
 }

@@ -1,45 +1,48 @@
 using System;
 using System.Collections.Generic;
+using Serialization;
+using UnityEngine;
+using UnityEngine.Serialization;
 using Utils;
 
 namespace Core.Level {
-    [Serializable]
     public struct NoteData: IEncodable<Dictionary<string, object>> {
         public NoteType NoteType;
         public double StartBeat;
         public NotePos NotePos;
-        public Dictionary<string, object> AdditionalData;
+        private Dictionary<string, object> additionalData;
+        public object this[string key] => additionalData.ContainsKey(key) ? additionalData[key] : null;
 
         public NoteData(NoteType noteType, double startBeat, NotePos notePos, Dictionary<string, object> additionalData = null) {
-            NoteType = noteType;
-            StartBeat = startBeat;
-            NoteType = noteType;
-            NotePos = notePos;
-            AdditionalData = additionalData ?? new Dictionary<string, object>();
+            this.NoteType = noteType;
+            this.StartBeat = startBeat;
+            this.NoteType = noteType;
+            this.NotePos = notePos;
+            this.additionalData = additionalData ?? new Dictionary<string, object>();
         }
 
         public NoteData(Dictionary<string, object> data) {
             NoteType = default;
             StartBeat = default;
             NotePos = default;
-            AdditionalData = default;
+            additionalData = default;
             Decode(data);
         }
         
         public Dictionary<string, object> Encode() {
-            return new Dictionary<string, object> {
-                {"NoteType", NoteType},
-                {"StartBeat", StartBeat},
-                {"NotePos", (int) NotePos},
-                {"AdditionalData", AdditionalData ?? new Dictionary<string, object>()},
-            };
+            var ad = additionalData ?? new Dictionary<string, object>();
+            ad["NoteType"] = NoteType;
+            ad["StartBeat"] = StartBeat;
+            ad["NotePos"] = NotePos;
+            return ad;
         }
 
         public void Decode(Dictionary<string, object> data) {
             NoteType = data["NoteType"].As<NoteType>();
             StartBeat = data["StartBeat"].As<double>();
             NotePos = (NotePos) data["NotePos"].As<int>();
-            AdditionalData = data["AdditionalData"].As<Dictionary<string, object>>() ?? new Dictionary<string, object>();
+            additionalData = data;
+            Debug.Log($"Data is {Json.Serialize(data)}");
         }
     }
 }

@@ -4,7 +4,6 @@ using System.Linq;
 using Utils;
 
 namespace Core.Level {
-    [Serializable]
     public class LevelData: IEncodable<Dictionary<string, object>> {
         public double BPM;
         public double Offset;

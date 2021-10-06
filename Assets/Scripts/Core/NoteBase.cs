@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Core {
     public abstract class NoteBase : MonoBehaviour {
         public NoteData Data;
-        public static double CurrBeat => PlayManager.Instance.currentBeat;
+        public static double CurrBeat => PlayManager.Instance.CurrentBeat;
         
         [NonSerialized] public double TargetBeat;
         [NonSerialized] public float Distance;
@@ -30,5 +30,6 @@ namespace Core {
         public abstract void DestroyNote(Judgment judgment);
         public abstract Judgment CheckJudgment();
         public abstract bool CheckMiss();
+        public abstract bool HasLength { get; }
     }
 }

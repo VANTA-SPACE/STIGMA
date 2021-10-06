@@ -7,7 +7,7 @@ using Utils;
 
 namespace Core {
     public class JudgmentLine : MonoBehaviour {
-        public Dictionary<NotePos, Queue<NoteNormal>> AssignedNotes;
+        public Dictionary<NotePos, Queue<NoteBase>> AssignedNotes;
         public static JudgmentLine Instance => _instance;
         private static JudgmentLine _instance;
         public Dictionary<NotePos, Vector2> Positions;
@@ -19,11 +19,11 @@ namespace Core {
             }
 
             _instance = this;
-            AssignedNotes = new Dictionary<NotePos, Queue<NoteNormal>> {
-                {NotePos.POS_0, new Queue<NoteNormal>()},
-                {NotePos.POS_1, new Queue<NoteNormal>()},
-                {NotePos.POS_2, new Queue<NoteNormal>()},
-                {NotePos.POS_3, new Queue<NoteNormal>()},
+            AssignedNotes = new Dictionary<NotePos, Queue<NoteBase>> {
+                {NotePos.POS_0, new Queue<NoteBase>()},
+                {NotePos.POS_1, new Queue<NoteBase>()},
+                {NotePos.POS_2, new Queue<NoteBase>()},
+                {NotePos.POS_3, new Queue<NoteBase>()},
             };
             Positions = new Dictionary<NotePos, Vector2>();
         }
@@ -48,23 +48,24 @@ namespace Core {
                     }
                 }
             }
-            
+
             CheckKeyPress();
         }
 
         public void CheckKeyPress() {
             foreach (var (pos, queue) in AssignedNotes) {
-                if (!Input.GetKeyDown(Settings.Keymap[pos])) {
-                    continue;
-                }
+                if (!Input.GetKeyDown(Settings.Keymap[pos])) continue;
 
-                Debug.Log($"Key {Settings.Keymap[pos]} pressed");
                 if (!queue.Any()) continue;
-                
                 var judgment = queue.Peek().CheckJudgment();
                 if (judgment == Judgment.None) return;
-                queue.Dequeue().DestroyNote(judgment);
-                PlayManager.Instance.judgmentList.Add(judgment);
+                if (!queue.Peek().HasLength) {
+                    queue.Dequeue().DestroyNote(judgment);
+                    PlayManager.Instance.judgmentList.Add(judgment);
+                    return;
+                } else {
+                    queue.Peek().StartCoroutine(((NoteLong) queue.Dequeue()).CheckJudgmentCo());
+                }
             }
         }
     }

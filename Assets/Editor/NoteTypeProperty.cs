@@ -1,3 +1,4 @@
+/*
 using System;
 using Core.Level;
 using UnityEditor;
@@ -17,3 +18,4 @@ namespace Editor {
         }
     }
 }
+*/

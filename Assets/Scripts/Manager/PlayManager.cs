@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Core;
 using Core.Level;
 using DG.Tweening;
+using Serialization;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -16,7 +17,7 @@ namespace Manager {
         public NoteGenerator generator;
         public double rawBeat;
         public double beatOffset;
-        public double currentBeat => rawBeat - beatOffset;
+        public double CurrentBeat => rawBeat - beatOffset;
         public bool isPlayingLevel;
         public double currentBpm;
         public TMP_Text exampleText;
@@ -27,15 +28,14 @@ namespace Manager {
         public RectTransform pauseMenu;
         public bool Paused { get; private set; }
 
-        public float Accurary;
-        public int Totalnote = 0;
-        public int Combo = 0;
-        public float Score = 0;
+        public float accurary;
+        public int totalnote = 0;
+        public int combo = 0;
+        public float score = 0;
 
         public LevelData levelData = null;
         public List<Judgment> judgmentList = new List<Judgment>();
         public int totalMisses;
-
 
         public JudgmentLine JudgmentLine => JudgmentLine.Instance;
 
@@ -62,19 +62,25 @@ namespace Manager {
             //Other tasks
         }
 
+        public void LoadLevel(string levelname) {
+            var level = new LevelData(
+                (Dictionary<string, object>) Json.Deserialize(Resources.Load<TextAsset>("Levels/" + levelname).text));
+            LoadLevel(level);
+        }
+
         public void StartPlay() {
             spaceToPlay.DOColor(new Color(1, 1, 1, 0), 0.25f);
 
             EndPlay();
             isPlayingLevel = true;
             rawBeat = 0;
-            LoadLevel(levelData);
+            LoadLevel("exlevel");
             Debug.Log("Started Playing");
 
-            Accurary = 0;
-            Totalnote = 0;
-            Combo = 0;
-            Score = 0;
+            accurary = 0;
+            totalnote = 0;
+            combo = 0;
+            score = 0;
 
             scoreText.text = string.Empty;
             comboText.text = string.Empty;
@@ -89,6 +95,9 @@ namespace Manager {
             rawBeat = 0;
             SoundManager.Instance.StopEvent();
             Debug.Log("Stopped Playing");
+            for (int i = 0; i < generator.transform.childCount; i++) {
+                Destroy(generator.transform.GetChild(i).gameObject);
+            }
             comboText.gameObject.SetActive(false);
             scoreText.gameObject.SetActive(false);
         }
@@ -105,32 +114,32 @@ namespace Manager {
                 if (isPlayingLevel) {
                     rawBeat += currentBpm / 60d * Time.deltaTime;
                     
-                    if (Totalnote == 0) {
+                    if (totalnote == 0) {
                         scoreText.text = "0";
-                        comboText.text = $"Combo: <color=#ffff7f>{Combo}</color>";
+                        comboText.text = $"Combo: <color=#ffff7f>{combo}</color>";
                     } else {
-                        scoreText.text = Score.ToString("#,###,##0");
-                        if ((int) (Accurary / Totalnote) == 100) {
-                            comboText.text = $"Combo: <color=#ffff7f>{Combo}</color>";
+                        scoreText.text = score.ToString("#,###,##0");
+                        if ((int) (accurary / totalnote) == 100) {
+                            comboText.text = $"Combo: <color=#ffff7f>{combo}</color>";
                         } else if (totalMisses == 0) {
-                            comboText.text = $"Combo: <color=#7fbfff>{Combo}</color>";
+                            comboText.text = $"Combo: <color=#7fbfff>{combo}</color>";
                         } else {
-                            comboText.text = $"Combo: {Combo}";
+                            comboText.text = $"Combo: {combo}";
                         }
                     }
                 } else {
-                    if (Input.GetKeyDown(KeyCode.Space)) {
+                    if (GameManager.Instance.ValidAnyKeyDown()) {
                         StartPlay();
                     }
                 }
             }
 
-            var curr = isPlayingLevel ? $"{currentBeat:0.0000}" : "Not playing";
-            if (Totalnote == 0) {
+            var curr = isPlayingLevel ? $"{CurrentBeat:0.0000}" : "Not playing";
+            if (totalnote == 0) {
                 exampleText.text = $"CurrentBeat: {curr}\nPaused: {Paused}\nAccurary: 100.00%";
             } else {
                 exampleText.text = $"CurrentBeat: {curr}\nPaused: {Paused}\nAccurary: " +
-                                   (Accurary / Totalnote).ToString("0.00") + "%";
+                                   (accurary / totalnote).ToString("0.00") + "%";
             }
         }
 

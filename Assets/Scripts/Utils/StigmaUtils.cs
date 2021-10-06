@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using Core;
@@ -20,10 +21,14 @@ namespace Utils {
             return result;
         }
 
-        public static T As<T>(this object value) {
+        public static T As<T>(this object value, T defaultValue = default) {
+            if (value is null) return defaultValue;
+            var type = typeof(T);
+            if (type.IsSubclassOf(typeof(Nullable<>))) {
+                type = type.GenericTypeArguments[0];
+            }
             if (value is T result) return result;
         
-            var type = typeof(T);
 
             if (type == typeof(bool)) {
                 return (T) (object) Convert.ToBoolean(value);
@@ -176,6 +181,12 @@ namespace Utils {
         public static string Encode(this byte[] bytes, Encoding from, Encoding to) {
             bytes = Encoding.Convert(from, to, bytes);
             return to.GetString(bytes);
+        }
+
+        public static void ReturnValue<T>(this CoroutineResult<T> coroutineResult, T value) {
+            if (coroutineResult == null) return;
+            coroutineResult.Value = value;
+            coroutineResult.Callback?.Invoke(value);
         }
     }
 }

@@ -1,0 +1,9 @@
+{
+    "BPM": 155.0,
+    "Offset": -16.6700000762939,
+    "NoteDatas": [
+        {"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 0.0, "NotePos": "$ENUM(NotePos:POS_0)$"}, 
+        {"NoteType": "$ENUM(NoteType:Long)$", "StartBeat": 1.0, "NotePos": "$ENUM(NotePos:POS_1)$", "EndBeat": 16.0}, 
+    ],
+    "EventName": "event:/Title"
+}

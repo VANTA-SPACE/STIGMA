@@ -7,12 +7,17 @@ using Utils;
 
 namespace Core {
     public class NoteNormal : NoteBase {
+        public override bool HasLength => false;
+
         //public ParticleSystem noteParticle;
         public GameObject judgmentPrefab;
+
         public override void Init(NoteData data) {
             Data = data;
             TargetBeat = Data.StartBeat;
-            GetPositionInternal = (x, y) => new Vector2(x, y) + new Vector2(0, Distance * Constants.NOTE_SPEED_MODIFIER).Rotate(transform.eulerAngles.z);
+            GetPositionInternal = (x, y) =>
+                new Vector2(x, y) +
+                new Vector2(0, Distance * Constants.NOTE_SPEED_MODIFIER).Rotate(transform.eulerAngles.z);
             NotePos = data.NotePos;
             JudgmentLine.AssignedNotes[NotePos].Enqueue(this);
             Inited = true;
@@ -20,9 +25,13 @@ namespace Core {
 
         public override Judgment CheckJudgment() {
             double timeOffset = -Distance * 60 / PlayManager.Instance.currentBpm;
-            return StigmaUtils.GetJudgement(timeOffset);
+            var judgment = StigmaUtils.GetJudgement(timeOffset);
+            if (judgment == Judgment.None) return Judgment.None;
+            PlayManager.Instance.judgmentList.Add(judgment);
+
+            return judgment;
         }
-        
+
         public override bool CheckMiss() {
             double timeOffset = -Distance * 60 / PlayManager.Instance.currentBpm;
             return StigmaUtils.CheckMiss(timeOffset);
@@ -39,7 +48,7 @@ namespace Core {
             sprite.DOColor(new Color(1, 1, 1, 0), 0.5f);
             ShowJudgementText(Judgment.Miss);
         }
-        
+
         public override void DestroyNote(Judgment judgment) {
             Destroy(gameObject);
             ShowJudgementText(judgment);
@@ -58,39 +67,33 @@ namespace Core {
                 tmp.color = Constants.JudgmentColors[judgment];
                 tmp.enableVertexGradient = false;
             }
+
             var judge = judgment.ToString().SplitCapital().Split(' ');
-            
+
             if (judge.Length == 1) tmp.text = judge[0].ToUpper();
             else if (judge.Length == 2) {
                 if (judge[0] == "Good") tmp.text = judge[1].ToUpper();
                 else tmp.text = judge[0].ToUpper() + "\n" + judge[1].ToLower();
             }
 
-            if (judgment == Judgment.Perfect || judgment == Judgment.PerfectEarly || judgment == Judgment.PerfectLate)
-            {
-                PlayManager.Instance.Accurary += 100;
-                PlayManager.Instance.Totalnote += 1;
-                PlayManager.Instance.Combo += 1;
-                PlayManager.Instance.Score += 1000000f / PlayManager.Instance.levelData.NoteDatas.Count;
-            }
-            else if (judgment == Judgment.Good || judgment == Judgment.GoodEarly || judgment == Judgment.GoodLate)
-            {
-                PlayManager.Instance.Accurary += 70;
-                PlayManager.Instance.Totalnote += 1;
-                PlayManager.Instance.Combo += 1;
-                PlayManager.Instance.Score += 700000f / PlayManager.Instance.levelData.NoteDatas.Count;
-            }
-            else if (judgment == Judgment.Bad)
-            {
-                PlayManager.Instance.Accurary += 30;
-                PlayManager.Instance.Totalnote += 1;
-                PlayManager.Instance.Combo = 0;
-                PlayManager.Instance.Score += 300000f / PlayManager.Instance.levelData.NoteDatas.Count;
-            }
-            else
-            {
-                PlayManager.Instance.Totalnote += 1;
-                PlayManager.Instance.Combo = 0;
+            if (judgment == Judgment.Perfect || judgment == Judgment.PerfectEarly || judgment == Judgment.PerfectLate) {
+                PlayManager.Instance.accurary += 100;
+                PlayManager.Instance.totalnote += 1;
+                PlayManager.Instance.combo += 1;
+                PlayManager.Instance.score += 1000000f / PlayManager.Instance.levelData.NoteDatas.Count;
+            } else if (judgment == Judgment.Good || judgment == Judgment.GoodEarly || judgment == Judgment.GoodLate) {
+                PlayManager.Instance.accurary += 70;
+                PlayManager.Instance.totalnote += 1;
+                PlayManager.Instance.combo += 1;
+                PlayManager.Instance.score += 700000f / PlayManager.Instance.levelData.NoteDatas.Count;
+            } else if (judgment == Judgment.Bad) {
+                PlayManager.Instance.accurary += 30;
+                PlayManager.Instance.totalnote += 1;
+                PlayManager.Instance.combo = 0;
+                PlayManager.Instance.score += 300000f / PlayManager.Instance.levelData.NoteDatas.Count;
+            } else {
+                PlayManager.Instance.totalnote += 1;
+                PlayManager.Instance.combo = 0;
             }
         }
     }

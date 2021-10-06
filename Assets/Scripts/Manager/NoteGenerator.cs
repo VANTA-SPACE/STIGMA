@@ -11,13 +11,14 @@ namespace Manager {
         public Queue<NoteData> NoteDatas;
 
         public GameObject normalNotePrefab;
+        public GameObject longNotePrefab;
 
         public void PrepareGeneratingNotes(List<NoteData> datas) {
             Debug.Log("Preparing generating notes");
             datas.Sort((data, noteData) =>
                 data.StartBeat < noteData.StartBeat ? 1 : data.StartBeat < noteData.StartBeat ? -1 : 0);
             NoteDatas = new Queue<NoteData>();
-            foreach (NoteData data in datas) {
+            foreach (var data in datas) {
                 NoteDatas.Enqueue(data);
             }
 
@@ -32,7 +33,7 @@ namespace Manager {
         public IEnumerator GenerateNotesCo() {
             while (NoteDatas.Count > 0 && PlayManager.Instance.isPlayingLevel) {
                 while (NoteDatas.Count > 0 &&
-                       NoteDatas.Peek().StartBeat + NoteGenerationBeat <= PlayManager.Instance.currentBeat) {
+                       NoteDatas.Peek().StartBeat + NoteGenerationBeat <= PlayManager.Instance.CurrentBeat) {
                     GenerateNote(NoteDatas.Dequeue());
                 }
                 yield return null;
@@ -40,8 +41,19 @@ namespace Manager {
         }
 
         public void GenerateNote(NoteData data) {
-            var note = Instantiate(normalNotePrefab, transform);
-            note.GetComponent<NoteNormal>().Init(data);
+            GameObject note;
+            switch (data.NoteType) {
+                case NoteType.Normal:
+                    note = Instantiate(normalNotePrefab, transform);
+                    break;
+                case NoteType.Long:
+                    note = Instantiate(longNotePrefab, transform);
+                    break;
+                default:
+                    Debug.LogError($"Cannot find noteType {data.NoteType}");
+                    return;
+            }
+            note.GetComponent<NoteBase>().Init(data);
             Debug.Log("Generated Note.");
         }
     }

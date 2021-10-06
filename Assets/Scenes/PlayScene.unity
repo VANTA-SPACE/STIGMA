@@ -620,6 +620,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   normalNotePrefab: {fileID: 9072385421867217097, guid: e715d93669183c14599eca67b2354f33, type: 3}
+  longNotePrefab: {fileID: 9072385421867217097, guid: b8edf4d7d8e7efb4c9e032145fe106e9, type: 3}
 --- !u!1 &396688832
 GameObject:
   m_ObjectHideFlags: 0
@@ -1577,7 +1578,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefix: 
-  localeKey: SpaceToPlay
+  localeKey: PressAnyKeyToStart
   suffix: 
 --- !u!114 &1311940613
 MonoBehaviour:
@@ -1716,53 +1717,111 @@ MonoBehaviour:
   spaceToPlay: {fileID: 1311940613}
   pausePanel: {fileID: 2132720368}
   pauseMenu: {fileID: 1245038021}
-  Accurary: 0
-  Totalnote: 0
-  Combo: 0
-  Score: 0
+  accurary: 0
+  totalnote: 0
+  combo: 0
+  score: 0
   levelData:
     BPM: 155
-    Offset: -16.67
+    Offset: -16.670000076293945
     NoteDatas:
     - NoteType: 0
       StartBeat: 0
       NotePos: 0
-    - NoteType: 0
+      AdditionalData:
+        pairs: []
+    - NoteType: 1
       StartBeat: 1
       NotePos: 1
-    - NoteType: 0
+      AdditionalData:
+        pairs:
+        - Key: 
+          Value:
+            boolData: 0
+            byteData: 0
+            sbyteData: 0
+            charData: 0
+            shortData: 0
+            ushortData: 0
+            intData: 0
+            uintData: 0
+            floatData: 0
+            longData: 0
+            ulongData: 0
+            doubleData: 0
+            stringData: 
+            type: 0
+    - NoteType: 1
       StartBeat: 2
       NotePos: 2
-    - NoteType: 0
+      AdditionalData:
+        pairs:
+        - Key: EndBeat
+          Value:
+            boolData: 0
+            byteData: 0
+            sbyteData: 0
+            charData: 0
+            shortData: 0
+            ushortData: 0
+            intData: 0
+            uintData: 0
+            floatData: 4
+            longData: 0
+            ulongData: 0
+            doubleData: 0
+            stringData: 
+            type: 6
+    - NoteType: 1
       StartBeat: 3
       NotePos: 3
+      AdditionalData:
+        pairs: []
     - NoteType: 0
       StartBeat: 4
       NotePos: 3
+      AdditionalData:
+        pairs: []
     - NoteType: 0
       StartBeat: 5
       NotePos: 3
+      AdditionalData:
+        pairs: []
     - NoteType: 0
       StartBeat: 6
       NotePos: 3
+      AdditionalData:
+        pairs: []
     - NoteType: 0
       StartBeat: 7
       NotePos: 3
+      AdditionalData:
+        pairs: []
     - NoteType: 0
       StartBeat: 8
       NotePos: 3
+      AdditionalData:
+        pairs: []
     - NoteType: 0
       StartBeat: 9
       NotePos: 3
+      AdditionalData:
+        pairs: []
     - NoteType: 0
       StartBeat: 10
       NotePos: 3
+      AdditionalData:
+        pairs: []
     - NoteType: 0
       StartBeat: 11
       NotePos: 3
+      AdditionalData:
+        pairs: []
     - NoteType: 0
       StartBeat: 12
       NotePos: 3
+      AdditionalData:
+        pairs: []
     EventName: event:/Title
   judgmentList: 
   totalMisses: 0

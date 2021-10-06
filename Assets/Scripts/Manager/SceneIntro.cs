@@ -7,7 +7,7 @@ namespace Manager {
         public static string SceneToLoad = Constants.PLAY_SCENE;
 
         private void Update() {
-            if (Input.anyKeyDown) {
+            if (GameManager.Instance.ValidAnyKeyDown()) {
                 var transition = Trans.FromUp | Trans.FromDown | Trans.ToLeft | Trans.ToRight;
                 GameManager.Instance.LoadScene(SceneToLoad, transition);
             }

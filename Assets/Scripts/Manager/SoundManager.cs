@@ -35,7 +35,7 @@ namespace Manager {
         }
 
         private IEnumerator _playMainEventCo(string eventName) {
-            yield return new WaitUntil(() => PlayManager.Instance.currentBeat >= offset);
+            yield return new WaitUntil(() => PlayManager.Instance.CurrentBeat >= offset);
             if (Playing) {
                 RuntimeManager.DetachInstanceFromGameObject(EventInstance);
             }
@@ -66,7 +66,7 @@ namespace Manager {
         public void Unpause(bool fixSinc = false) {
             EventInstance.setPaused(false);
             if (fixSinc) {
-                int timelinePos = (int) Math.Round((PlayManager.Instance.currentBeat - offset) * 60 /
+                int timelinePos = (int) Math.Round((PlayManager.Instance.CurrentBeat - offset) * 60 /
                     PlayManager.Instance.levelData.BPM * 1000);
                 EventInstance.setTimelinePosition(timelinePos);
             }
