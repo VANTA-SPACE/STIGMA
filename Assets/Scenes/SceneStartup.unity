@@ -1044,10 +1044,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Pre-Alpha 0.09_2 (r9)
+  m_text: Pre-Alpha <mspace=0.5em>0.11</mspace> (r9)
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4d5e9331eb276c9498820ea0b4d253ff, type: 2}
-  m_sharedMaterial: {fileID: -2433880763625079312, guid: 4d5e9331eb276c9498820ea0b4d253ff, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a37bf687b78613747be3c960494b487f, type: 2}
+  m_sharedMaterial: {fileID: 7780926503261838805, guid: a37bf687b78613747be3c960494b487f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1081,7 +1081,7 @@ MonoBehaviour:
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 1024
   m_textAlignment: 65535
-  m_characterSpacing: -5
+  m_characterSpacing: -2
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0

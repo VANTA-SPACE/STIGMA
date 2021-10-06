@@ -45,6 +45,11 @@ namespace Core {
             ShowNoteParticle();
             var color = GetComponent<SpriteRenderer>().color;
             while (Input.GetKey(key)) {
+                double to = (EndBeat - CurrBeat) * 60 / PlayManager.Instance.currentBpm;
+                if (StigmaUtils.GetJudgement(to) == Judgment.None) {
+                    break;
+                }
+                
                 var width = Mathf.Max((float) ((EndBeat - CurrBeat) / (EndBeat - TargetBeat)));
                 var eased = DOVirtual.EasedValue(0, 1, width, Ease.OutExpo);
                 trail.startColor = trail.endColor = new Color(color.r, color.g, color.b, eased / 3 + 0.2f);
@@ -56,9 +61,7 @@ namespace Core {
             double timeOffset = (EndBeat - CurrBeat) * 60 / PlayManager.Instance.currentBpm;
             var positive = timeOffset <= 0;
             timeOffset = (float) (Math.Abs(startTimeOffset) + Math.Abs(timeOffset)) / 2;
-
             var judgment = StigmaUtils.GetJudgement(timeOffset * (positive ? 1 : -1));
-
             if (judgment == Judgment.None || judgment == Judgment.Miss) judgment = Judgment.Bad;
             DestroyNote(judgment);
         }
