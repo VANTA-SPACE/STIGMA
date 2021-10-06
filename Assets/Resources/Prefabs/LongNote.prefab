@@ -374,7 +374,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.60754716, g: 0.93036795, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -396,9 +396,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58e3fff0956246e1bff5cab3e9cfc420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Data:
-    NoteType: 1
-    StartBeat: 0
-    NotePos: 0
   trail: {fileID: 4912045003299485707}
   judgmentPrefab: {fileID: 7842399672895959261, guid: dff60777c9cc14747a4a82cc9c35e99e, type: 3}
+  noteParticle: {fileID: 6796136091953437850, guid: 1e0f8f90b329d824b9038419636f188e, type: 3}

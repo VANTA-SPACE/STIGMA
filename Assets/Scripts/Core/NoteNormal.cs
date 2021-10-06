@@ -9,7 +9,7 @@ namespace Core {
     public class NoteNormal : NoteBase {
         public override bool HasLength => false;
 
-        //public ParticleSystem noteParticle;
+        public ParticleSystem noteParticle;
         public GameObject judgmentPrefab;
 
         public override void Init(NoteData data) {
@@ -52,6 +52,7 @@ namespace Core {
         public override void DestroyNote(Judgment judgment) {
             Destroy(gameObject);
             ShowJudgementText(judgment);
+            ShowNoteParticle();
             //noteParticle.Stop();
         }
 
@@ -95,6 +96,11 @@ namespace Core {
                 PlayManager.Instance.totalnote += 1;
                 PlayManager.Instance.combo = 0;
             }
+        }
+        
+        public void ShowNoteParticle() {
+            var obj = Instantiate(noteParticle.gameObject);
+            obj.transform.position = transform.position;
         }
     }
 }

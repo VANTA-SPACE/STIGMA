@@ -95,8 +95,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1d60af2a9bd0be49a0765502b1ca683, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Data:
-    NoteType: 0
-    StartBeat: 0
-    NotePos: 0
+  noteParticle: {fileID: 7839716890511007756, guid: ccc828eeb384c2d4b88c0a287bf104e2, type: 3}
   judgmentPrefab: {fileID: 7842399672895959261, guid: dff60777c9cc14747a4a82cc9c35e99e, type: 3}

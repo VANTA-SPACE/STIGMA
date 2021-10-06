@@ -13,6 +13,7 @@ namespace Core {
 
         public TrailRenderer trail;
         public GameObject judgmentPrefab;
+        public ParticleSystem noteParticle;
 
         [NonSerialized] public double EndBeat;
         [NonSerialized] public bool Pressing = false;
@@ -41,20 +42,23 @@ namespace Core {
             var startTimeOffset = -Distance * 60 / PlayManager.Instance.currentBpm;
             Pressing = true;
             var key = Settings.Keymap[Data.NotePos];
+            ShowNoteParticle();
+            var color = GetComponent<SpriteRenderer>().color;
             while (Input.GetKey(key)) {
-                var width = Mathf.Max(trail.endWidth = (float) ((EndBeat - CurrBeat) / (EndBeat - TargetBeat)));
+                var width = Mathf.Max((float) ((EndBeat - CurrBeat) / (EndBeat - TargetBeat)));
                 var eased = DOVirtual.EasedValue(0, 1, width, Ease.OutExpo);
-                trail.startColor = trail.endColor = new Color(1, 1, 1, eased / 2 + 0.25f);
+                trail.startColor = trail.endColor = new Color(color.r, color.g, color.b, eased / 3 + 0.2f);
                 yield return null;
             }
+            HideNoteParticle();
 
-            
+
             double timeOffset = (EndBeat - CurrBeat) * 60 / PlayManager.Instance.currentBpm;
-            var positive = timeOffset >= 0;
+            var positive = timeOffset <= 0;
             timeOffset = (float) (Math.Abs(startTimeOffset) + Math.Abs(timeOffset)) / 2;
 
             var judgment = StigmaUtils.GetJudgement(timeOffset * (positive ? 1 : -1));
-            
+
             if (judgment == Judgment.None || judgment == Judgment.Miss) judgment = Judgment.Bad;
             DestroyNote(judgment);
         }
@@ -73,12 +77,15 @@ namespace Core {
 
         public override void MissNote() {
             var sprite = GetComponent<SpriteRenderer>();
-            sprite.DOColor(new Color(1, 1, 1, 0), 0.5f);
+            var color = Color.Lerp(sprite.color, Color.clear, 0.5f);
+            sprite.DOColor(color, 0.5f);
+            DOTween.To(() => trail.startColor, c => trail.startColor = trail.endColor = c, color, 0.5f);
             ShowJudgementText(Judgment.Miss);
         }
 
         public override void DestroyNote(Judgment judgment) {
-            Destroy(gameObject);
+            var renderer = GetComponent<SpriteRenderer>();
+            renderer.color = Color.Lerp(renderer.color, Color.clear, 0.8f);
             ShowJudgementText(judgment);
             //noteParticle.Stop();
         }
@@ -87,7 +94,7 @@ namespace Core {
             base.Update();
             if (trail.enabled == false) {
                 trail.enabled = true;
-                trail.time = (float) ((EndBeat - TargetBeat) * 60 / PlayManager.Instance.currentBpm );
+                trail.time = (float) ((EndBeat - TargetBeat) * 60 / PlayManager.Instance.currentBpm);
             }
         }
 
@@ -131,6 +138,17 @@ namespace Core {
                 PlayManager.Instance.totalnote += 1;
                 PlayManager.Instance.combo = 0;
             }
+        }
+
+
+        public void ShowNoteParticle() {
+            var obj = Instantiate(noteParticle.gameObject);
+            obj.transform.position = new Vector3(transform.position.x, 0);
+            noteParticle = obj.GetComponent<ParticleSystem>();
+        }
+
+        public void HideNoteParticle() {
+            noteParticle.Stop();
         }
     }
 }
