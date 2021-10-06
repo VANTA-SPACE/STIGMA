@@ -203,5 +203,25 @@ namespace Utils {
             if (dict.TryGetValue(key, out var result)) return result;
             return defaultValue;
         }
+
+        public static IEnumerator SetDelay(this Action action, float delay) {
+            yield return new WaitForSeconds(delay);
+            action();
+        }
+        
+        public static IEnumerator SetDelay(this Func<IEnumerable> action, float delay) {
+            yield return new WaitForSeconds(delay);
+            yield return action();
+        }
+        
+        public static IEnumerator SetUntil(this Action action, Func<bool> delay) {
+            yield return new WaitUntil(delay);
+            action();
+        }
+        
+        public static IEnumerator SetUntil(this Func<IEnumerable> action, Func<bool> delay) {
+            yield return new WaitUntil(delay);
+            yield return action();
+        }
     }
 }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Core;
 using Core.Level;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Manager {
     public class NoteGenerator : MonoBehaviour {

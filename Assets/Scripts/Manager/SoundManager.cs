@@ -67,7 +67,7 @@ namespace Manager {
             EventInstance.setPaused(false);
             if (fixSinc) {
                 int timelinePos = (int) Math.Round((PlayManager.Instance.CurrentBeat - offset) * 60 /
-                    PlayManager.Instance.levelData.BPM * 1000);
+                    PlayManager.Instance.LevelData.BPM * 1000);
                 EventInstance.setTimelinePosition(timelinePos);
             }
 

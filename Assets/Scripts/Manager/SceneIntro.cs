@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Manager {
     public class SceneIntro : MonoBehaviour {

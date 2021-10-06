@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Core.Level;
@@ -30,26 +31,27 @@ namespace Core {
 
         // Update is called once per frame
         void Update() {
-            var position = transform.position;
-            var x = position.x;
-            var y = position.y;
-            var angle = transform.eulerAngles.z;
-            Positions[NotePos.POS_0] = new Vector2(x, y) + new Vector2(Constants.NOTE_WIDTH * -1.5f, 0).Rotate(angle);
-            Positions[NotePos.POS_1] = new Vector2(x, y) + new Vector2(Constants.NOTE_WIDTH * -0.5f, 0).Rotate(angle);
-            Positions[NotePos.POS_2] = new Vector2(x, y) + new Vector2(Constants.NOTE_WIDTH * 0.5f, 0).Rotate(angle);
-            Positions[NotePos.POS_3] = new Vector2(x, y) + new Vector2(Constants.NOTE_WIDTH * 1.5f, 0).Rotate(angle);
+            if (PlayManager.Instance.isPlayingLevel) {
+                var position = transform.position;
+                var x = position.x;
+                var y = position.y;
+                var angle = transform.eulerAngles.z;
+                Positions[NotePos.POS_0] =
+                    new Vector2(x, y) + new Vector2(Constants.NOTE_WIDTH * -1.5f, 0).Rotate(angle);
+                Positions[NotePos.POS_1] =
+                    new Vector2(x, y) + new Vector2(Constants.NOTE_WIDTH * -0.5f, 0).Rotate(angle);
+                Positions[NotePos.POS_2] =
+                    new Vector2(x, y) + new Vector2(Constants.NOTE_WIDTH * 0.5f, 0).Rotate(angle);
+                Positions[NotePos.POS_3] =
+                    new Vector2(x, y) + new Vector2(Constants.NOTE_WIDTH * 1.5f, 0).Rotate(angle);
 
-            foreach (var (key, queue) in AssignedNotes) {
-                if (queue.Any()) {
-                    if (queue.Peek().CheckMiss()) {
-                        queue.Dequeue().MissNote();
-                        PlayManager.Instance.judgmentList.Add(Judgment.Miss);
-                        PlayManager.Instance.totalMiss += 1;
-                    }
+                foreach (var (key, queue) in AssignedNotes) {
+                    if (!queue.Any()) continue;
+                    if (queue.Peek().CheckMiss()) queue.Dequeue().MissNote();
                 }
-            }
 
-            CheckKeyPress();
+                CheckKeyPress();
+            }
         }
 
         public void CheckKeyPress() {
@@ -61,11 +63,10 @@ namespace Core {
                 if (judgment == Judgment.None) return;
                 if (!queue.Peek().HasLength) {
                     queue.Dequeue().DestroyNote(judgment);
-                    PlayManager.Instance.judgmentList.Add(judgment);
                     return;
-                } else {
-                    queue.Peek().StartCoroutine(((NoteLong) queue.Dequeue()).CheckJudgmentCo());
                 }
+
+                StartCoroutine(((NoteLong) queue.Dequeue()).CheckJudgmentCo());
             }
         }
     }

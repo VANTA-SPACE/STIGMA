@@ -1,11 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
 using Serialization;
 using UnityEngine;
-using UnityEngine.Events;
 using Utils;
 
 namespace Locale {

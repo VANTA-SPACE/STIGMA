@@ -14,7 +14,7 @@ namespace Editor {
             base.OnInspectorGUI();
             var level = (PlayManager) target;
             if (GUILayout.Button("Build Level")) {
-                Result = Json.Serialize(level.levelData.Encode());
+                Result = Json.Serialize(level.LevelData.Encode());
             }
 
             GUILayout.Space(10);
@@ -23,7 +23,7 @@ namespace Editor {
             EditorGUILayout.EndScrollView();
         
             if (GUILayout.Button("Apply Level")) {
-                level.levelData = new LevelData((Dictionary<string, object>) Json.Deserialize(Result));
+                level.LevelData = new LevelData((Dictionary<string, object>) Json.Deserialize(Result));
             }
         }
     }

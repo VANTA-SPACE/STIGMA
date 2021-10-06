@@ -49,12 +49,13 @@ namespace Core {
                 if (StigmaUtils.GetJudgement(to) == Judgment.None) {
                     break;
                 }
-                
+
                 var width = Mathf.Max((float) ((EndBeat - CurrBeat) / (EndBeat - TargetBeat)));
                 var eased = DOVirtual.EasedValue(0, 1, width, Ease.OutExpo);
                 trail.startColor = trail.endColor = new Color(color.r, color.g, color.b, eased / 3 + 0.2f);
                 yield return null;
             }
+
             HideNoteParticle();
 
 
@@ -122,56 +123,52 @@ namespace Core {
                 else tmp.text = judge[0].ToUpper() + "\n" + judge[1].ToLower();
             }
 
-            if (judgment == Judgment.Perfect || judgment == Judgment.PerfectEarly || judgment == Judgment.PerfectLate)
-            {
-                PlayManager.Instance.accurary += 100;
-                PlayManager.Instance.combo += 1;
-                PlayManager.Instance.score += 1000000f / PlayManager.Instance.levelData.NoteDatas.Count;
-                if (judgment == Judgment.PerfectEarly)
-                {
-                    PlayManager.Instance.totalPerfect += 1;
-                    PlayManager.Instance.totalPerfectE += 1;
-                }
-                else if (judgment == Judgment.PerfectLate)
-                {
-                    PlayManager.Instance.totalPerfect += 1;
-                    PlayManager.Instance.totalPerfectL += 1;
-                }
-                else
-                {
-                    PlayManager.Instance.totalPerfect += 1;
-                }
-            }
-            else if (judgment == Judgment.Good || judgment == Judgment.GoodEarly || judgment == Judgment.GoodLate)
-            {
-                PlayManager.Instance.accurary += 70;
-                PlayManager.Instance.combo += 1;
-                PlayManager.Instance.score += 700000f / PlayManager.Instance.levelData.NoteDatas.Count;
-                if (judgment == Judgment.GoodEarly)
-                {
-                    PlayManager.Instance.totalGood += 1;
-                    PlayManager.Instance.totalGoodE += 1;
-                }
-                else if (judgment == Judgment.GoodLate)
-                {
-                    PlayManager.Instance.totalGood += 1;
-                    PlayManager.Instance.totalGoodL += 1;
-                }
-                else
-                {
-                    PlayManager.Instance.totalGood += 1;
-                }
-            }
-            else if (judgment == Judgment.Bad)
-            {
-                PlayManager.Instance.accurary += 30;
-                PlayManager.Instance.combo = 0;
-                PlayManager.Instance.score += 300000f / PlayManager.Instance.levelData.NoteDatas.Count;
-                PlayManager.Instance.totalGood += 1;
-            }
-            else
-            {
-                PlayManager.Instance.combo = 0;
+            PlayManager.Instance.CheckedNotes++;
+            switch (judgment) {
+                case Judgment.PerfectEarly:
+                    PlayManager.Instance.JudgmentCount[Judgment.PerfectEarly]++;
+                    goto case Judgment.Perfect;
+                    
+                case Judgment.PerfectLate:
+                    PlayManager.Instance.JudgmentCount[Judgment.PerfectEarly]++;
+                    goto case Judgment.Perfect;
+                    
+                case Judgment.Perfect:
+                    PlayManager.Instance.JudgmentCount[Judgment.Perfect]++;
+                    PlayManager.Instance.Accurary += 100;
+                    PlayManager.Instance.Combo++;
+                    PlayManager.Instance.Score += 1000000f / PlayManager.Instance.LevelData.NoteDatas.Count;
+                    break;
+                
+                case Judgment.GoodEarly:
+                    PlayManager.Instance.JudgmentCount[Judgment.GoodEarly]++;
+                    goto case Judgment.Good;
+                    
+                case Judgment.GoodLate:
+                    PlayManager.Instance.JudgmentCount[Judgment.GoodLate]++;
+                    goto case Judgment.Good;
+                    
+                case Judgment.Good:
+                    PlayManager.Instance.JudgmentCount[Judgment.Good]++;
+                    PlayManager.Instance.Accurary += 70;
+                    PlayManager.Instance.Combo++;
+                    PlayManager.Instance.Score += 700000f / PlayManager.Instance.LevelData.NoteDatas.Count;
+                    break;
+                
+                case Judgment.Bad:
+                    PlayManager.Instance.JudgmentCount[Judgment.Bad]++;
+                    PlayManager.Instance.Accurary += 30;
+                    PlayManager.Instance.Combo = 0;
+                    PlayManager.Instance.Score += 300000f / PlayManager.Instance.LevelData.NoteDatas.Count;
+                    break;
+                
+                case Judgment.Miss:
+                    PlayManager.Instance.JudgmentCount[Judgment.Miss]++;
+                    PlayManager.Instance.Combo = 0;
+                    break;
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(judgment));
             }
         }
 
