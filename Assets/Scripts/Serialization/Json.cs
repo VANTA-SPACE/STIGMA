@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using DG.Tweening;
 using Manager;
 using UnityEngine;
 
@@ -214,12 +215,18 @@ namespace Serialization {
 										(t.Name == typeName || t.Name.EndsWith("." + typeName)));
 								}
 							} else {
-								type = Type.GetType(typeName);
-								if (type == null) {
-									type = Assembly.GetAssembly(typeof(GameManager)).GetTypes()
-										.FirstOrDefault(t =>
-											t.IsSubclassOf(typeof(Enum)) &&
-											(t.Name == typeName || t.Name.EndsWith("." + typeName)));
+								if (typeName == "KeyCode") {
+									type = typeof(KeyCode);
+								} else if (typeName == "Ease") {
+									type = typeof(Ease);
+								} else {
+									type = Type.GetType(typeName);
+									if (type == null) {
+										type = Assembly.GetAssembly(typeof(GameManager)).GetTypes()
+											.FirstOrDefault(t =>
+												t.IsSubclassOf(typeof(Enum)) &&
+												(t.Name == typeName || t.Name.EndsWith("." + typeName)));
+									}
 								}
 							}
 
@@ -228,6 +235,23 @@ namespace Serialization {
 							}
 
 							return Enum.Parse(type, value);
+						
+						case "VECTOR2":
+							var vector2 = new Vector2(Convert.ToSingle(argList[0]), Convert.ToSingle(argList[1]));
+							return vector2;
+						
+						case "VECTOR2INT":
+							var vector2int = new Vector2Int(Convert.ToInt32(argList[0]), Convert.ToInt32(argList[1]));
+							return vector2int;
+												
+						case "VECTOR3":
+							var vector3 = new Vector3(Convert.ToSingle(argList[0]), Convert.ToSingle(argList[1]), Convert.ToSingle(argList[3]));
+							return vector3;
+						
+						case "VECTOR3INT":
+							var vector3int = new Vector3Int(Convert.ToInt32(argList[0]), Convert.ToInt32(argList[1]), Convert.ToInt32(argList[3]));
+							return vector3int;
+
 						default:
 							throw new ArgumentException($"Cannot parse ${name}$");
 					}
@@ -652,10 +676,30 @@ namespace Serialization {
 				
 				if (value is Enum enumValue) {
 					var type = enumValue.GetType();
-					if (type.Assembly == Assembly.GetAssembly(typeof(GameManager)))
+					if (type.Assembly == Assembly.GetAssembly(typeof(GameManager)) || type == typeof(KeyCode) || type == typeof(Ease))
 						SerializeString($"$ENUM({type.Name}:{value})$");
 					else 
 						SerializeString($"$ENUM({type.Namespace}.{type.Name}:{value}, {type.Assembly.GetName().Name})$");
+					return;
+				}
+
+				if (value is Vector2 vector2) {
+					SerializeString($"VECTOR2({vector2.x}, {vector2.y})$");
+					return;
+				}
+
+				if (value is Vector2Int vector2int) {
+					SerializeString($"VECTOR2INT({vector2int.x}, {vector2int.y})$");
+					return;
+				}
+
+				if (value is Vector3 vector3) {
+					SerializeString($"VECTOR3({vector3.x}, {vector3.y}, {vector3.z})$");
+					return;
+				}
+
+				if (value is Vector3Int vector3int) {
+					SerializeString($"VECTOR3INT({vector3int.x}, {vector3int.y}, {vector3int.z})$");
 					return;
 				}
 

@@ -21,6 +21,16 @@ namespace Utils {
             return result;
         }
 
+        public static Dictionary<TKey2, TValue2> As<TKey1, TValue1, TKey2, TValue2>(this object dictionary) {
+            var dict = dictionary.As<Dictionary<TKey1, TValue1>>();
+            var result = new Dictionary<TKey2, TValue2>();
+            foreach (var (key, value) in dict) {
+                result[key.As<TKey2>()] = value.As<TValue2>();
+            }
+
+            return result;
+        }
+
         public static T As<T>(this object value, T defaultValue = default) {
             if (value is null) return defaultValue;
             var type = typeof(T);
@@ -28,7 +38,7 @@ namespace Utils {
                 type = type.GenericTypeArguments[0];
             }
             if (value is T result) return result;
-        
+
 
             if (type == typeof(bool)) {
                 return (T) (object) Convert.ToBoolean(value);
@@ -187,6 +197,11 @@ namespace Utils {
             if (coroutineResult == null) return;
             coroutineResult.Value = value;
             coroutineResult.Callback?.Invoke(value);
+        }
+
+        public static TValue GetOrDefault<TKey, TValue>(this Dictionary<TKey, TValue> dict, TKey key, TValue defaultValue = default) {
+            if (dict.TryGetValue(key, out var result)) return result;
+            return defaultValue;
         }
     }
 }

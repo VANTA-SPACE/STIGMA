@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 public class StigmaStartup : MonoBehaviour {
     public string introScene;
     public void Startup() {
+        Settings.LoadSettings();
+        Settings.SaveSettings();
         SceneManager.LoadScene(introScene);
     }
 

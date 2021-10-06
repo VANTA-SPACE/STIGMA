@@ -1,0 +1,5 @@
+{
+    "KeyMap": {"POS_0": "$ENUM(KeyCode:D)$", "POS_1": "$ENUM(KeyCode:F)$", "POS_2": "$ENUM(KeyCode:J)$", "POS_3": "$ENUM(KeyCode:K)$"},
+    "ScreenResolution": "VECTOR2INT(1920, 1080)$",
+    "FullscreenMode": "$ENUM(UnityEngine.FullScreenMode:FullScreenWindow, UnityEngine.CoreModule)$"
+}
