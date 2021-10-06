@@ -149,7 +149,7 @@
 			<value>96</value>
 		</property>
 		<relationship name="audioFile">
-			<destination>{57ccbe88-aae7-441e-92e8-c25b16d64a4a}</destination>
+			<destination>{b0c71a36-bfdf-4fe2-9304-916b4d860b0f}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{607b0547-5d5d-468c-826c-f191d779ddfe}">
@@ -174,7 +174,7 @@
 			<value>0</value>
 		</property>
 		<property name="tempo">
-			<value>150</value>
+			<value>155</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{aab984e9-ba5b-4a06-beab-31682743817f}</destination>
@@ -202,7 +202,7 @@
 			<value>96</value>
 		</property>
 		<property name="name">
-			<value>Transition</value>
+			<value>0</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{aab984e9-ba5b-4a06-beab-31682743817f}</destination>

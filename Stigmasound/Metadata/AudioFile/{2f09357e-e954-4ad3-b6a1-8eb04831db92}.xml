@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.01.00">
+<objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{2f09357e-e954-4ad3-b6a1-8eb04831db92}">
 		<property name="assetPath">
 			<value>Normal Result Theme.wav</value>
