@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Core;
 using Core.Level;
@@ -23,7 +23,19 @@ namespace Manager {
         public TMP_Text exampleText;
         public TMP_Text comboText;
         public TMP_Text scoreText;
+        public TMP_Text scoreText2;
         public TMP_Text spaceToPlay;
+
+        public TMP_Text PerfectText;
+        public TMP_Text GoodText;
+        public TMP_Text BadText;
+        public TMP_Text MissText;
+
+        public TMP_Text FCText;
+
+        public TMP_Text AccText;
+        public TMP_Text RankText;
+
         public Image pausePanel;
         public RectTransform pauseMenu;
         public bool Paused { get; private set; }
@@ -35,7 +47,16 @@ namespace Manager {
 
         public LevelData levelData = null;
         public List<Judgment> judgmentList = new List<Judgment>();
-        public int totalMisses;
+        public int totalPerfectE = 0;
+        public int totalPerfect = 0;
+        public int totalPerfectL = 0;
+        public int totalGoodE = 0;
+        public int totalGood = 0;
+        public int totalGoodL = 0;
+        public int totalBad = 0;
+        public int totalMiss = 0;
+
+        public GameObject ResultCanvas;
 
         public JudgmentLine JudgmentLine => JudgmentLine.Instance;
 
@@ -81,13 +102,24 @@ namespace Manager {
             totalnote = 0;
             combo = 0;
             score = 0;
+            totalPerfectE = 0;
+            totalPerfect = 0;
+            totalPerfectL = 0;
+            totalGoodE = 0;
+            totalGood = 0;
+            totalGoodL = 0;
+            totalBad = 0;
+            totalMiss = 0;
 
             scoreText.text = string.Empty;
             comboText.text = string.Empty;
             
             comboText.gameObject.SetActive(true);
             scoreText.gameObject.SetActive(true);
-            
+
+            judgmentList = null; 
+            judgmentList = new List<Judgment>();
+
         }
 
         public void EndPlay() {
@@ -121,7 +153,7 @@ namespace Manager {
                         scoreText.text = score.ToString("#,###,##0");
                         if ((int) (accurary / totalnote) == 100) {
                             comboText.text = $"Combo: <color=#ffff7f>{combo}</color>";
-                        } else if (totalMisses == 0) {
+                        } else if (totalMiss == 0) {
                             comboText.text = $"Combo: <color=#7fbfff>{combo}</color>";
                         } else {
                             comboText.text = $"Combo: {combo}";
@@ -134,6 +166,60 @@ namespace Manager {
                 }
             }
 
+            totalnote = totalPerfect + totalGood + totalBad + totalMiss;
+
+            if (totalnote == 0)
+            {
+                accurary = 0;
+            }
+            else
+            {
+                accurary = (totalPerfect + (totalGood * 0.7f) + (totalBad * 0.3f)) * 100;
+                AccText.text = (accurary / totalnote).ToString("###.00") + "%";
+                if (accurary / totalnote >= 100)
+                {
+                    RankText.text = $"<color=#4D45FF>Ϛ</color>";
+                }
+                else if (accurary / totalnote >= 97)
+                {
+                    RankText.text = $"<color=#ff9f1f>Σ</color>";
+                }
+                else if (accurary / totalnote >= 95)
+                {
+                    RankText.text = $"<color=#ffdb3f>S</color>";
+                }
+                else if (accurary / totalnote >= 90)
+                {
+                    RankText.text = $"<color=#7fff00>A</color>";
+                }
+                else if (accurary / totalnote >= 80)
+                {
+                    RankText.text = $"<color=#2fffaf>B</color>";
+                }
+                else if (accurary / totalnote >= 70)
+                {
+                    RankText.text = $"<color=#2f9fff>C</color>";
+                }
+                else
+                {
+                    RankText.text = $"<color=#ff3f1f>D</color>";
+                }
+
+                if (accurary / totalnote >= 100)
+                {
+                    FCText.text = $"<color=#ffdb3f>AP</color>";
+                }
+                else if (totalMiss == 0)
+                {
+                    FCText.text = $"<color=#2f9fff>FC</color>";
+                }
+                else
+                {
+                    FCText.text = $"";
+                }
+            }
+
+
             var curr = isPlayingLevel ? $"{CurrentBeat:0.0000}" : "Not playing";
             if (totalnote == 0) {
                 exampleText.text = $"CurrentBeat: {curr}\nPaused: {Paused}\nAccurary: 100.00%";
@@ -141,6 +227,15 @@ namespace Manager {
                 exampleText.text = $"CurrentBeat: {curr}\nPaused: {Paused}\nAccurary: " +
                                    (accurary / totalnote).ToString("0.00") + "%";
             }
+
+            PerfectText.text = $"<size=36>(E{totalPerfectE} / L{totalPerfectL})</size> {totalPerfect}";
+            GoodText.text = $"<size=36>(E{totalGoodE} / L{totalGoodL})</size> {totalGood}";
+            BadText.text = $"{totalBad}";
+            MissText.text = $"{totalMiss}";
+            scoreText2.text = score.ToString("#,###,##0");
+
+            
+
         }
 
         public void TogglePause() {

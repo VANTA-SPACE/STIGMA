@@ -77,24 +77,60 @@ namespace Core {
                 else tmp.text = judge[0].ToUpper() + "\n" + judge[1].ToLower();
             }
 
-            if (judgment == Judgment.Perfect || judgment == Judgment.PerfectEarly || judgment == Judgment.PerfectLate) {
+            if (judgment == Judgment.Perfect || judgment == Judgment.PerfectEarly || judgment == Judgment.PerfectLate)
+            {
                 PlayManager.Instance.accurary += 100;
-                PlayManager.Instance.totalnote += 1;
                 PlayManager.Instance.combo += 1;
                 PlayManager.Instance.score += 1000000f / PlayManager.Instance.levelData.NoteDatas.Count;
-            } else if (judgment == Judgment.Good || judgment == Judgment.GoodEarly || judgment == Judgment.GoodLate) {
+                if (judgment == Judgment.PerfectEarly)
+                {
+                    PlayManager.Instance.totalPerfect += 1;
+                    PlayManager.Instance.totalPerfectE += 1;
+                }
+                else if (judgment == Judgment.PerfectLate)
+                {
+                    PlayManager.Instance.totalPerfect += 1;
+                    PlayManager.Instance.totalPerfectL += 1;
+                }
+                else
+                {
+                    PlayManager.Instance.totalPerfect += 1;
+                }
+                Destroy(gameObject);
+            }
+            else if (judgment == Judgment.Good || judgment == Judgment.GoodEarly || judgment == Judgment.GoodLate)
+            {
                 PlayManager.Instance.accurary += 70;
-                PlayManager.Instance.totalnote += 1;
                 PlayManager.Instance.combo += 1;
                 PlayManager.Instance.score += 700000f / PlayManager.Instance.levelData.NoteDatas.Count;
-            } else if (judgment == Judgment.Bad) {
+                if (judgment == Judgment.GoodEarly)
+                {
+                    PlayManager.Instance.totalGood += 1;
+                    PlayManager.Instance.totalGoodE += 1;
+                }
+                else if (judgment == Judgment.GoodLate)
+                {
+                    PlayManager.Instance.totalGood += 1;
+                    PlayManager.Instance.totalGoodL += 1;
+                }
+                else
+                {
+                    PlayManager.Instance.totalGood += 1;
+                }
+                Destroy(gameObject);
+            }
+            else if (judgment == Judgment.Bad)
+            {
                 PlayManager.Instance.accurary += 30;
-                PlayManager.Instance.totalnote += 1;
                 PlayManager.Instance.combo = 0;
                 PlayManager.Instance.score += 300000f / PlayManager.Instance.levelData.NoteDatas.Count;
-            } else {
-                PlayManager.Instance.totalnote += 1;
+                PlayManager.Instance.totalGood += 1;
+                Destroy(gameObject);
+            }
+            else
+            {
                 PlayManager.Instance.combo = 0;
+                Destroy(gameObject);
             }
         }
         

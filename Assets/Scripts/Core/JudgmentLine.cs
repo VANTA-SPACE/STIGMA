@@ -44,7 +44,7 @@ namespace Core {
                     if (queue.Peek().CheckMiss()) {
                         queue.Dequeue().MissNote();
                         PlayManager.Instance.judgmentList.Add(Judgment.Miss);
-                        PlayManager.Instance.totalMisses += 1;
+                        PlayManager.Instance.totalMiss += 1;
                     }
                 }
             }
