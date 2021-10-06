@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.01.00">
+<objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{71bc9056-f14d-402e-a375-9bd97e268556}">
 		<property name="assetPath">
 			<value>Calibration.wav</value>

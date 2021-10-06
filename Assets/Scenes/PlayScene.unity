@@ -1108,9 +1108,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Default Text
-
-'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 98f0097123e271f479b7af156c13e91e, type: 2}
   m_sharedMaterial: {fileID: -4899579634737813629, guid: 98f0097123e271f479b7af156c13e91e, type: 2}
@@ -1600,7 +1598,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press space to play
+  m_text: Press any key to start
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4d5e9331eb276c9498820ea0b4d253ff, type: 2}
   m_sharedMaterial: {fileID: -2433880763625079312, guid: 4d5e9331eb276c9498820ea0b4d253ff, type: 2}
