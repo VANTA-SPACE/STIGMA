@@ -96,7 +96,6 @@ namespace Core {
                 {
                     PlayManager.Instance.totalPerfect += 1;
                 }
-                Destroy(gameObject);
             }
             else if (judgment == Judgment.Good || judgment == Judgment.GoodEarly || judgment == Judgment.GoodLate)
             {
@@ -117,7 +116,6 @@ namespace Core {
                 {
                     PlayManager.Instance.totalGood += 1;
                 }
-                Destroy(gameObject);
             }
             else if (judgment == Judgment.Bad)
             {
@@ -125,12 +123,10 @@ namespace Core {
                 PlayManager.Instance.combo = 0;
                 PlayManager.Instance.score += 300000f / PlayManager.Instance.levelData.NoteDatas.Count;
                 PlayManager.Instance.totalGood += 1;
-                Destroy(gameObject);
             }
             else
             {
                 PlayManager.Instance.combo = 0;
-                Destroy(gameObject);
             }
         }
         
