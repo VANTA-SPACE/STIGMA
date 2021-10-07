@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using Core;
+using Locale;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace Utils {
     public static class StigmaUtils {
@@ -24,8 +26,10 @@ namespace Utils {
 
         public static Dictionary<TKey2, TValue2> As<TKey1, TValue1, TKey2, TValue2>(this object dictionary) {
             var dict = dictionary.As<Dictionary<TKey1, TValue1>>();
+            if (dict == null) return null;
             var result = new Dictionary<TKey2, TValue2>();
             foreach (var (key, value) in dict) {
+                if (key == null || value == null) continue;
                 result[key.As<TKey2>()] = value.As<TValue2>();
             }
 
@@ -266,6 +270,13 @@ namespace Utils {
         
         public static Color32 WithAlpha(this Color32 color, byte alpha) {
             return new Color(color.r, color.g, color.b, alpha);
+        }
+
+        public static string GetEnumName<T>(this T @enum, Language? language = null) where T : Enum {
+            if (language == null) language = Settings.CurrentLanguage;
+            var type = @enum.GetType();
+            Debug.Log($"Key: Enum.{type.Name}.{@enum}");
+            return Translate.TryGet($"Enum.{type.Name}.{@enum}", out string result, language) ? result : @enum.ToString();
         }
     }
 }

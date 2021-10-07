@@ -5,14 +5,15 @@ using Manager;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using Utils;
 
 namespace UI {
     public class SceneLoadingButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler {
-        public TMP_Text text;
+        public Graphic text;
         public Trans transitions;
         public string sceneToLoad;
-        public float sizeMultiplier = 1.1f;
+        public float sizeMultiplier = 1.05f;
         public Color32 color = Color.white;
 
         private void Awake() {

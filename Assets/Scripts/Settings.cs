@@ -45,6 +45,15 @@ public static class Settings {
 
             return SettingValues["Game"];
         }
+    }    
+    public static Dictionary<string, object> ControlSettings {
+        get {
+            if (!SettingValues.ContainsKey("Control")) {
+                SettingValues["Control"] = new Dictionary<string, object>();
+            }
+
+            return SettingValues["Control"];
+        }
     }
 
     public static Vector2Int ScreenResolution {
@@ -61,28 +70,29 @@ public static class Settings {
     }
     
     public static KeyCode Pos0Keycode {
-        get => (KeyCode) GameSettings["POS_0"];
-        set => GameSettings["POS_0"] = value;
+        get => (KeyCode) ControlSettings["POS_0"];
+        set => ControlSettings["POS_0"] = value;
     }
     public static KeyCode Pos1Keycode {
-        get => (KeyCode) GameSettings["POS_1"];
-        set => GameSettings["POS_1"] = value;
+        get => (KeyCode) ControlSettings["POS_1"];
+        set => ControlSettings["POS_1"] = value;
     }
     public static KeyCode Pos2Keycode {
-        get => (KeyCode) GameSettings["POS_2"];
-        set => GameSettings["POS_2"] = value;
+        get => (KeyCode) ControlSettings["POS_2"];
+        set => ControlSettings["POS_2"] = value;
     }
     public static KeyCode Pos3Keycode {
-        get => (KeyCode) GameSettings["POS_3"];
-        set => GameSettings["POS_3"] = value;
+        get => (KeyCode) ControlSettings["POS_3"];
+        set => ControlSettings["POS_3"] = value;
     }
     
-    public static Languages CurrentLanguage {
-        get => (Languages) GeneralSettings["CurrentLanguage"];
+    public static Language CurrentLanguage {
+        get => (Language) GeneralSettings["CurrentLanguage"];
         set => GeneralSettings["CurrentLanguage"] = value;
     }
 
-    public static Dictionary<string, Dictionary<string, object>> SettingValues;
+    public static Dictionary<string, Dictionary<string, object>> SettingValues { get; private set; }
+    public static Dictionary<string, Dictionary<string, object>> SettingData { get; private set; }
 
     public static void ApplySettings() {
         Screen.SetResolution(ScreenResolution.x, ScreenResolution.y, FullScreenMode);
@@ -119,10 +129,11 @@ public static class Settings {
 
     private static void DecodeSettings(Dictionary<string, object> settings) {
         SettingValues = Json.Deserialize(Resources.Load<TextAsset>("defaultSettings").text).As<string, object, string, Dictionary<string, object>>();
+        SettingData = Json.Deserialize(Resources.Load<TextAsset>("settingProperties").text).As<string, object, string, Dictionary<string, object>>();
 
         if (settings.ContainsKey("General")) {
             if (settings["General"] is Dictionary<string, object> general) {
-                if (general.ContainsKey("CurrentLanguage")) CurrentLanguage = (Languages) general["CurrentLanguage"];
+                if (general.ContainsKey("CurrentLanguage")) CurrentLanguage = (Language) general["CurrentLanguage"];
             }
         }
         

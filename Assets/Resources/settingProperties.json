@@ -1,44 +1,45 @@
 {
 	"General": { 
-		"CurrentLanguage": {}
+		"CurrentLanguage": {
+			"options": [
+				"$ENUM(Language:English)$",
+				"$ENUM(Language:Korean)$",
+				"$ENUM(Language:Japanese)$",
+				"$ENUM(Language:French)$",
+				"$ENUM(Language:Russian)$",
+				"$ENUM(Language:Greek)$",
+			],
+			"refresh": false, "allowOverflow": true
+		}
 	},
-	"Audio": { 
-	},
+	"Audio": {},
 	"Graphic": {
 		"ScreenResolution": {
 			"options": [
-				"$VECTOR2INT(7680, 4320)$",
-				"$VECTOR2INT(5120, 2880)$",
-				"$VECTOR2INT(5120, 2160)$",
-				"$VECTOR2INT(5120, 1440)$",
-				"$VECTOR2INT(3840, 2160)$",
-				"$VECTOR2INT(3840, 1080)$",
-				"$VECTOR2INT(3440, 1440)$",
-				"$VECTOR2INT(2560, 1600)$",
-				"$VECTOR2INT(2560, 1440)$",
-				"$VECTOR2INT(2560, 1080)$",
-				"$VECTOR2INT(2048, 1536)$",
-				"$VECTOR2INT(1920, 1440)$",
-				"$VECTOR2INT(1920, 1200)$",
-				"$VECTOR2INT(1920, 1080)$",
-				"$VECTOR2INT(1600, 1200)$",
-				"$VECTOR2INT(1600, 900)$",
-				"$VECTOR2INT(1440, 1080)$",
-				"$VECTOR2INT(1400, 1050)$",
-				"$VECTOR2INT(1366, 768)$",
 				"$VECTOR2INT(1280, 800)$",
-				"$VECTOR2INT(1280, 720)$",
-				"$VECTOR2INT(960, 720)$",
-				"$VECTOR2INT(960, 540)$",
-				"$VECTOR2INT(640, 480)$",
-				"$VECTOR2INT(640, 360)$",
-				"$VECTOR2INT(320, 240)$",
-				"$VECTOR2INT(320, 180)$",
-			]
+				"$VECTOR2INT(1366, 768)$",
+				"$VECTOR2INT(1400, 1050)$",
+				"$VECTOR2INT(1440, 1080)$",
+				"$VECTOR2INT(1600, 900)$",
+				"$VECTOR2INT(1600, 1200)$",
+				"$VECTOR2INT(1920, 1080)$",
+				"$VECTOR2INT(1920, 1200)$",
+				"$VECTOR2INT(1920, 1440)$",
+				"$VECTOR2INT(2048, 1536)$",
+				"$VECTOR2INT(2560, 1080)$",
+				"$VECTOR2INT(2560, 1440)$",
+				"$VECTOR2INT(2560, 1600)$",
+				"$VECTOR2INT(3440, 1440)$",
+				"$VECTOR2INT(3840, 1080)$",
+				"$VECTOR2INT(3840, 2160)$",
+			],
+			"refresh": false, "allowOverflow": false
 		}
-		"FullscreenMode": {},
+		"FullscreenMode": {"refresh": true},
+		"TargetFrameRate": {"options": [30, 59, 60, 120, 144, 165, 240, 10000], "refresh": true, "allowOverflow": false},
 	},
-	"Game": { 
+	"Game": {},
+	"Control": { 
 		"POS_0": {}, 
 		"POS_1": {},
 		"POS_2": {},

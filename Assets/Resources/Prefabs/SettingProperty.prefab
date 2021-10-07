@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8817753791142924060}
   - component: {fileID: 8817753791142924058}
   - component: {fileID: 8817753791142924059}
+  - component: {fileID: 9088462725992146686}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -134,6 +135,21 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &9088462725992146686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8817753791142924061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca6c743b96e547aa8703ed8007b308df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefix: 
+  localeKey: 
+  suffix: 
 --- !u!1 &8817753791206350276
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,8 +240,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45fa5e89f36848b08e21fb7b5e93b422, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  propertyName: {fileID: 9088462725992146686}
   intPrefab: {fileID: 6482012612912899425, guid: 15afb6ced5f6ff449a863e9e037dc2a7, type: 3}
   enumPrefab: {fileID: 3838689202823239018, guid: 3c600efd58372404f8e51342d7079bec, type: 3}
+  optionsPrefab: {fileID: 1505210306262367411, guid: caa4a7f784049b34785e2bf47d4cb73c, type: 3}
 --- !u!1 &8817753791622882694
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,10 +2,21 @@ using System;
 using System.Collections.Generic;
 using UI.Settings;
 using UnityEngine;
+using UnityEngine.Events;
 using Utils;
 
 namespace Manager {
     public class SettingScreen : MonoBehaviour {
+        private string _currentCategory = "General";
+
+        public string currentCategory {
+            get => _currentCategory;
+            set {
+                _currentCategory = value;
+                UpdateCategory();
+            }
+        }
+        
         public Dictionary<string, List<SettingProperty>> Properties;
         public GameObject propertyPrefab;
         public Transform propertyParent;
@@ -20,6 +31,20 @@ namespace Manager {
                     Properties[category].Add(prop);
                 }
             }
+            
+            UpdateCategory();
+        }
+
+        public UnityEvent OnUpdateCategory = new UnityEvent();
+        public void UpdateCategory() {
+            foreach (var (category, properties) in Properties) {
+                var value = category == currentCategory;
+                foreach (var property in properties) {
+                    property.gameObject.SetActive(value);
+                }
+            }
+            
+            OnUpdateCategory.Invoke();
         }
     }
 }

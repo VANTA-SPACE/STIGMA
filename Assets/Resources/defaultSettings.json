@@ -1,6 +1,6 @@
 {
 	"General": { 
-		"CurrentLanguage": "$ENUM(Languages:English)$"
+		"CurrentLanguage": "$ENUM(Language:English)$"
 	},
 	"Audio": { 
 	},
@@ -9,7 +9,9 @@
 		"FullScreenMode": "$ENUM(UnityEngine.FullScreenMode:FullScreenWindow, UnityEngine.CoreModule)$",
 		"TargetFrameRate": 60,
 	},
-	"Game": { 
+	"Game": {
+	},
+	"Control": { 
 		"POS_0": "$ENUM(KeyCode:D)$", 
 		"POS_1": "$ENUM(KeyCode:F)$", 
 		"POS_2": "$ENUM(KeyCode:J)$", 
