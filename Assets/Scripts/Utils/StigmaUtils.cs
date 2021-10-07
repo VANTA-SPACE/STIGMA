@@ -269,7 +269,7 @@ namespace Utils {
         }
         
         public static Color32 WithAlpha(this Color32 color, byte alpha) {
-            return new Color(color.r, color.g, color.b, alpha);
+            return new Color32(color.r, color.g, color.b, alpha);
         }
 
         public static string GetEnumName<T>(this T @enum, Language? language = null) where T : Enum {

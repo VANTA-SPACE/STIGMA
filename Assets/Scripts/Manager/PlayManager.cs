@@ -119,7 +119,12 @@ namespace Manager {
             SoundManager.Instance.StopEvent();
             Debug.Log("Stopped Playing");
             for (int i = 0; i < generator.transform.childCount; i++) {
-                Destroy(generator.transform.GetChild(i).gameObject);
+                var obj = generator.transform.GetChild(i).gameObject;
+                var longn = obj.GetComponent<NoteLong>()?.noteParticle;
+                if (longn != null) {
+                    Destroy(longn.gameObject);
+                }
+                Destroy(obj);
             }
 
             comboText.gameObject.SetActive(false);
@@ -195,11 +200,15 @@ namespace Manager {
             SoundManager.Instance.Pause();
             pauseMenu.localScale = new Vector3(0, 0, 0);
             pausePanel.gameObject.SetActive(true);
+            Time.timeScale = 0.0001f;
+            DOTween.timeScale = 10000;
             pausePanel.DOColor(new Color(0, 0, 0, 0.8f), 0.2f).SetId("PauseGame");
             pauseMenu.DOScale(Vector3.one, 0.15f).SetEase(Ease.OutExpo).SetId("PauseGame");
         }
 
         public void UnpauseGame() {
+            Time.timeScale = 1;
+            DOTween.timeScale = 1;
             DOTween.Kill("PauseGame", true);
             Paused = false;
             SoundManager.Instance.Unpause(true);

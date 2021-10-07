@@ -269,7 +269,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uBC84\uC804 \uD615\uC2DD:\nPre-Alpha 0.0X_Y (rX)\nX\uB294 \uB9AC\uBE44\uC804
+  m_text: "\uBC84\uC804 \uD615\uC2DD:\nPre-Alpha 0.X.Y (rX)\nX\uB294 \uB9AC\uBE44\uC804
     \uBC88\uD638, Y\uB294 \uC5C5\uB370\uC774\uD2B8 \uB54C\uB9C8\uB2E4 \uC62C\uB824\uC8FC\uC138\uC694"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a37bf687b78613747be3c960494b487f, type: 2}
@@ -1022,7 +1022,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -10, y: 10}
-  m_SizeDelta: {x: 600, y: 150}
+  m_SizeDelta: {x: 600, y: 60}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1780423412
 MonoBehaviour:
@@ -1044,7 +1044,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Pre-Alpha<mspace=0.5em> 0.11 (r11)</mspace>
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a37bf687b78613747be3c960494b487f, type: 2}
   m_sharedMaterial: {fileID: 7780926503261838805, guid: a37bf687b78613747be3c960494b487f, type: 2}
@@ -1130,12 +1130,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1780423410}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca6c743b96e547aa8703ed8007b308df, type: 3}
+  m_Script: {fileID: 11500000, guid: 0020cfa8a0194ad3b584261837c2ceb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefix: 
-  localeKey: PreAlpha
-  suffix: <mspace=0.5em> 0.11 (r11)</mspace>
+  versionType: 1
+  majorVer: 0
+  minorVer: 13
+  patchVer: 0
+  metadata: 
+  releaseNum: 13
 --- !u!1 &1815578533
 GameObject:
   m_ObjectHideFlags: 0

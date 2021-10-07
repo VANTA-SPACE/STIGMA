@@ -197,6 +197,7 @@ namespace Core {
 
         public void HideNoteParticle() {
             noteParticle.Stop();
+            StartCoroutine(StigmaUtils.SetDelay(() => Destroy(noteParticle.gameObject), 4));
         }
     }
 }

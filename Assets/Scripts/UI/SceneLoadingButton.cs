@@ -5,19 +5,21 @@ using Manager;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Utils;
 
 namespace UI {
     public class SceneLoadingButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler {
-        public Graphic text;
+        [FormerlySerializedAs("text")] 
+        public Graphic graphic;
         public Trans transitions;
         public string sceneToLoad;
         public float sizeMultiplier = 1.05f;
         public Color32 color = Color.white;
 
         private void Awake() {
-            text.color = color;
+            graphic.color = color.WithAlpha((byte) (color.a * 192 / 255));
         }
 
         private void OnMouseDown() {
@@ -29,13 +31,15 @@ namespace UI {
         }
 
         public void OnPointerEnter(PointerEventData eventData) {
-            text.DOColor(color, 0.1f);
-            text.GetComponent<RectTransform>().DOScale(Vector3.one * sizeMultiplier, 0.1f);
+            graphic.DOColor(color, 0.1f);
+            var rt = graphic.GetComponent<RectTransform>();
+            rt.DOScale(Vector3.one * sizeMultiplier, 0.1f);
         }
 
         public void OnPointerExit(PointerEventData eventData) {
-            text.DOColor(color.WithAlpha(192), 0.1f);
-            text.GetComponent<RectTransform>().DOScale(Vector3.one, 0.1f);
+            graphic.DOColor(color.WithAlpha((byte) (color.a * 192 / 255)), 0.1f);
+            var rt = graphic.GetComponent<RectTransform>();
+            rt.DOScale(Vector3.one, 0.1f);
         }
     }
 }

@@ -40,7 +40,6 @@ namespace Core {
         public override Vector2 GetPosition() {
             var pos = JudgmentLine.Positions[NotePos];
             Distance = (float) ((TargetMilisec - CurrMilisec) * MilisecToBeat);
-            Debug.Log($"Target: {TargetMilisec} Curr: {CurrMilisec}");
             return GetPositionInternal(pos.x, pos.y);
         }
 
@@ -130,6 +129,7 @@ namespace Core {
         public void ShowNoteParticle() {
             var obj = Instantiate(noteParticle.gameObject);
             obj.transform.position = transform.position;
+            DOTween.Sequence().AppendCallback(() => Destroy(obj)).SetDelay(2);
         }
     }
 }

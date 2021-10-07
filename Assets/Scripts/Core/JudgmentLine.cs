@@ -77,10 +77,10 @@ namespace Core {
                 
                 if (!queue.Any()) continue;
                 var judgment = queue.Peek().CheckJudgment();
-                if (judgment == Judgment.None) return;
+                if (judgment == Judgment.None) continue;
                 if (!queue.Peek().HasLength) {
                     queue.Dequeue().DestroyNote(judgment);
-                    return;
+                    continue;
                 }
 
                 StartCoroutine(((NoteLong) queue.Dequeue()).CheckJudgmentCo());
