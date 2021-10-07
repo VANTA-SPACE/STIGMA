@@ -13,7 +13,9 @@
 		},
 		"TargetFrameRate": {"options": [30, 59, 60, 120, 144, 165, 240, 10000], "refresh": true, "allowOverflow": false}
 	},
-	"Audio": {},
+	"Audio": {
+		"MasterVolume": {"min": 0, "max": 100, "changeby": 10}
+	},
 	"Graphic": {
 		"ScreenResolution": {
 			"options": [
@@ -38,7 +40,9 @@
 		}
 		"FullscreenMode": {"refresh": true}
 	},
-	"Game": {},
+	"Game": {
+		"ShowELOnPerfect": {}
+	},
 	"Control": { 
 		"POS_0": {"default": "$ENUM(KeyCode:D)$"}, 
 		"POS_1": {"default": "$ENUM(KeyCode:F)$"}, 

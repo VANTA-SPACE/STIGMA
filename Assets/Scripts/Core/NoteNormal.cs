@@ -75,6 +75,7 @@ namespace Core {
             if (judge.Length == 1) tmp.text = judge[0].ToUpper();
             else if (judge.Length == 2) {
                 if (judge[0] == "Good") tmp.text = judge[1].ToUpper();
+                if (judge[0] == "Perfect" && !Settings.ShowELOnPerfect) tmp.text = judge[0].ToUpper();
                 else tmp.text = judge[0].ToUpper() + "\n" + judge[1].ToLower();
             }
            

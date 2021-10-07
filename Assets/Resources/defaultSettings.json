@@ -3,13 +3,15 @@
 		"CurrentLanguage": "$ENUM(Language:English)$",
 		"TargetFrameRate": 60,
 	},
-	"Audio": { 
+	"Audio": {
+		"MasterVolume": 100,
 	},
 	"Graphic": {
 		"ScreenResolution": "$VECTOR2INT(1920, 1080)$",
 		"FullScreenMode": "$ENUM(UnityEngine.FullScreenMode:FullScreenWindow, UnityEngine.CoreModule)$",
 	},
 	"Game": {
+		"ShowELOnPerfect": true,
 	},
 	"Control": { 
 		"POS_0": "$ENUM(KeyCode:D)$", 

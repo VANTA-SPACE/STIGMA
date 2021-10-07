@@ -96,7 +96,7 @@ MonoBehaviour:
   m_fontSize: 72
   m_fontSizeBase: 72
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -242,6 +242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   propertyName: {fileID: 9088462725992146686}
   intPrefab: {fileID: 6482012612912899425, guid: 15afb6ced5f6ff449a863e9e037dc2a7, type: 3}
+  booleanPrefab: {fileID: 3838689202823239018, guid: 40d4fe74215e4f240bca3d6586998b6e, type: 3}
   enumPrefab: {fileID: 3838689202823239018, guid: 3c600efd58372404f8e51342d7079bec, type: 3}
   optionsPrefab: {fileID: 1505210306262367411, guid: caa4a7f784049b34785e2bf47d4cb73c, type: 3}
   keymapPrefab: {fileID: 1596571635147743175, guid: a4c926add8bf359469b996e20f0081b0, type: 3}

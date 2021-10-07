@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Manager;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -30,6 +31,7 @@ namespace UI.Settings {
             }
             buttonLeft.onClick.AddListener(UpdateText);
             buttonRight.onClick.AddListener(UpdateText);
+            SettingScreen.UpdateProps.AddListener(UpdateText);
             UpdateText();
         }
 

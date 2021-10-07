@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Core.Level;
+using FMOD;
 using Locale;
+using Manager;
 using Serialization;
 using UnityEngine;
 using UnityEngine.Events;
 using Utils;
+using Debug = UnityEngine.Debug;
 
 public static class Settings {
     public static Dictionary<string, object> GeneralSettings {
@@ -40,7 +43,6 @@ public static class Settings {
         }
         private set => SettingValues["Graphic"] = value;
     }
-    
     public static Dictionary<string, object> GameSettings {
         get {
             if (!SettingValues.ContainsKey("Game")) {
@@ -74,6 +76,17 @@ public static class Settings {
         get => (int) GeneralSettings["TargetFrameRate"];
         set => GeneralSettings["TargetFrameRate"] = value;
     }
+    public static bool ShowELOnPerfect {
+        get => (bool) GameSettings["ShowELOnPerfect"];
+        set => GameSettings["ShowELOnPerfect"] = value;
+    }
+    
+    public static int MasterVolume {
+        get => (int) AudioSettings["MasterVolume"];
+        set => AudioSettings["MasterVolume"] = value;
+    }
+
+    
     
     public static KeyCode Pos0Keycode {
         get => (KeyCode) ControlSettings["POS_0"];
@@ -104,6 +117,7 @@ public static class Settings {
         Screen.SetResolution(ScreenResolution.x, ScreenResolution.y, FullScreenMode);
         Application.targetFrameRate = TargetFrameRate;
         Events.OnLanguageChange.Invoke();
+        if (SoundManager.Instance != null) SoundManager.Instance.SetVolume(MasterVolume / 100f);
         SaveSettings();
     }
     public static void LoadSettings() {

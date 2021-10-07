@@ -9,6 +9,7 @@ public class StigmaStartup : MonoBehaviour {
         Settings.LoadSettings();
         Settings.SaveSettings();
         Events.OnApplicationQuit.AddListener(Settings.SaveSettings);
+        Events.OnLanguageChange.AddListener(SettingScreen.UpdateProps.Invoke);
     }
 
     private void Awake() {

@@ -7,6 +7,7 @@ using Utils;
 
 namespace Manager {
     public class SettingScreen : MonoBehaviour {
+        public static UnityEvent UpdateProps = new UnityEvent();
         public static SettingScreen Instance { get; private set; }
         
         private string _currentCategory = "General";
@@ -30,7 +31,7 @@ namespace Manager {
                 return;
             }
             Instance = this;
-            
+            UpdateProps.RemoveAllListeners();
             Properties = new Dictionary<string, List<SettingProperty>>();
             foreach ((string category, var values) in Settings.SettingValues) {
                 Properties[category] = new List<SettingProperty>();
@@ -46,6 +47,7 @@ namespace Manager {
 
         public UnityEvent OnUpdateCategory = new UnityEvent();
         public void UpdateCategory() {
+            CurrentKeymap = null;
             foreach (var (category, properties) in Properties) {
                 var value = category == currentCategory;
                 foreach (var property in properties) {

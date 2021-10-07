@@ -10,6 +10,7 @@ namespace UI.Settings {
         public LocaleText propertyName;
         
         public GameObject intPrefab;
+        public GameObject booleanPrefab;
         public GameObject enumPrefab;
         public GameObject optionsPrefab;
         public GameObject keymapPrefab;
@@ -24,19 +25,30 @@ namespace UI.Settings {
             
             propertyName.localeKey = $"Settings.{category}.{property}";
             propertyName.UpdateText();
-            
-            var type = global::Settings.SettingValues[category][property].GetType();
+
+            var value = global::Settings.SettingValues[category][property];
             SettingDrawer drawer;
             
             if (global::Settings.SettingData[Category].GetOrDefault(Property) is Dictionary<string, object> data && data.ContainsKey("options")) {
                 drawer = Instantiate(optionsPrefab, transform, false).GetComponent<SettingDrawer_Options>();
-            } else if (type == typeof(int)) {
-                drawer = Instantiate(intPrefab, transform, false).GetComponent<SettingDrawer_Int>();
-            } else if (type == typeof(KeyCode)) {
-                drawer = Instantiate(keymapPrefab, transform, false).GetComponent<SettingDrawer_Keymap>();
-            } else if (type.IsSubclassOf(typeof(Enum))) {
-                drawer = Instantiate(enumPrefab, transform, false).GetComponent<SettingDrawer_Enum>();
-            } else return;
+            } else {
+                switch (value) {
+                    case int _:
+                        drawer = Instantiate(intPrefab, transform, false).GetComponent<SettingDrawer_Int>();
+                        break;
+                    case bool _:
+                        drawer = Instantiate(booleanPrefab, transform, false).GetComponent<SettingDrawer_Boolean>();
+                        break;
+                    case KeyCode _:
+                        drawer = Instantiate(keymapPrefab, transform, false).GetComponent<SettingDrawer_Keymap>();
+                        break;
+                    case Enum _:
+                        drawer = Instantiate(enumPrefab, transform, false).GetComponent<SettingDrawer_Enum>();
+                        break;
+                    default:
+                        return;
+                }
+            }
             drawer.Init(this);
             drawer.AfterInit();
         }

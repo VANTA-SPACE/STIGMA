@@ -82,6 +82,8 @@ namespace Manager {
         }
 
         public void StartPlay() {
+            Time.timeScale = 1;
+            DOTween.timeScale = 1;
             spaceToPlay.DOColor(new Color(1, 1, 1, 0), 0.25f);
 
             EndPlay();

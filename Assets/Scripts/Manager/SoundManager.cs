@@ -44,6 +44,7 @@ namespace Manager {
             Playing = true;
 
             EventInstance = RuntimeManager.CreateInstance(eventName);
+            SetVolume(Settings.MasterVolume / 100f);
             EventInstance.start();
 
             RuntimeManager.AttachInstanceToGameObject(EventInstance, transform);
@@ -72,6 +73,10 @@ namespace Manager {
             }
 
             Paused = false;
+        }
+
+        public void SetVolume(float volume) {
+            EventInstance.setVolume(volume);
         }
     }
 }

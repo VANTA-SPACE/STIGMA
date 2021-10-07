@@ -175,7 +175,9 @@ namespace Manager {
             });
         }
 
-        public void LoadScene(string sceneToLoad, Trans transitionType = Trans.FromRight | Trans.ToLeft) {
+        public void LoadScene(string sceneToLoad, Trans transitionType = Trans.FromRight | Trans.ToLeft, bool resetTimescale = true) {
+            Time.timeScale = 1;
+            DOTween.timeScale = 1;
             Transition(transitionType, () => SceneManager.LoadScene(sceneToLoad));
         }
 
