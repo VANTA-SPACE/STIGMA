@@ -191,7 +191,7 @@ namespace Core {
 
         public void ShowNoteParticle() {
             var obj = Instantiate(noteParticle.gameObject);
-            obj.transform.position = new Vector3(transform.position.x, 0);
+            obj.transform.position = new Vector3(transform.position.x, JudgmentLine.transform.position.y);
             noteParticle = obj.GetComponent<ParticleSystem>();
         }
 

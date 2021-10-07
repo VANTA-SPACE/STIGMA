@@ -2,6 +2,7 @@ using System;
 using Locale;
 using TMPro;
 using UnityEngine;
+using Utils;
 
 namespace UI {
     public class VersionText : MonoBehaviour {
@@ -21,8 +22,10 @@ namespace UI {
         public int releaseNum;
 
         private void Start() {
-            UpdateText();
-            Events.OnLanguageChange.AddListener(UpdateText);
+            StartCoroutine(StigmaUtils.SetUntil(() => {
+                UpdateText();
+                Events.OnLanguageChange.AddListener(UpdateText);
+            }, () => StigmaStartup.StartedUp));
         }
 
         private void UpdateText() {

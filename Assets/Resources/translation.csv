@@ -17,20 +17,20 @@ Settings.General,63/|/3|?41,일반,General,一般,Général,Общий,Γενι�
 Settings.Audio,4L|[)][(),오디오,Audio,オーディオ,Audio,Аудио,ήχου
 Settings.Graphic,6|?4|^|-|][(,그래픽,Graphic,グラフィック,Graphique,Графика,γραφικός
 Settings.Game,64|\/|3,게임,Game,ゲーム,Jeu,Игра,παιχνίδι
-Settings.Audio.MasterVolume,,마스터 볼륨,Master Volume,マスターボリューム,Volume principal,,
+Settings.Audio.MasterVolume,|\/|4573|? \/()1L||\/|3,마스터 볼륨,Master Volume,マスターボリューム,Volume principal,Главный том,κύριος όγκος 
 Settings.General.CurrentLanguage,14/|/6|_|463,언어,Language,言語,Langue,Язык,Γλώσσα
 Settings.General.TargetFrameRate,74|?637 |=|?4|\/|3 |?473,목표 프레임,Target Frame Rate,目標フレームレート,Fréquence d'images cible,Целевая частота кадров,στόχος ρυθμού καρέ
 Settings.General.TargetFrameRate.Unlimited,|_|/|/1][|\/|][73|),무제한,Unlimited,無制限,Sans limites,Неограниченное,Απεριόριστος 
 Settings.Graphic.ScreenResolution,5(!?33/|/ !?35()1!?7][()/|/,화면 해상도,Screen Resolution,画面解像度,Résolution d'écran,Разрешение экрана,Ανάλυση της οθόνης
 Settings.Graphic.FullScreenMode,5(!?33/|/ |\/|()[)3,화면 모드,Screen Mode,画面モード,Mode d'écran,Режим отображения,Λειτουργία οθόνης
-Settings.Game.ShowELOnPerfect,,Perfect 판정에 Early/Late 표시,Show Early/Late when Perfect,,,,
+Settings.Game.ShowELOnPerfect,5|-|()\/\/ 34|?1'//1473 \/\/|-|3/|/ |^3|?|=3(7,Perfect 판정에 Early/Late 표시,Show Early/Late when Perfect,Perfect判定にEarlyLate表示,Afficher tôt/tard quand parfait ,"Показать раннее/поздноватое, когда идеально",Εμφάνιση νωρίς/αργά όταν είναι τέλειο 
 Settings.Control.POS_0,|{3'/ |^()5 1,1번 위치 키,Key Pos 1,1番位置キー,Clé pos 1,Ключ поз 1,Κλειδί Θέσεις 1
 Settings.Control.POS_1,|{3'/ |^()5 2,2번 위치 키,Key Pos 2,2番位置キー,Clé pos 2,Ключ поз 2,Κλειδί Θέσεις 2
 Settings.Control.POS_2,|{3'/ |^()5 3,3번 위치 키,Key Pos 3,3番位置キー,Clé pos 3,Ключ поз 3,Κλειδί Θέσεις 3
 Settings.Control.POS_3,|{3'/ |^()5 4,4번 위치 키,Key Pos 4,4番位置キー,Clé pos 4,Ключ поз 4,Κλειδί Θέσεις 4
 Settings.ApplyChanges,4|^|^1'/ (|-|4/|/635,변경 사항 적용,Apply Changes,変更点の適用,Appliquer des changements,Сохранить изменения,Αποθήκευσε τις αλλαγές
-Settings.True,3/|/4|313,켜짐,Enabled,イネーブル,Activez-le,Включить,Καθιστώ ικανό
-Settings.False,|)][54|313,꺼짐,Disabled,ディセーブル,Désactivez-vous,Отключить,Καθιστώ ανίκανο
+Settings.True,3/|/4|313[),켜짐,Enabled,イネーブル,Activez-le,Включить,Καθιστώ ικανό
+Settings.False,|)][54|313[),꺼짐,Disabled,ディセーブル,Désactivez-vous,Отключить,Καθιστώ ανίκανο
 ,,,,,,,
 Enum.FullScreenMode.ExclusiveFullScreen,|=|_|115(!?33/|/,전체 화면,Fullscreen,全画面,Plein écran,Полноэкранный,πλήρους οθόνης
 Enum.FullScreenMode.FullScreenWindow,|=|_|115(!?33/|/ \/\/][/|/[)()\/\/,창 전체 화면,Fullscreen Window,ウィンドウ全画面,Fenêtre plein écran,Полноэкранное окно,Παράθυρο πλήρους οθόνης

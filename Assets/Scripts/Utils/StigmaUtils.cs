@@ -98,7 +98,11 @@ namespace Utils {
                 return (T) (object) Convert.ToDecimal(value);
             }
 
-            return (T) Convert.ChangeType(value, type);
+            try {
+                return (T) Convert.ChangeType(value, type);
+            } catch {
+                return defaultValue;
+            }
         }
 
         public static bool CheckMiss(double timeOffset) {

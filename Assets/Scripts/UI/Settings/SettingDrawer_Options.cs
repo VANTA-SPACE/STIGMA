@@ -20,6 +20,7 @@ namespace UI.Settings {
             Options = data["options"].As<List<object>>();
             allowOverflow = (bool) data.GetOrDefault("allowOverflow", true);
             Debug.Log($"{property.Property}: {allowOverflow}");
+            if (property.Property == "ScreenResolution") Options = Screen.resolutions.Cast<object>().ToList();
             
             buttonLeft.onClick.AddListener(() => {
                 var val = Value;
@@ -48,7 +49,7 @@ namespace UI.Settings {
             }
 
             return value switch {
-                Vector2Int vector => $"{vector.x}×{vector.y}",
+                Resolution resolution => $"{resolution.width}×{resolution.height} @ {resolution.refreshRate}hz",
                 Language language => 
                     Translate.TryGet("Language.Name", out string langname, language) ? langname : language.ToString(),
                 Enum enum2 => enum2.GetEnumName(),

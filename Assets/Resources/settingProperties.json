@@ -18,24 +18,7 @@
 	},
 	"Graphic": {
 		"ScreenResolution": {
-			"options": [
-				"$VECTOR2INT(1280, 800)$",
-				"$VECTOR2INT(1366, 768)$",
-				"$VECTOR2INT(1400, 1050)$",
-				"$VECTOR2INT(1440, 1080)$",
-				"$VECTOR2INT(1600, 900)$",
-				"$VECTOR2INT(1600, 1200)$",
-				"$VECTOR2INT(1920, 1080)$",
-				"$VECTOR2INT(1920, 1200)$",
-				"$VECTOR2INT(1920, 1440)$",
-				"$VECTOR2INT(2048, 1536)$",
-				"$VECTOR2INT(2560, 1080)$",
-				"$VECTOR2INT(2560, 1440)$",
-				"$VECTOR2INT(2560, 1600)$",
-				"$VECTOR2INT(3440, 1440)$",
-				"$VECTOR2INT(3840, 1080)$",
-				"$VECTOR2INT(3840, 2160)$",
-			],
+			"options": [],
 			"refresh": false, "allowOverflow": false
 		}
 		"FullscreenMode": {"refresh": true}

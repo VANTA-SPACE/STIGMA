@@ -12,11 +12,22 @@ namespace Utils {
     }
     
     public static class Coroutine {
-        public static IAsyncResult RunAsync(this Action routine, AsyncCallback callback) {
+        public static IAsyncResult RunAsyncCatch(this Action routine, AsyncCallback callback = null, Action onError = null) {
+            Action tryRoutine = () => {
+                try {
+                    routine();
+                } catch {
+                    onError?.Invoke();
+                }
+            };
+            return tryRoutine.BeginInvoke(callback, null);
+        }
+        
+        public static IAsyncResult RunAsync(this Action routine, AsyncCallback callback = null) {
             return routine.BeginInvoke(callback, null);
         }
         
-        public static IAsyncResult RunAsync<T>(this Func<T> routine, AsyncCallback callback, CoroutineResult<T> result) {
+        public static IAsyncResult RunAsync<T>(this Func<T> routine, AsyncCallback callback, CoroutineResult<T> result = null) {
             Func<T> task = () => {
                 var r = routine();
                 result.ReturnValue(r);
@@ -26,12 +37,12 @@ namespace Utils {
             return task.BeginInvoke(callback, null);
         }
         
-        public static IEnumerator RunAsyncCo(this Action routine, AsyncCallback callback) {
+        public static IEnumerator RunAsyncCo(this Action routine, AsyncCallback callback = null) {
             var ar = routine.BeginInvoke(callback, null);
             yield return new WaitUntil(() => ar.IsCompleted);
         }
         
-        public static IEnumerator RunAsyncCo<T>(this Func<T> routine, AsyncCallback callback, CoroutineResult<T> result) {
+        public static IEnumerator RunAsyncCo<T>(this Func<T> routine, AsyncCallback callback, CoroutineResult<T> result = null) {
             Func<T> task = () => {
                 var r = routine();
                 result.ReturnValue(r);

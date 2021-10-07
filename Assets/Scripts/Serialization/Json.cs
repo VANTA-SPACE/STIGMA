@@ -251,6 +251,13 @@ namespace Serialization {
 						case "VECTOR3INT":
 							var vector3int = new Vector3Int(Convert.ToInt32(argList[0]), Convert.ToInt32(argList[1]), Convert.ToInt32(argList[3]));
 							return vector3int;
+						
+						case "RESOLUTION":
+							var resolution = new Resolution();
+							resolution.width = Convert.ToInt32(argList[0]);
+							resolution.height = Convert.ToInt32(argList[1]);
+							resolution.refreshRate = Convert.ToInt32(argList[2]);
+							return resolution;
 
 						default:
 							throw new ArgumentException($"Cannot parse ${name}$");
@@ -700,6 +707,11 @@ namespace Serialization {
 
 				if (value is Vector3Int vector3int) {
 					SerializeString($"$VECTOR3INT({vector3int.x}, {vector3int.y}, {vector3int.z})$");
+					return;
+				}
+				
+				if (value is Resolution resolution) {
+					SerializeString($"$RESOLUTION({resolution.width}, {resolution.height}, {resolution.refreshRate})$");
 					return;
 				}
 
