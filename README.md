@@ -23,6 +23,7 @@ PC 리듬 게임이며, 본 게임은 무료이다.
 난이도 분류는 Pure / Neutral / Corrupt
  
  **[Web Demo](https://papertoy1127.github.io/Stigma/)** 
+ **[Translation](https://docs.google.com/spreadsheets/d/14LI14cXLixkUbz1Ap4UzH1hRZkZCKbd6ysrvhExC_Mo/edit?usp=sharing)**
 
 ## RANK
  * Ϛ - 정확도 100%
