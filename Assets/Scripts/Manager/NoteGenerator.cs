@@ -14,8 +14,6 @@ namespace Manager {
 
         public void PrepareGeneratingNotes(List<NoteData> datas) {
             Debug.Log("Preparing generating notes");
-            datas.Sort((data, noteData) =>
-                data.StartBeat < noteData.StartBeat ? 1 : data.StartBeat < noteData.StartBeat ? -1 : 0);
             NoteDatas = new Queue<NoteData>();
             foreach (var data in datas) {
                 NoteDatas.Enqueue(data);

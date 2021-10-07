@@ -6,12 +6,18 @@ using UnityEngine;
 namespace Core {
     public abstract class NoteBase : MonoBehaviour {
         public NoteData Data;
-        public static double CurrBeat => PlayManager.Instance.CurrentBeat;
+        public static double CurrMilisec => PlayManager.Instance.CurrentMilisec;
         
-        [NonSerialized] public double TargetBeat;
+        [NonSerialized] public double TargetMilisec;
         [NonSerialized] public float Distance;
         [NonSerialized] public bool Inited = false;
         [NonSerialized] public NotePos NotePos;
+
+        public double MilisecToBeat => Data.LevelData.Bpm / 60 / 1000;
+        public float MilisecToBeatF => (float) Data.LevelData.Bpm / 60 / 1000;
+        
+        public double BeatToSecond => 60 / Data.LevelData.Bpm;
+        public float BeatToSecondF => 60 / (float) Data.LevelData.Bpm;
 
         public JudgmentLine JudgmentLine => JudgmentLine.Instance;
         public abstract void Init(NoteData data);

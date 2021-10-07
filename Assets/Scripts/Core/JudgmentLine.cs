@@ -56,8 +56,25 @@ namespace Core {
 
         public void CheckKeyPress() {
             foreach (var (pos, queue) in AssignedNotes) {
-                if (!Input.GetKeyDown(Settings.Keymap[pos])) continue;
-
+                KeyCode keyCode;
+                switch (pos) {
+                    case NotePos.POS_0:
+                        keyCode = Settings.Pos0Keycode;
+                        break;
+                    case NotePos.POS_1:
+                        keyCode = Settings.Pos1Keycode;
+                        break;
+                    case NotePos.POS_2:
+                        keyCode = Settings.Pos2Keycode;
+                        break;
+                    case NotePos.POS_3:
+                        keyCode = Settings.Pos3Keycode;
+                        break;
+                    default:
+                        continue;
+                }
+                if (!Input.GetKeyDown(keyCode)) continue;
+                
                 if (!queue.Any()) continue;
                 var judgment = queue.Peek().CheckJudgment();
                 if (judgment == Judgment.None) return;

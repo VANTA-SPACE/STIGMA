@@ -15,53 +15,69 @@ namespace Core {
         public GameObject judgmentPrefab;
         public ParticleSystem noteParticle;
 
-        [NonSerialized] public double EndBeat;
-        [NonSerialized] public bool Pressing = false;
+        [NonSerialized] public double EndMilisec;
+        [NonSerialized] public bool Pressing;
 
         public override void Init(NoteData data) {
             Data = data;
-            TargetBeat = Data.StartBeat;
+            TargetMilisec = Data.StartMilisec;
+            EndMilisec = Data.EndMilisec;
             GetPositionInternal = (x, y) =>
                 new Vector2(x, y) +
                 new Vector2(0, Distance * Constants.NOTE_SPEED_MODIFIER).Rotate(transform.eulerAngles.z);
             NotePos = data.NotePos;
             JudgmentLine.AssignedNotes[NotePos].Enqueue(this);
             trail.enabled = false;
-            EndBeat = data["EndBeat"].As(data.StartBeat);
+            trail.time = (float) data.NoteLength / 1000;
             Pressing = false;
             Inited = true;
         }
 
         public override Judgment CheckJudgment() {
-            double timeOffset = -Distance * 60 / PlayManager.Instance.currentBpm;
+            double timeOffset = -Distance * BeatToSecond;
             var judgment = StigmaUtils.GetJudgement(timeOffset);
             return judgment;
         }
 
         public IEnumerator CheckJudgmentCo() {
-            var startTimeOffset = -Distance * 60 / PlayManager.Instance.currentBpm;
+            var startTimeOffset = -Distance * BeatToSecond;
             Pressing = true;
-            var key = Settings.Keymap[Data.NotePos];
+            KeyCode keyCode;
+            switch (Data.NotePos) {
+                case NotePos.POS_0:
+                    keyCode = Settings.Pos0Keycode;
+                    break;
+                case NotePos.POS_1:
+                    keyCode = Settings.Pos1Keycode;
+                    break;
+                case NotePos.POS_2:
+                    keyCode = Settings.Pos2Keycode;
+                    break;
+                case NotePos.POS_3:
+                    keyCode = Settings.Pos3Keycode;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(keyCode));
+            }
             ShowNoteParticle();
             var color = GetComponent<SpriteRenderer>().color;
-            while (Input.GetKey(key)) {
-                double to = (EndBeat - CurrBeat) * 60 / PlayManager.Instance.currentBpm;
+            while (Input.GetKey(keyCode)) {
+                double to = (float) ((EndMilisec - CurrMilisec) * MilisecToBeat);
                 if (StigmaUtils.GetJudgement(to) == Judgment.None) {
                     break;
                 }
 
-                var width = Mathf.Max((float) ((EndBeat - CurrBeat) / (EndBeat - TargetBeat)));
+                var width = Mathf.Max((float) ((EndMilisec - CurrMilisec) / (EndMilisec - TargetMilisec)), 0) * MilisecToBeatF;
                 var eased = DOVirtual.EasedValue(0, 1, width, Ease.OutExpo);
                 trail.startColor = trail.endColor = new Color(color.r, color.g, color.b, eased / 3 + 0.2f);
                 yield return null;
             }
 
             HideNoteParticle();
-
-
-            double timeOffset = (EndBeat - CurrBeat) * 60 / PlayManager.Instance.currentBpm;
+            
+            double timeOffset = (float) ((EndMilisec - CurrMilisec) * MilisecToBeat);
             var positive = timeOffset <= 0;
-            timeOffset = (float) (Math.Abs(startTimeOffset) + Math.Abs(timeOffset)) / 2;
+            timeOffset = (float) (Math.Abs(startTimeOffset) / 4 + Math.Abs(timeOffset)) / 4;
             var judgment = StigmaUtils.GetJudgement(timeOffset * (positive ? 1 : -1));
             if (judgment == Judgment.None || judgment == Judgment.Miss) judgment = Judgment.Bad;
             DestroyNote(judgment);
@@ -69,13 +85,13 @@ namespace Core {
 
         public override bool CheckMiss() {
             if (Pressing) return false;
-            double timeOffset = -Distance * 60 / PlayManager.Instance.currentBpm;
+            double timeOffset = -Distance * BeatToSecond;
             return StigmaUtils.CheckMiss(timeOffset);
         }
 
         public override Vector2 GetPosition() {
             var pos = JudgmentLine.Positions[NotePos];
-            Distance = (float) (TargetBeat - CurrBeat);
+            Distance = (float) ((TargetMilisec - CurrMilisec) * MilisecToBeat);
             return GetPositionInternal(pos.x, pos.y);
         }
 
@@ -88,18 +104,17 @@ namespace Core {
         }
 
         public override void DestroyNote(Judgment judgment) {
-            var renderer = GetComponent<SpriteRenderer>();
-            renderer.color = Color.Lerp(renderer.color, Color.clear, 0.8f);
+            var sprite = GetComponent<SpriteRenderer>();
+            var color = Color.Lerp(sprite.color, Color.clear, 0.5f);
+            sprite.DOColor(color, 0.5f);
+            DOTween.To(() => trail.startColor, c => trail.startColor = trail.endColor = c, color, 0.5f);
             ShowJudgementText(judgment);
             //noteParticle.Stop();
         }
 
         protected override void Update() {
+            if (!trail.enabled) trail.enabled = true;
             base.Update();
-            if (trail.enabled == false) {
-                trail.enabled = true;
-                trail.time = (float) ((EndBeat - TargetBeat) * 60 / PlayManager.Instance.currentBpm);
-            }
         }
 
         public void ShowJudgementText(Judgment judgment) {
@@ -115,13 +130,14 @@ namespace Core {
                 tmp.enableVertexGradient = false;
             }
 
-            var judge = judgment.ToString().SplitCapital().Split(' ');
+            string[] judge = judgment.ToString().SplitCapital().Split(' ');
 
-            if (judge.Length == 1) tmp.text = judge[0].ToUpper();
-            else if (judge.Length == 2) {
-                if (judge[0] == "Good") tmp.text = judge[1].ToUpper();
-                else tmp.text = judge[0].ToUpper() + "\n" + judge[1].ToLower();
-            }
+            tmp.text = judge.Length switch {
+                1 => judge[0].ToUpper(),
+                2 when judge[0] == "Good" => judge[1].ToUpper(),
+                2 => judge[0].ToUpper() + "\n" + judge[1].ToLower(),
+                _ => tmp.text
+            };
 
             PlayManager.Instance.CheckedNotes++;
             switch (judgment) {

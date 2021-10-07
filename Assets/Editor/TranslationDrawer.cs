@@ -26,7 +26,11 @@ namespace Editor {
             GUILayout.TextArea(result);
             GUILayout.Space(10);
             var t = (Translate) target;
-            t.currentLanguage = (SystemLanguage) EditorGUILayout.EnumPopup(t.currentLanguage);
+            var langs = Translate.AvailableLanguages;
+            var curridx = langs.IndexOf(Settings.CurrentLanguage);
+            var idx = EditorGUILayout.Popup(curridx, langs.Select(lang => lang.ToString()).ToArray());
+            Settings.CurrentLanguage = langs[idx];
+            if (idx != curridx) Settings.ApplySettings();
         }
     }
 }

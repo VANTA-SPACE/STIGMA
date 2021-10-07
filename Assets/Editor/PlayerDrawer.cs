@@ -1,3 +1,4 @@
+/*
 using System.Collections.Generic;
 using Core.Level;
 using Manager;
@@ -28,3 +29,4 @@ namespace Editor {
         }
     }
 }
+*/

@@ -684,22 +684,22 @@ namespace Serialization {
 				}
 
 				if (value is Vector2 vector2) {
-					SerializeString($"VECTOR2({vector2.x}, {vector2.y})$");
+					SerializeString($"$VECTOR2({vector2.x}, {vector2.y})$");
 					return;
 				}
 
 				if (value is Vector2Int vector2int) {
-					SerializeString($"VECTOR2INT({vector2int.x}, {vector2int.y})$");
+					SerializeString($"$VECTOR2INT({vector2int.x}, {vector2int.y})$");
 					return;
 				}
 
 				if (value is Vector3 vector3) {
-					SerializeString($"VECTOR3({vector3.x}, {vector3.y}, {vector3.z})$");
+					SerializeString($"$VECTOR3({vector3.x}, {vector3.y}, {vector3.z})$");
 					return;
 				}
 
 				if (value is Vector3Int vector3int) {
-					SerializeString($"VECTOR3INT({vector3int.x}, {vector3int.y}, {vector3int.z})$");
+					SerializeString($"$VECTOR3INT({vector3int.x}, {vector3int.y}, {vector3int.z})$");
 					return;
 				}
 

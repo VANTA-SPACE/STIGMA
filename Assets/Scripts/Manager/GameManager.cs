@@ -202,5 +202,9 @@ namespace Manager {
 
             return false;
         }
+
+        private void OnApplicationQuit() {
+            Events.OnApplicationQuit.Invoke();
+        }
     }
 }

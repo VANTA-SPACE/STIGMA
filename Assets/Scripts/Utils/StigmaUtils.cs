@@ -7,11 +7,12 @@ using UnityEngine;
 
 namespace Utils {
     public static class StigmaUtils {
-        public static void Deconstruct<TKey, TValue>(this KeyValuePair<TKey, TValue> pair, out TKey key, out TValue value) {
+        public static void Deconstruct<TKey, TValue>(this KeyValuePair<TKey, TValue> pair, out TKey key,
+            out TValue value) {
             key = pair.Key;
             value = pair.Value;
         }
-    
+
         public static Dictionary<TKey, TValue> Copy<TKey, TValue>(this Dictionary<TKey, TValue> original) {
             var result = new Dictionary<TKey, TValue>();
             foreach (var (key, value) in original) {
@@ -37,52 +38,65 @@ namespace Utils {
             if (type.IsSubclassOf(typeof(Nullable<>))) {
                 type = type.GenericTypeArguments[0];
             }
+
             if (value is T result) return result;
 
 
             if (type == typeof(bool)) {
                 return (T) (object) Convert.ToBoolean(value);
             }
+
             if (type == typeof(char)) {
                 return (T) (object) Convert.ToChar(value);
             }
+
             if (type == typeof(byte)) {
                 return (T) (object) Convert.ToByte(value);
             }
+
             if (type == typeof(sbyte)) {
                 return (T) (object) Convert.ToSByte(value);
             }
+
             if (type == typeof(short)) {
                 return (T) (object) Convert.ToInt16(value);
             }
+
             if (type == typeof(ushort)) {
                 return (T) (object) Convert.ToUInt32(value);
             }
+
             if (type == typeof(int)) {
                 return (T) (object) Convert.ToInt32(value);
             }
+
             if (type == typeof(uint)) {
                 return (T) (object) Convert.ToUInt32(value);
             }
+
             if (type == typeof(long)) {
                 return (T) (object) Convert.ToInt64(value);
             }
+
             if (type == typeof(ulong)) {
                 return (T) (object) Convert.ToUInt64(value);
             }
+
             if (type == typeof(float)) {
                 return (T) (object) Convert.ToSingle(value);
             }
+
             if (type == typeof(double)) {
                 return (T) (object) Convert.ToDouble(value);
             }
+
             if (type == typeof(decimal)) {
                 return (T) (object) Convert.ToDecimal(value);
             }
 
             return (T) Convert.ChangeType(value, type);
         }
-    
+
         public static bool CheckMiss(double timeOffset) {
             var frameOffset = timeOffset / Time.deltaTime;
             return frameOffset > Constants.NOTEJUDGMENT_BAD;
@@ -92,12 +106,16 @@ namespace Utils {
             var frameOffset = timeOffset / Time.deltaTime;
             if (frameOffset < -Constants.NOTEJUDGMENT_BAD) return Judgment.None;
             else if (frameOffset < -Constants.NOTEJUDGMENT_NORMAL) return Judgment.Bad;
-            else if (frameOffset < -Constants.NOTEJUDGMENT_NORMAL + Constants.NOTEJUDGMENT_ELOFFSET) return Judgment.GoodEarly;
+            else if (frameOffset < -Constants.NOTEJUDGMENT_NORMAL + Constants.NOTEJUDGMENT_ELOFFSET)
+                return Judgment.GoodEarly;
             else if (frameOffset < -Constants.NOTEJUDGMENT_PERFECT) return Judgment.Good;
-            else if (frameOffset < -Constants.NOTEJUDGMENT_PERFECT + Constants.NOTEJUDGMENT_ELOFFSET) return Judgment.PerfectEarly;
-            else if (frameOffset <= Constants.NOTEJUDGMENT_PERFECT - Constants.NOTEJUDGMENT_ELOFFSET) return Judgment.Perfect;
+            else if (frameOffset < -Constants.NOTEJUDGMENT_PERFECT + Constants.NOTEJUDGMENT_ELOFFSET)
+                return Judgment.PerfectEarly;
+            else if (frameOffset <= Constants.NOTEJUDGMENT_PERFECT - Constants.NOTEJUDGMENT_ELOFFSET)
+                return Judgment.Perfect;
             else if (frameOffset <= Constants.NOTEJUDGMENT_PERFECT) return Judgment.PerfectLate;
-            else if (frameOffset <= Constants.NOTEJUDGMENT_NORMAL - Constants.NOTEJUDGMENT_ELOFFSET) return Judgment.Good;
+            else if (frameOffset <= Constants.NOTEJUDGMENT_NORMAL - Constants.NOTEJUDGMENT_ELOFFSET)
+                return Judgment.Good;
             else if (frameOffset <= Constants.NOTEJUDGMENT_NORMAL) return Judgment.GoodLate;
             else if (frameOffset <= Constants.NOTEJUDGMENT_BAD) return Judgment.Bad;
             else return Judgment.Miss;
@@ -141,7 +159,7 @@ namespace Utils {
 
             return (Time.deltaTime * frameMin, Time.deltaTime * frameMax);
         }
-    
+
         public static Vector2 Rotate(this Vector2 v, float delta) {
             if (delta == 0) return v;
             delta = Mathf.Deg2Rad * delta;
@@ -183,11 +201,11 @@ namespace Utils {
             bytes = Encoding.Convert(from, to, bytes);
             return to.GetString(bytes);
         }
-        
+
         public static string Encode(this byte[] bytes, Encoding to) {
             return to.GetString(bytes);
         }
-        
+
         public static string Encode(this byte[] bytes, Encoding from, Encoding to) {
             bytes = Encoding.Convert(from, to, bytes);
             return to.GetString(bytes);
@@ -199,7 +217,8 @@ namespace Utils {
             coroutineResult.Callback?.Invoke(value);
         }
 
-        public static TValue GetOrDefault<TKey, TValue>(this Dictionary<TKey, TValue> dict, TKey key, TValue defaultValue = default) {
+        public static TValue GetOrDefault<TKey, TValue>(this Dictionary<TKey, TValue> dict, TKey key,
+            TValue defaultValue = default) {
             if (dict.TryGetValue(key, out var result)) return result;
             return defaultValue;
         }
@@ -208,20 +227,45 @@ namespace Utils {
             yield return new WaitForSeconds(delay);
             action();
         }
-        
+
         public static IEnumerator SetDelay(this Func<IEnumerable> action, float delay) {
             yield return new WaitForSeconds(delay);
             yield return action();
         }
-        
+
         public static IEnumerator SetUntil(this Action action, Func<bool> delay) {
             yield return new WaitUntil(delay);
             action();
         }
-        
+
         public static IEnumerator SetUntil(this Func<IEnumerable> action, Func<bool> delay) {
             yield return new WaitUntil(delay);
             yield return action();
+        }
+
+        public static Comparison<T1> Compare<T1, T2>(Func<T1, T2> toCompare, bool ascending = true)
+            where T2 : IComparable<T2> {
+            return (x, y) => {
+                var compx = toCompare(x);
+                var compy = toCompare(y);
+                int result = compx.CompareTo(compy);
+                if (!@ascending) result = -result;
+                return result;
+            };
+        }
+
+        public static void Sort<T1, T2>(this List<T1> list, Func<T1, T2> toCompare, bool ascending = true)
+            where T2 : IComparable<T2> {
+            var comparsion = Compare(toCompare, ascending);
+            list.Sort(comparsion);
+        }
+
+        public static Color WithAlpha(this Color color, float alpha) {
+            return new Color(color.r, color.g, color.b, alpha);
+        }
+        
+        public static Color32 WithAlpha(this Color32 color, byte alpha) {
+            return new Color(color.r, color.g, color.b, alpha);
         }
     }
 }

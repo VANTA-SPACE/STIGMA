@@ -15,7 +15,7 @@ namespace Core {
 
         public override void Init(NoteData data) {
             Data = data;
-            TargetBeat = Data.StartBeat;
+            TargetMilisec = Data.StartMilisec;
             GetPositionInternal = (x, y) =>
                 new Vector2(x, y) +
                 new Vector2(0, Distance * Constants.NOTE_SPEED_MODIFIER).Rotate(transform.eulerAngles.z);
@@ -25,7 +25,7 @@ namespace Core {
         }
 
         public override Judgment CheckJudgment() {
-            double timeOffset = -Distance * 60 / PlayManager.Instance.currentBpm;
+            double timeOffset = -Distance * BeatToSecond;
             var judgment = StigmaUtils.GetJudgement(timeOffset);
             if (judgment == Judgment.None) return Judgment.None;
 
@@ -33,13 +33,14 @@ namespace Core {
         }
 
         public override bool CheckMiss() {
-            double timeOffset = -Distance * 60 / PlayManager.Instance.currentBpm;
+            double timeOffset = -Distance * BeatToSecond;
             return StigmaUtils.CheckMiss(timeOffset);
         }
 
         public override Vector2 GetPosition() {
             var pos = JudgmentLine.Positions[NotePos];
-            Distance = (float) (TargetBeat - CurrBeat);
+            Distance = (float) ((TargetMilisec - CurrMilisec) * MilisecToBeat);
+            Debug.Log($"Target: {TargetMilisec} Curr: {CurrMilisec}");
             return GetPositionInternal(pos.x, pos.y);
         }
 

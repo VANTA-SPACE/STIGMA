@@ -7,8 +7,6 @@ using Serialization;
 using TMPro;
 using UI;
 using UnityEngine;
-using UnityEngine.Networking;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Utils;
 
@@ -18,11 +16,6 @@ namespace Manager {
         private static PlayManager instance;
 
         public NoteGenerator generator;
-        public double rawBeat;
-        public double beatOffset;
-        public double CurrentBeat => rawBeat - beatOffset;
-        public bool isPlayingLevel;
-        public double currentBpm;
         public TMP_Text exampleText;
         public TMP_Text comboText;
         public TMP_Text scoreText;
@@ -39,9 +32,23 @@ namespace Manager {
 
         public LevelData LevelData;
         public Dictionary<Judgment, int> JudgmentCount;
+
+        private double currentRawMilisec;
+        public double milisecOffset;
+        public double CurrentMilisec => (currentRawMilisec - milisecOffset);
+        public double BaseBpm => LevelData?.Bpm ?? 0;
+        public double CurrentBeat => CurrentMilisec * BaseBpm / 60000;
+        public bool isPlayingLevel;
+        public double currentBpm;
         
         public int TotalMiss => JudgmentCount[Judgment.Miss];
         public int Totalnotes => LevelData.NoteDatas.Count;
+                
+        public double MilisecToBeat => BaseBpm / 60 / 1000;
+        public float MilisecToBeatF => (float) BaseBpm / 60 / 1000;
+        
+        public double BeatToSecond => 60 / BaseBpm;
+        public float BeatToSecondF => 60 / (float) BaseBpm;
 
         public JudgmentLine JudgmentLine => JudgmentLine.Instance;
 
@@ -59,10 +66,10 @@ namespace Manager {
         }
 
         public void LoadLevel(LevelData levelData) {
-            this.LevelData = levelData;
-            currentBpm = this.LevelData.BPM;
+            LevelData = levelData;
+            currentBpm = BaseBpm;
             const int beatDelay = 2;
-            Instance.beatOffset = -levelData.Offset * levelData.BPM / 6000d + beatDelay;
+            milisecOffset = -levelData.Offset + beatDelay * 60 / BaseBpm * 1000;
             SoundManager.Instance.PlayMainEvent(levelData.EventName, levelData.Offset);
             generator.GenerateNotes(levelData.NoteDatas);
             //Other tasks
@@ -79,7 +86,7 @@ namespace Manager {
 
             EndPlay();
             isPlayingLevel = true;
-            rawBeat = 0;
+            currentRawMilisec = 0;
             LoadLevel("exlevel");
             Debug.Log("Started Playing");
 
@@ -108,7 +115,7 @@ namespace Manager {
 
         public void EndPlay() {
             isPlayingLevel = false;
-            rawBeat = 0;
+            currentRawMilisec = 0;
             SoundManager.Instance.StopEvent();
             Debug.Log("Stopped Playing");
             for (int i = 0; i < generator.transform.childCount; i++) {
@@ -134,7 +141,7 @@ namespace Manager {
             if (Input.GetKeyDown(KeyCode.Escape)) TogglePause();
             if (!Paused) {
                 if (isPlayingLevel) {
-                    rawBeat += currentBpm / 60d * Time.deltaTime;
+                    currentRawMilisec += Time.deltaTime * 1000d;
 
                     if (CheckedNotes == 0) {
                         scoreText.text = "0";
@@ -171,9 +178,9 @@ namespace Manager {
                                    (Accurary / CheckedNotes).ToString("0.00") + "%";
             }
             
-            if (!isPlayingLevel || Totalnotes != CheckedNotes) return;
-            Action task = FinishGame;
-            StartCoroutine(task.SetDelay(4 * 60 / (float) currentBpm));
+            if (!isPlayingLevel || Paused || CurrentMilisec <= LevelData.EndMilisec + 4 * BeatToSecond * 1000) return;
+            Debug.Log($"{CurrentMilisec} > {LevelData.EndMilisec + 4 * BeatToSecond * 1000}");
+            FinishGame();
         }
 
         public void TogglePause() {

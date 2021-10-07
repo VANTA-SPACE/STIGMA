@@ -29,13 +29,14 @@ namespace Manager {
             _instance = this;
         }
 
-        public void PlayMainEvent(string eventName, double offset = 0) {
-            this.offset = offset * PlayManager.Instance.currentBpm / 6000;
+        public void PlayMainEvent(string eventName, double msOffset = 0) {
+            Debug.Log(msOffset);
+            offset = msOffset;
             StartCoroutine(_playMainEventCo(eventName));
         }
 
         private IEnumerator _playMainEventCo(string eventName) {
-            yield return new WaitUntil(() => PlayManager.Instance.CurrentBeat >= offset);
+            yield return new WaitUntil(() => PlayManager.Instance.CurrentMilisec >= offset);
             if (Playing) {
                 RuntimeManager.DetachInstanceFromGameObject(EventInstance);
             }
@@ -66,8 +67,7 @@ namespace Manager {
         public void Unpause(bool fixSinc = false) {
             EventInstance.setPaused(false);
             if (fixSinc) {
-                int timelinePos = (int) Math.Round((PlayManager.Instance.CurrentBeat - offset) * 60 /
-                    PlayManager.Instance.LevelData.BPM * 1000);
+                int timelinePos = (int) (PlayManager.Instance.CurrentMilisec - offset);
                 EventInstance.setTimelinePosition(timelinePos);
             }
 

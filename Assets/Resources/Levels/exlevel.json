@@ -1,13 +1,17 @@
 {
-    "BPM": 155.0,
+    "Bpm": 155.0,
     "Offset": -16.6700000762939,
     "NoteDatas": [
         {"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 0.0, "NotePos": "$ENUM(NotePos:POS_0)$"},
 		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 0.0, "NotePos": "$ENUM(NotePos:POS_2)$"},
 		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 2.0, "NotePos": "$ENUM(NotePos:POS_1)$"},
 		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 2.0, "NotePos": "$ENUM(NotePos:POS_3)$"},
-        {"NoteType": "$ENUM(NoteType:Long)$", "StartBeat": 4.0, "NotePos": "$ENUM(NotePos:POS_0)$", "EndBeat": 16.0},
-		{"NoteType": "$ENUM(NoteType:Long)$", "StartBeat": 4.0, "NotePos": "$ENUM(NotePos:POS_3)$", "EndBeat": 16.0},
+        {"NoteType": "$ENUM(NoteType:Long)$", "StartBeat": 4.0, "NotePos": "$ENUM(NotePos:POS_0)$", "BeatLength": 4.0},
+		{"NoteType": "$ENUM(NoteType:Long)$", "StartBeat": 4.0, "NotePos": "$ENUM(NotePos:POS_3)$", "BeatLength": 4.0},
+		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 5.0, "NotePos": "$ENUM(NotePos:POS_1)$"},
+		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 6.0, "NotePos": "$ENUM(NotePos:POS_2)$"},
+		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 7.0, "NotePos": "$ENUM(NotePos:POS_1)$"},
+		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 8.0, "NotePos": "$ENUM(NotePos:POS_2)$"},
     ],
     "EventName": "event:/Title"
 }

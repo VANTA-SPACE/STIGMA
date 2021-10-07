@@ -9,7 +9,7 @@ namespace Locale {
         public string suffix;
         public object[] formats;
 
-        public void Awake() {
+        public void Start() {
             UpdateText();
             Events.OnLanguageChange.AddListener(UpdateText);
         }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net;
 using System.Text;
 using Serialization;
 using UnityEngine;
@@ -8,29 +9,12 @@ using Utils;
 
 namespace Locale {
     public class Translate : MonoBehaviour {
-        public static SystemLanguage CurrentLanguage {
-            get => _currentLanguage;
-            set {
-                _currentLanguage = value;
-                Events.OnLanguageChange.Invoke();
-            }
-        }
-        private static SystemLanguage _currentLanguage;
-        public static Dictionary<string, Dictionary<SystemLanguage, string>> TranslationsDict;
-        public SystemLanguage currentLanguage;
+        public static Dictionary<string, Dictionary<Languages, string>> TranslationsDict;
+        public static List<Languages> AvailableLanguages;
 
-        private void Awake() {
-            currentLanguage = Application.systemLanguage;
-            TranslationsDict = LoadLanguages();
-        }
-
-        private void Update() {
-            CurrentLanguage = currentLanguage;
-        }
-
-        public static bool TryGet(string key, out string value, SystemLanguage? language = null) {
+        public static bool TryGet(string key, out string value, Languages? language = null) {
             if (TranslationsDict == null) TranslationsDict = LoadLanguages();
-            language ??= CurrentLanguage;
+            language ??= Settings.CurrentLanguage;
             if (!TranslationsDict.ContainsKey(key)) {
                 value = null;
                 return false;
@@ -39,13 +23,13 @@ namespace Locale {
             var dict2 = TranslationsDict[key];
 
             if (dict2.TryGetValue(language.Value, out value)) return true;
-            return dict2.TryGetValue(SystemLanguage.English, out value);
+            return dict2.TryGetValue(Languages.English, out value);
         }
 
-        public static string Get(string key, SystemLanguage? language = null) =>
+        public static string Get(string key, Languages? language = null) =>
             TryGet(key, out string value, language) ? value : $"KeyNotFound {key}";
 
-        public static bool TryGetFormatted(string key, out string value, SystemLanguage? language = null,
+        public static bool TryGetFormatted(string key, out string value, Languages? language = null,
             params object[] formats) {
             if (formats == null) return TryGet(key, out value, language);
             if (!TryGet(key, out value, language)) return false;
@@ -53,12 +37,21 @@ namespace Locale {
             return true;
         }
 
-        public static string GetFormatted(string key, SystemLanguage? language = null, params object[] formats) =>
+        public static string GetFormatted(string key, Languages? language = null, params object[] formats) =>
             TryGetFormatted(key, out string value, language, formats) ? value : $"KeyNotFound {key}";
 
-        public static Dictionary<string, Dictionary<SystemLanguage, string>> LoadLanguages() {
+        public static Dictionary<string, Dictionary<Languages, string>> LoadLanguages() {
+            AvailableLanguages = new List<Languages>();
+            
             #if UNITY_EDITOR
             var path = Path.Combine(Constants.ResourcePath, "translation.csv");
+            try {
+                using var client = new WebClient();
+                client.DownloadFile(
+                    "https://docs.google.com/spreadsheets/d/14LI14cXLixkUbz1Ap4UzH1hRZkZCKbd6ysrvhExC_Mo/export?format=csv",
+                    path);
+            } catch { }
+
             File.Delete(path + ".tmp");
             File.Copy(path, path + ".tmp");
             path = path + ".tmp";
@@ -81,13 +74,14 @@ namespace Locale {
                 cols.Add(rows);
             }
 
-            var datas = new Dictionary<string, Dictionary<SystemLanguage, string>>();
+            var datas = new Dictionary<string, Dictionary<Languages, string>>();
             var col = 0;
             foreach (var key in keys) {
-                datas[key] = new Dictionary<SystemLanguage, string>();
+                datas[key] = new Dictionary<Languages, string>();
                 var row = 0;
                 foreach (var langstr in langs) {
-                    if (Enum.TryParse<SystemLanguage>(langstr.FirstCapital(), out var lang)) {
+                    if (Enum.TryParse<Languages>(langstr, out var lang)) {
+                        AvailableLanguages.Add(lang);
                         datas[key][lang] = cols[col][row];
                     }
 

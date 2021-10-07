@@ -6,40 +6,67 @@ using Utils;
 namespace Core.Level {
     public struct NoteData: IEncodable<Dictionary<string, object>> {
         public NoteType NoteType;
-        public double StartBeat;
+        public double StartMilisec;
+        public double NoteLength;
         public NotePos NotePos;
-        private Dictionary<string, object> additionalData;
-        public object this[string key] => additionalData.ContainsKey(key) ? additionalData[key] : null;
+        public LevelData LevelData;
+        public Dictionary<string, object> AdditionalData;
+        public object this[string key] => AdditionalData.ContainsKey(key) ? AdditionalData[key] : null;
 
-        public NoteData(NoteType noteType, double startBeat, NotePos notePos, Dictionary<string, object> additionalData = null) {
-            this.NoteType = noteType;
-            this.StartBeat = startBeat;
-            this.NoteType = noteType;
-            this.NotePos = notePos;
-            this.additionalData = additionalData ?? new Dictionary<string, object>();
+        public double EndMilisec => StartMilisec + NoteLength;
+        public double StartBeat => StartMilisec * MilisecToBeat;
+        public double EndBeat => EndMilisec * MilisecToBeat;
+        
+        
+        public double MilisecToBeat => LevelData.Bpm / 60 / 1000;
+        public float MilisecToBeatF => (float) LevelData.Bpm / 60 / 1000;
+        
+        public double BeatToSecond => 60 / LevelData.Bpm;
+        public float BeatToSecondF => 60 / (float) LevelData.Bpm;
+
+        public NoteData(NoteType noteType, double startMilisec, NotePos notePos, LevelData levelData, double noteLength = 0, Dictionary<string, object> additionalData = null) {
+            NoteType = noteType;
+            StartMilisec = startMilisec;
+            NoteType = noteType;
+            NotePos = notePos;
+            LevelData = levelData;
+            NoteLength = noteLength;
+            this.AdditionalData = additionalData ?? new Dictionary<string, object>();
         }
 
-        public NoteData(Dictionary<string, object> data) {
+        public NoteData(Dictionary<string, object> data, LevelData levelData) {
+            LevelData = default;
             NoteType = default;
-            StartBeat = default;
+            StartMilisec = default;
             NotePos = default;
-            additionalData = default;
+            AdditionalData = default;
+            NoteLength = default;
+            LevelData = levelData;
             Decode(data);
         }
         
         public Dictionary<string, object> Encode() {
-            var ad = additionalData ?? new Dictionary<string, object>();
+            var ad = AdditionalData ?? new Dictionary<string, object>();
             ad["NoteType"] = NoteType;
-            ad["StartBeat"] = StartBeat;
+            ad["StartMilisec"] = StartMilisec;
             ad["NotePos"] = NotePos;
             return ad;
         }
 
         public void Decode(Dictionary<string, object> data) {
             NoteType = data["NoteType"].As<NoteType>();
-            StartBeat = data["StartBeat"].As<double>();
+            if (data.ContainsKey("StartBeat")) {
+                StartMilisec = data["StartBeat"].As<double>() * BeatToSecond * 1000;
+            } else {
+                StartMilisec = data["StartMilisec"].As<double>();
+            }
+            if (data.ContainsKey("BeatLength")) {
+                NoteLength = data["BeatLength"].As(0.0d) * BeatToSecond * 1000;
+            } else {
+                NoteLength = data.GetOrDefault("MilisecLength").As<double>();
+            }
             NotePos = (NotePos) data["NotePos"].As<int>();
-            additionalData = data;
+            AdditionalData = data;
             Debug.Log($"Data is {Json.Serialize(data)}");
         }
     }

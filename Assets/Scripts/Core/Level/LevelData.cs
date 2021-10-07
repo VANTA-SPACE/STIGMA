@@ -4,16 +4,19 @@ using Utils;
 
 namespace Core.Level {
     public class LevelData: IEncodable<Dictionary<string, object>> {
-        public double BPM;
+        public double Bpm;
         public double Offset;
         public List<NoteData> NoteDatas;
         public string EventName;
-        
+        public double EndMilisec;
+
         public LevelData(double bpm, double offset, List<NoteData> noteDatas, string eventName) {
-            BPM = bpm;
+            Bpm = bpm;
             NoteDatas = noteDatas;
             Offset = offset;
             EventName = eventName;
+            
+            NoteDatas.Sort(n => n.StartBeat);
         }
 
         public LevelData(Dictionary<string, object> data) {
@@ -22,7 +25,7 @@ namespace Core.Level {
 
         public Dictionary<string, object> Encode() {
             var result = new Dictionary<string, object> {
-                {"BPM", BPM},
+                {"Bpm", Bpm},
                 {"Offset", Offset},
                 {"NoteDatas", NoteDatas.Select(data => data.Encode() as object).ToList()},
                 {"EventName", EventName}
@@ -31,11 +34,14 @@ namespace Core.Level {
         }
 
         public void Decode(Dictionary<string, object> data) {
-            this.BPM = data["BPM"].As<double>();
-            this.Offset = data["Offset"].As<double>();
-            this.NoteDatas = ((List<object>) data["NoteDatas"])
-                .Select(o => new NoteData((Dictionary<string, object>) o)).ToList();
-            this.EventName = data["EventName"].As<string>();
+            Bpm = data["Bpm"].As<double>();
+            Offset = data["Offset"].As<double>();
+            NoteDatas = ((List<object>) data["NoteDatas"])
+                .Select(o => new NoteData((Dictionary<string, object>) o, this)).ToList();
+            EventName = data["EventName"].As<string>();
+            
+            NoteDatas.Sort(n => n.StartBeat);
+            EndMilisec = NoteDatas.Last().EndMilisec;
         }
     }
 }
