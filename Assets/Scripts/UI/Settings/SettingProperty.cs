@@ -12,6 +12,7 @@ namespace UI.Settings {
         public GameObject intPrefab;
         public GameObject enumPrefab;
         public GameObject optionsPrefab;
+        public GameObject keymapPrefab;
         [NonSerialized] public string Category;
         [NonSerialized] public string Property;
 
@@ -31,6 +32,8 @@ namespace UI.Settings {
                 drawer = Instantiate(optionsPrefab, transform, false).GetComponent<SettingDrawer_Options>();
             } else if (type == typeof(int)) {
                 drawer = Instantiate(intPrefab, transform, false).GetComponent<SettingDrawer_Int>();
+            } else if (type == typeof(KeyCode)) {
+                drawer = Instantiate(keymapPrefab, transform, false).GetComponent<SettingDrawer_Keymap>();
             } else if (type.IsSubclassOf(typeof(Enum))) {
                 drawer = Instantiate(enumPrefab, transform, false).GetComponent<SettingDrawer_Enum>();
             } else return;

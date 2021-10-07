@@ -18,14 +18,14 @@ Settings.Audio,4L|[)][(),Kalama,오디오,Audio,オーディオ,Audio,Аудио
 Settings.Graphic,6|?4|^|-|][(,Sitelen,그래픽,Graphic,グラフィック,Graphique,Графика,γραφικός
 Settings.Game,64|\/|3,Musi,게임,Game,ゲーム,Jeu,Игра,παιχνίδι
 Settings.General.CurrentLanguage,14/|/6|_|463,,언어,Language,言語,Langue,Язык,Γλώσσα
+Settings.General.TargetFrameRate,74|?637 |=|?4|\/|3 |?473,,목표 프레임,Target Frame Rate,目標フレームレート,Fréquence d'images cible,Целевая частота кадров,στόχος ρυθμού καρέ
+Settings.General.TargetFrameRate.Unlimited,,,무제한,Unlimited,,,,
 Settings.Graphic.ScreenResolution,5(!?33/|/ !?35()1!?7][()/|/,,화면 해상도,Screen Resolution,画面解像度,Résolution d'écran,Разрешение экрана,Ανάλυση της οθόνης
 Settings.Graphic.FullScreenMode,5(!?33/|/ |\/|()[)3,,화면 모드,Screen Mode,画面モード,Mode d'écran,Режим отображения,Λειτουργία οθόνης
 Settings.Control.POS_0,|{3'/ |^()5 1,,1번 위치 키,Key Pos 1,1番位置キー,Clé pos 1,Ключ поз 1,Κλειδί Θέσεις 1
 Settings.Control.POS_1,|{3'/ |^()5 2,,2번 위치 키,Key Pos 2,2番位置キー,Clé pos 2,Ключ поз 2,Κλειδί Θέσεις 2
 Settings.Control.POS_2,|{3'/ |^()5 3,,3번 위치 키,Key Pos 3,3番位置キー,Clé pos 3,Ключ поз 3,Κλειδί Θέσεις 3
 Settings.Control.POS_3,|{3'/ |^()5 4,,4번 위치 키,Key Pos 4,4番位置キー,Clé pos 4,Ключ поз 4,Κλειδί Θέσεις 4
-Settings.Graphic.TargetFrameRate,74|?637 |=|?4|\/|3 |?473,,목표 프레임,Target Frame Rate,目標フレームレート,Fréquence d'images cible,Целевая частота кадров,στόχος ρυθμού καρέ
-Settings.Graphic.TargetFrameRate.Unlimited,,,무제한,Unlimited,,,,
 Settings.ApplyChanges,4|^|^1'/ (|-|4/|/635,,변경 사항 적용,Apply Changes,変更点の適用,Appliquer des changements,Сохранить изменения,Αποθήκευσε τις αλλαγές
 ,,,,,,,,
 ,,,,,,,,

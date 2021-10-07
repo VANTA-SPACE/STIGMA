@@ -44,7 +44,7 @@ namespace UI.Settings {
 
         public override string GetText(object value) {
             if (Property.Property == "TargetFrameRate" && value.Equals(10000)) {
-                return Translate.Get("Settings.Graphic.TargetFrameRate.Unlimited");
+                return Translate.Get("Settings.General.TargetFrameRate.Unlimited");
             }
 
             return value switch {

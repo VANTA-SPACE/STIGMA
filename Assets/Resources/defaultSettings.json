@@ -1,13 +1,13 @@
 {
 	"General": { 
-		"CurrentLanguage": "$ENUM(Language:English)$"
+		"CurrentLanguage": "$ENUM(Language:English)$",
+		"TargetFrameRate": 60,
 	},
 	"Audio": { 
 	},
 	"Graphic": {
 		"ScreenResolution": "$VECTOR2INT(1920, 1080)$",
 		"FullScreenMode": "$ENUM(UnityEngine.FullScreenMode:FullScreenWindow, UnityEngine.CoreModule)$",
-		"TargetFrameRate": 60,
 	},
 	"Game": {
 	},

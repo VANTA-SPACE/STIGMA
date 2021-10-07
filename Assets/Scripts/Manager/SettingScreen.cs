@@ -7,6 +7,8 @@ using Utils;
 
 namespace Manager {
     public class SettingScreen : MonoBehaviour {
+        public static SettingScreen Instance { get; private set; }
+        
         private string _currentCategory = "General";
 
         public string currentCategory {
@@ -20,8 +22,15 @@ namespace Manager {
         public Dictionary<string, List<SettingProperty>> Properties;
         public GameObject propertyPrefab;
         public Transform propertyParent;
+        [NonSerialized] public SettingDrawer_Keymap CurrentKeymap;
 
         private void Awake() {
+            if (Instance != null) {
+                Destroy(gameObject);
+                return;
+            }
+            Instance = this;
+            
             Properties = new Dictionary<string, List<SettingProperty>>();
             foreach ((string category, var values) in Settings.SettingValues) {
                 Properties[category] = new List<SettingProperty>();
@@ -45,6 +54,10 @@ namespace Manager {
             }
             
             OnUpdateCategory.Invoke();
+        }
+
+        private void Update() {
+            if (CurrentKeymap != null) CurrentKeymap.CheckKey();
         }
     }
 }

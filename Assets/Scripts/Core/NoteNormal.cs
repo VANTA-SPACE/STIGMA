@@ -50,6 +50,7 @@ namespace Core {
         }
 
         public override void DestroyNote(Judgment judgment) {
+            if (gameObject == null) return;
             Destroy(gameObject);
             ShowJudgementText(judgment);
             ShowNoteParticle();
