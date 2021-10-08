@@ -11,7 +11,7 @@
 		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 5.0, "NotePos": "$ENUM(NotePos:POS_1)$"},
 		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 6.0, "NotePos": "$ENUM(NotePos:POS_2)$"},
 		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 7.0, "NotePos": "$ENUM(NotePos:POS_1)$"},
-		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 8.0, "NotePos": "$ENUM(NotePos:POS_2)$"},
+		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 8.0, "NotePos": "$ENUM(NotePos:POS_2)$"}
     ],
-    "EventName": "event:/Title"
+    "EventName": "Song_Tutorial"
 }

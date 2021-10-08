@@ -1,3 +1,15 @@
-﻿fileFormatVersion: 2
+fileFormatVersion: 2
 guid: 58e3fff0956246e1bff5cab3e9cfc420
-timeCreated: 1633481817
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - trail: {instanceID: 0}
+  - judgmentPrefab: {instanceID: 0}
+  - noteParticlePrefab: {fileID: 1091887122741154, guid: 8165ad3620276cf41b4d80a63d8c4103, type: 3}
+  - noteParticle: {fileID: 198842450975270244, guid: 8165ad3620276cf41b4d80a63d8c4103, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

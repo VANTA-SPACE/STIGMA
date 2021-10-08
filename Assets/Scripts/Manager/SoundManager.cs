@@ -2,22 +2,25 @@ using System;
 using System.Collections;
 using FMOD.Studio;
 using FMODUnity;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 namespace Manager {
-    public class SoundManager : MonoBehaviour {
+    public class SoundManager : MonoBehaviour
+    {
         public static SoundManager Instance => _instance;
         private static SoundManager _instance;
         public double offset;
         
         public EventInstance EventInstance;
-        private PARAMETER_ID _parameterID;
         public bool Playing { get; private set; }
         public bool Paused { get; private set; }
 
         private void Awake() {
+            // RuntimeManager.LoadBank("Master");
+            // RuntimeManager.WaitForAllLoads();
             if (_instance != null) {
                 Destroy(gameObject);
                 return;
@@ -35,23 +38,30 @@ namespace Manager {
             StartCoroutine(_playMainEventCo(eventName));
         }
 
-        private IEnumerator _playMainEventCo(string eventName) {
-            yield return new WaitUntil(() => PlayManager.Instance.CurrentMilisec >= offset);
+        private IEnumerator _playMainEventCo(string eventName)
+        {
+            if (offset == 0) yield return new WaitUntil(() => true);
+            else yield return new WaitUntil(() => PlayManager.Instance.CurrentMilisec >= offset);
             if (Playing) {
                 RuntimeManager.DetachInstanceFromGameObject(EventInstance);
             }
             
             Playing = true;
 
-            EventInstance = RuntimeManager.CreateInstance(eventName);
+            // event:/Scene_Intro
+            
+            EventInstance = RuntimeManager.CreateInstance("event:/"+eventName);
             SetVolume(Settings.MasterVolume / 100f);
             EventInstance.start();
 
             RuntimeManager.AttachInstanceToGameObject(EventInstance, transform);
+        }
 
-            EventInstance.getDescription(out var titleEventDescription);
-            titleEventDescription.getParameterDescriptionByName("Transition", out var titleParameterDescription);
-            _parameterID = titleParameterDescription.id;
+        public void EditParameter(String parameterName, float value)
+        {
+            EventInstance.getDescription(out EventDescription parameterDescription);
+            parameterDescription.getParameterDescriptionByName(parameterName, out PARAMETER_DESCRIPTION titleParameterDescription);
+            EventInstance.setParameterByID(titleParameterDescription.id, value);
         }
 
         public void StopEvent(bool fadeOut = false) {

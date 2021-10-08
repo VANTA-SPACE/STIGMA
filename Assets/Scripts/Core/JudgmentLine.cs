@@ -83,7 +83,7 @@ namespace Core {
                     continue;
                 }
 
-                StartCoroutine(((NoteLong) queue.Dequeue()).CheckJudgmentCo());
+                StartCoroutine(((NoteLong) queue.Dequeue()).CheckJudgmentCo(judgment));
             }
         }
     }

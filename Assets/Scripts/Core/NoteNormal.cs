@@ -10,7 +10,8 @@ namespace Core {
     public class NoteNormal : NoteBase {
         public override bool HasLength => false;
 
-        public GameObject noteParticlePrefab;
+        public GameObject noteParticlePrefabPerfect;
+        public GameObject noteParticlePrefabElse;
         public ParticleSystem noteParticle;
         public GameObject judgmentPrefab;
 
@@ -54,32 +55,11 @@ namespace Core {
             if (gameObject == null) return;
             Destroy(gameObject);
             ShowJudgementText(judgment);
-            ShowNoteParticle();
+            ShowNoteParticle(judgment);
             //noteParticle.Stop();
         }
 
         public void ShowJudgementText(Judgment judgment) {
-            var obj = Instantiate(judgmentPrefab);
-            obj.transform.position = new Vector3(transform.position.x, 1f);
-            var tmp = obj.transform.GetChild(0).GetComponent<TMP_Text>();
-            if (judgment == Judgment.Perfect) {
-                tmp.colorGradient = new VertexGradient(new Color(1, 1, 0.6f), new Color(0.9f, 0.6f, 1)
-                    , new Color(0.9f, 0.6f, 1), new Color(0.9f, 0.6f, 1));
-                tmp.enableVertexGradient = true;
-            } else {
-                tmp.color = Constants.JudgmentColors[judgment];
-                tmp.enableVertexGradient = false;
-            }
-
-            var judge = judgment.ToString().SplitCapital().Split(' ');
-
-            if (judge.Length == 1) tmp.text = judge[0].ToUpper();
-            else if (judge.Length == 2) {
-                if (judge[0] == "Good") tmp.text = judge[1].ToUpper();
-                if (judge[0] == "Perfect" && !Settings.ShowELOnPerfect) tmp.text = judge[0].ToUpper();
-                else tmp.text = judge[0].ToUpper() + "\n" + judge[1].ToLower();
-            }
-           
             PlayManager.Instance.CheckedNotes++;
             switch (judgment) {
                 case Judgment.PerfectEarly:
@@ -125,12 +105,68 @@ namespace Core {
                     break;
 
                 default:
+                    Debug.Log(judgment.ToString());
                     throw new ArgumentOutOfRangeException(nameof(judgment));
             }
+            
+            var obj = Instantiate(judgmentPrefab);
+            obj.transform.position = new Vector3(transform.position.x, -2f);
+            var tmp = obj.transform.GetChild(0).GetComponent<TMP_Text>();
+            // if (judgment == Judgment.Perfect) {
+            //     tmp.colorGradient = new VertexGradient(new Color(1, 1, 0.6f), new Color(0.9f, 0.6f, 1)
+            //         , new Color(0.9f, 0.6f, 1), new Color(0.9f, 0.6f, 1));
+            //     tmp.enableVertexGradient = true;
+            // } else {
+            //     tmp.color = Constants.JudgmentColors[judgment];
+            //     tmp.enableVertexGradient = false;
+            // }
+
+            switch (judgment)
+            {
+                case Judgment.Perfect:
+                case Judgment.PerfectEarly:
+                case Judgment.PerfectLate:
+                    tmp.colorGradient = new VertexGradient(new Color(1, 1, 0.6f), new Color(0.9f, 0.6f, 1)
+                        , new Color(0.9f, 0.6f, 1), new Color(0.9f, 0.6f, 1));
+                    tmp.enableVertexGradient = true;
+                    break;
+                case Judgment.Good:
+                case Judgment.GoodEarly:
+                case Judgment.GoodLate:
+                    tmp.color = Constants.JudgmentColors[Judgment.Good];
+                    tmp.enableVertexGradient = false;
+                    break;
+                default:
+                    tmp.color = Constants.JudgmentColors[judgment];
+                    tmp.enableVertexGradient = false;
+                    break;
+            }
+
+            var judge = judgment.ToString().SplitCapital().Split(' ');
+
+            // original - PERIOT
+            // if (judge.Length == 1) tmp.text = judge[0].ToUpper();
+            // else if (judge.Length == 2) {
+            //     if (judge[0] == "Good") tmp.text = judge[1].ToUpper();
+            //     if (judge[0] == "Perfect" && !Settings.ShowELOnPerfect) tmp.text = judge[0].ToUpper();
+            //     else tmp.text = judge[0].ToUpper() + "\n" + judge[1].ToLower();
+            // }
+            
+            // EDIT NO EL - TILTO
+            tmp.text = judge[0].ToUpper();
         }
         
-        public void ShowNoteParticle() {
-            var obj = Instantiate(noteParticlePrefab);
+        public void ShowNoteParticle(Judgment judgment)
+        {
+            GameObject obj;
+            if (judgment == Judgment.Perfect || judgment == Judgment.PerfectEarly || judgment == Judgment.PerfectLate)
+            {
+                obj = Instantiate(noteParticlePrefabPerfect);
+            }
+            else
+            {
+                obj = Instantiate(noteParticlePrefabElse);
+            }
             obj.transform.position = transform.position;
             noteParticle = obj.GetComponent<ParticleSystem>();
             DOTween.Sequence().AppendCallback(() => Destroy(obj)).SetDelay(2);

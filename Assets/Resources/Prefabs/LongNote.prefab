@@ -231,5 +231,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trail: {fileID: 8248061074241073680}
   judgmentPrefab: {fileID: 7842399672895959261, guid: dff60777c9cc14747a4a82cc9c35e99e, type: 3}
-  noteParticlePrefab: {fileID: 4138744717051708116, guid: 1e0f8f90b329d824b9038419636f188e, type: 3}
+  noteParticlePrefab: {fileID: 1091887122741154, guid: 8366227acdc4bfe439573617d2b8713d, type: 3}
   noteParticle: {fileID: 0}

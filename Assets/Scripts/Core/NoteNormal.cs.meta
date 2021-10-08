@@ -3,7 +3,10 @@ guid: c1d60af2a9bd0be49a0765502b1ca683
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - noteParticlePrefab: {fileID: 1091887122741154, guid: 8165ad3620276cf41b4d80a63d8c4103, type: 3}
+  - noteParticle: {fileID: 198842450975270244, guid: 8165ad3620276cf41b4d80a63d8c4103, type: 3}
+  - judgmentPrefab: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

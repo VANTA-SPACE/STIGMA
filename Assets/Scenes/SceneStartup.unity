@@ -909,8 +909,8 @@ Canvas:
   m_GameObject: {fileID: 950219431}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 474663428}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -1039,7 +1039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 955fa039a1880d34ba5c46503856beb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  introScene: SceneIntro
+  introScene: PlayScene
   logo: {fileID: 215205560}
   vantaGames: {fileID: 1441478226}
 --- !u!1 &1360273011
@@ -1185,8 +1185,8 @@ Canvas:
   m_GameObject: {fileID: 1367241067}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 474663428}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -1593,8 +1593,8 @@ Canvas:
   m_GameObject: {fileID: 1991291891}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 474663428}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1

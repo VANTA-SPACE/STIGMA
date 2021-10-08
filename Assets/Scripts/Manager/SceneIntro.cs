@@ -1,10 +1,12 @@
 using System;
+using System.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Manager {
     public class SceneIntro : MonoBehaviour {
+        
         public static SceneIntro Instance { get; private set; }
         
         public static string SceneToLoad = Constants.PLAY_SCENE;
@@ -24,12 +26,22 @@ namespace Manager {
             exitMenu.localScale = Vector3.zero;
         }
 
+        private void Start()
+        {
+            if (SoundManager.Instance)
+            {
+                SoundManager.Instance.PlayMainEvent("Scene_Intro");
+            }
+        }
+
         private void Update() {
             if (Input.GetKeyDown(KeyCode.Escape)) {
                 if (showMenu) HideExitMenu(); else ShowExitMenu();
             }
             if (GameManager.Instance.ValidAnyKeyDown(false)) {
-                var transition = Trans.FromUp | Trans.FromDown | Trans.ToLeft | Trans.ToRight;
+                Debug.Log("STIGMA - SOUND CHANGING");
+                SoundManager.Instance.EditParameter("MainState", 1.0f);
+                Trans transition = Trans.FromUp | Trans.FromDown | Trans.ToLeft | Trans.ToRight;
                 GameManager.Instance.LoadScene(SceneToLoad, transition);
             }
         }

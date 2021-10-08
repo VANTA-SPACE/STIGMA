@@ -1,5 +1,5 @@
 Languages,Korean,English,Japanese,French,Russian,Greek
-Language.Name,한국어,English,日本語,français,Русский,Ελληνικά
+Language.Name,한국어,English,日本語,Français,Русский,Ελληνικά
 Language.EnglishName,Korean,English,Japanese,French,Russian,Greek
 Resume,계속,Resume,続く,Continuez,Продолжить,Βιογραφικό
 Retry,재시작,Retry,再始動,Refaire,Повторить,Ξαναδοκιμάσετε
@@ -26,7 +26,7 @@ Settings.General.TargetFrameRate,목표 프레임,Target Frame Rate,目標フレ
 Settings.General.TargetFrameRate.Unlimited,무제한,Unlimited,無制限,Sans limites,Неограниченное,Απεριόριστος 
 Settings.Graphic.ScreenResolution,화면 해상도,Screen Resolution,画面解像度,Résolution d'écran,Разрешение экрана,Ανάλυση της οθόνης
 Settings.Graphic.FullScreenMode,화면 모드,Screen Mode,画面モード,Mode d'écran,Режим отображения,Λειτουργία οθόνης
-Settings.Game.ShowELOnPerfect,Perfect 판정에 Early/Late 표시,Show Early/Late when Perfect,Perfect判定にEarlyLate表示,Afficher tôt/tard quand parfait ,"Показать раннее/поздноватое, когда идеально",Εμφάνιση νωρίς/αργά όταν είναι τέλειο 
+Settings.Game.ShowELOnPerfect,Perfect 판정에 Early/Late 표시,Show Early/Late when Perfect,Perfect判定にEarlyLate表示,Afficher Early/Late quand Perfect ,"Показывать Early/Late, Когда Perfect",Εμφάνιση Early/Late όταν είναι Perfect
 Settings.Control.POS_0,1번 위치 키,Key Pos 1,1番位置キー,Clé pos 1,Ключ поз 1,Κλειδί Θέσεις 1
 Settings.Control.POS_1,2번 위치 키,Key Pos 2,2番位置キー,Clé pos 2,Ключ поз 2,Κλειδί Θέσεις 2
 Settings.Control.POS_2,3번 위치 키,Key Pos 3,3番位置キー,Clé pos 3,Ключ поз 3,Κλειδί Θέσεις 3

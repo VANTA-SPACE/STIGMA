@@ -14,7 +14,8 @@ namespace Core {
 
         public Image trail;
         public GameObject judgmentPrefab;
-        public GameObject noteParticlePrefab;
+        public GameObject noteParticlePrefabPerfect;
+        public GameObject noteParticlePrefabElse;
         public ParticleSystem noteParticle;
 
         [NonSerialized] public double EndMilisec;
@@ -42,7 +43,7 @@ namespace Core {
             return judgment;
         }
 
-        public IEnumerator CheckJudgmentCo() {
+        public IEnumerator CheckJudgmentCo(Judgment judgment) {
             var startTimeOffset = -Distance * BeatToSecond;
             Pressing = true;
             KeyCode keyCode;
@@ -62,7 +63,7 @@ namespace Core {
                 default:
                     throw new ArgumentOutOfRangeException(nameof(keyCode));
             }
-            ShowNoteParticle();
+            ShowNoteParticle(judgment);
             var color = GetComponent<SpriteRenderer>().color;
             while (Input.GetKey(keyCode)) {
                 double to = (float) ((EndMilisec - CurrMilisec) * MilisecToBeat);
@@ -81,9 +82,9 @@ namespace Core {
             double timeOffset = (float) ((EndMilisec - CurrMilisec) * MilisecToBeat);
             var positive = timeOffset <= 0;
             timeOffset = (float) (Math.Abs(startTimeOffset) / 4 + Math.Abs(timeOffset)) / 4;
-            var judgment = StigmaUtils.GetJudgement(timeOffset * (positive ? 1 : -1));
-            if (judgment == Judgment.None || judgment == Judgment.Miss) judgment = Judgment.Bad;
-            DestroyNote(judgment);
+            var _judgment = StigmaUtils.GetJudgement(timeOffset * (positive ? 1 : -1));
+            if (_judgment == Judgment.None || _judgment == Judgment.Miss) _judgment = Judgment.Bad;
+            DestroyNote(_judgment);
         }
 
         public override bool CheckMiss() {
@@ -122,7 +123,7 @@ namespace Core {
 
         public void ShowJudgementText(Judgment judgment) {
             var obj = Instantiate(judgmentPrefab);
-            obj.transform.position = new Vector3(transform.position.x, 1f);
+            obj.transform.position = new Vector3(transform.position.x, -2f);
             var tmp = obj.transform.GetChild(0).GetComponent<TMP_Text>();
             if (judgment == Judgment.Perfect) {
                 tmp.colorGradient = new VertexGradient(new Color(1, 1, 0.6f), new Color(0.9f, 0.6f, 1)
@@ -192,8 +193,16 @@ namespace Core {
         }
 
 
-        public void ShowNoteParticle() {
-            var obj = Instantiate(noteParticlePrefab);
+        public void ShowNoteParticle(Judgment judgment) {
+            GameObject obj;
+            if (judgment == Judgment.Perfect || judgment == Judgment.PerfectEarly || judgment == Judgment.PerfectLate)
+            {
+                obj = Instantiate(noteParticlePrefabPerfect);
+            }
+            else
+            {
+                obj = Instantiate(noteParticlePrefabElse);
+            }
             obj.transform.position = new Vector3(transform.position.x, JudgmentLine.transform.position.y);
             noteParticle = obj.GetComponent<ParticleSystem>();
         }

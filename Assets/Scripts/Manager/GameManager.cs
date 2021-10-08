@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -201,7 +202,10 @@ namespace Manager {
         public void LoadScene(string sceneToLoad, Trans transitionType = Trans.FromRight | Trans.ToLeft, bool resetTimescale = true) {
             Time.timeScale = 1;
             DOTween.timeScale = 1;
-            Transition(transitionType, () => SceneManager.LoadScene(sceneToLoad));
+            Transition(transitionType, () =>
+            {
+                SceneManager.LoadScene(sceneToLoad);
+            });
         }
 
         public bool ValidAnyKeyDown(bool checkMouseKey = true) {
