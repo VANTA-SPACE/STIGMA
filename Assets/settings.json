@@ -1,7 +1,7 @@
 {
     "General": {"CurrentLanguage": "$ENUM(Language:Korean)$", "TargetFrameRate": 60},
     "Audio": {"MasterVolume": 100},
-    "Graphic": {"ScreenResolution": "$RESOLUTION(1920, 1080, 60)$", "FullScreenMode": "$ENUM(UnityEngine.FullScreenMode:Windowed, UnityEngine.CoreModule)$"},
+    "Graphic": {"ScreenResolution": "$RESOLUTION(1920, 1080, 60)$", "FullScreenMode": "$ENUM(UnityEngine.FullScreenMode:FullScreenWindow, UnityEngine.CoreModule)$"},
     "Game": {"ShowELOnPerfect": false},
     "Control": {"POS_0": "$ENUM(KeyCode:D)$", "POS_1": "$ENUM(KeyCode:F)$", "POS_2": "$ENUM(KeyCode:J)$", "POS_3": "$ENUM(KeyCode:K)$"}
 }
