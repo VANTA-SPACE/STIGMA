@@ -123,10 +123,16 @@ public static class Settings {
         set => GeneralSettings["CurrentLanguage"] = value;
     }
 
+    public static Dictionary<string, Dictionary<string, object>> SettingValuesTemp { get; private set; }
     public static Dictionary<string, Dictionary<string, object>> SettingValues { get; private set; }
     public static Dictionary<string, Dictionary<string, object>> SettingData { get; private set; }
 
     public static void ApplySettings() {
+        GeneralSettings = SettingValuesTemp["General"].Copy();
+        AudioSettings = SettingValuesTemp["Audio"].Copy();
+        GraphicSettings = SettingValuesTemp["Graphic"].Copy();
+        GameSettings = SettingValuesTemp["Game"].Copy();
+        ControlSettings = SettingValuesTemp["Control"].Copy();
         Screen.SetResolution(ScreenResolution.width, ScreenResolution.height, FullScreenMode, ScreenResolution.refreshRate);
         Application.targetFrameRate = TargetFrameRate;
         Events.OnLanguageChange.Invoke();
@@ -146,6 +152,12 @@ public static class Settings {
             DecodeSettings(new Dictionary<string, object>());
         }
 
+        SettingValuesTemp = new Dictionary<string, Dictionary<string, object>>();
+        SettingValuesTemp["General"] = GeneralSettings.Copy();
+        SettingValuesTemp["Audio"] = AudioSettings.Copy();
+        SettingValuesTemp["Graphic"] = GraphicSettings.Copy();
+        SettingValuesTemp["Game"] = GameSettings.Copy();
+        SettingValuesTemp["Control"] = ControlSettings.Copy();
         ApplySettings();
         Events.OnSettingsUpdate.Invoke();
     }
@@ -171,6 +183,7 @@ public static class Settings {
             yield return DecodeSettingsCo((Dictionary<string, object>) data);
         }
 
+        SettingValuesTemp = SettingValues.Copy();
         ApplySettings();
         Events.OnSettingsUpdate.Invoke();
         yield break;

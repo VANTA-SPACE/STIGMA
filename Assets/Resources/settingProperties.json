@@ -9,9 +9,12 @@
 				"$ENUM(Language:Russian)$",
 				"$ENUM(Language:Greek)$",
 			],
-			"refresh": false, "allowOverflow": true
+			"hiddens": [
+				"$ENUM(Language:LEET)$",
+			]
+			"allowOverflow": true
 		},
-		"TargetFrameRate": {"options": [30, 59, 60, 120, 144, 165, 240, 10000], "refresh": true, "allowOverflow": false}
+		"TargetFrameRate": {"options": [30, 59, 60, 120, 144, 165, 240, 10000], "allowOverflow": false}
 	},
 	"Audio": {
 		"MasterVolume": {"min": 0, "max": 100, "changeby": 10}
@@ -19,9 +22,9 @@
 	"Graphic": {
 		"ScreenResolution": {
 			"options": [],
-			"refresh": false, "allowOverflow": false
+			"allowOverflow": false
 		}
-		"FullscreenMode": {"refresh": true}
+		"FullscreenMode": {}
 	},
 	"Game": {
 		"ShowELOnPerfect": {}

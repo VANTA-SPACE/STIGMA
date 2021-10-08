@@ -82,8 +82,6 @@ namespace Manager {
         }
 
         public void StartPlay() {
-            Time.timeScale = 1;
-            DOTween.timeScale = 1;
             spaceToPlay.DOColor(new Color(1, 1, 1, 0), 0.25f);
 
             EndPlay();
@@ -202,15 +200,11 @@ namespace Manager {
             SoundManager.Instance.Pause();
             pauseMenu.localScale = new Vector3(0, 0, 0);
             pausePanel.gameObject.SetActive(true);
-            Time.timeScale = 0.0001f;
-            DOTween.timeScale = 10000;
             pausePanel.DOColor(new Color(0, 0, 0, 0.8f), 0.2f).SetId("PauseGame");
             pauseMenu.DOScale(Vector3.one, 0.15f).SetEase(Ease.OutExpo).SetId("PauseGame");
         }
 
         public void UnpauseGame() {
-            Time.timeScale = 1;
-            DOTween.timeScale = 1;
             DOTween.Kill("PauseGame", true);
             Paused = false;
             SoundManager.Instance.Unpause(true);

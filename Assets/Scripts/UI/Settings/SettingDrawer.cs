@@ -14,8 +14,8 @@ namespace UI.Settings {
         public TMP_Text text;
 
         public object Value {
-            get => global::Settings.SettingValues[Property.Category][Property.Property];
-            set => global::Settings.SettingValues[Property.Category][Property.Property] = value;
+            get => global::Settings.SettingValuesTemp[Property.Category][Property.Property];
+            set => global::Settings.SettingValuesTemp[Property.Category][Property.Property] = value;
         }
 
         public virtual void Init(SettingProperty property) {
@@ -23,12 +23,6 @@ namespace UI.Settings {
         }
 
         public virtual void AfterInit() {
-            if (global::Settings.SettingData[Property.Category].GetOrDefault(Property.Property) is Dictionary<string, object> data) {
-                if (data.GetOrDefault("refresh", false).As(false)) {
-                    buttonLeft.onClick.AddListener(global::Settings.ApplySettings);
-                    buttonRight.onClick.AddListener(global::Settings.ApplySettings);
-                }
-            }
             buttonLeft.onClick.AddListener(UpdateText);
             buttonRight.onClick.AddListener(UpdateText);
             SettingScreen.UpdateProps.AddListener(UpdateText);

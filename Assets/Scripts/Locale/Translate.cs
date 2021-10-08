@@ -20,6 +20,36 @@ namespace Locale {
         }
         private static List<Language> _availableLanguages;
 
+        private static (string, string)[] leetTable = {
+            ("A", "4"),
+            ("B", "|3"),
+            ("C", "("),
+            ("D", "[)"),
+            ("E", "3"),
+            ("F", "|="),
+            ("G", "6"),
+            ("H", "|-|"),
+            ("I", "]["),
+            ("J", "_]"),
+            ("K", "|{"),
+            ("L", "1"),
+            ("N", "/|/"),
+            ("O", "()"),
+            ("P", "|^"),
+            ("Q", "&"),
+            ("R", "|?"),
+            ("S", "5"),
+            ("T", "7"),
+            ("V", "\\|"),
+            ("W", "|^|"),
+            ("X", "><"),
+            ("Y", "'/"),
+            ("Z", "2"),
+            
+            ("M", "|V|"),
+            ("U", "L|"),
+        };
+
         public static bool TryGet(string key, out string value, Language? language = null) {
             if (TranslationsDict == null) TranslationsDict = LoadLanguages();
             language ??= Settings.CurrentLanguage;
@@ -30,6 +60,21 @@ namespace Locale {
 
             var dict2 = TranslationsDict[key];
 
+            if (language == Language.LEET) {
+                bool result = dict2.TryGetValue(Language.English, out var engValue);
+                if (!result) {
+                    value = null;
+                    return false;
+                }
+
+                foreach (var (eng, leet) in leetTable) {
+                    engValue = engValue.Replace(eng.ToUpper(), leet);
+                    engValue = engValue.Replace(eng.ToLower(), leet);
+                }
+
+                value = engValue;
+                return true;
+            }
             if (dict2.TryGetValue(language.Value, out value)) return true;
             return dict2.TryGetValue(Language.English, out value);
         }
@@ -90,7 +135,8 @@ namespace Locale {
                 var row = 0;
                 foreach (var langstr in langs) {
                     if (Enum.TryParse<Language>(langstr, out var lang)) {
-                        AvailableLanguages.Add(lang);
+                        _availableLanguages.Add(lang);
+                        if (lang == Language.English) _availableLanguages.Add(Language.LEET);
                         datas[key][lang] = cols[col][row];
                     }
 

@@ -24,7 +24,7 @@ public static class Constants {
     public const float NOTE_WIDTH = 1.6f;
     
     //노트 속도
-    public const float NOTE_SPEED_MODIFIER = 3;
+    public const float NOTE_SPEED_MODIFIER = 2f;
     
 
     public static readonly ConstDict<Judgment, Color> JudgmentColors = new ConstDict<Judgment, Color>(

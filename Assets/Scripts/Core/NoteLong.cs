@@ -5,13 +5,14 @@ using DG.Tweening;
 using Manager;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Utils;
 
 namespace Core {
     public class NoteLong : NoteBase {
         public override bool HasLength => true;
 
-        public TrailRenderer trail;
+        public Image trail;
         public GameObject judgmentPrefab;
         public GameObject noteParticlePrefab;
         public ParticleSystem noteParticle;
@@ -29,7 +30,8 @@ namespace Core {
             NotePos = data.NotePos;
             JudgmentLine.AssignedNotes[NotePos].Enqueue(this);
             trail.enabled = false;
-            trail.time = (float) data.NoteLength / 1000;
+            trail.GetComponent<RectTransform>().sizeDelta =
+                new Vector2(1, (float) data.NoteLength * MilisecToBeatF * Constants.NOTE_SPEED_MODIFIER);
             Pressing = false;
             Inited = true;
         }
@@ -70,7 +72,7 @@ namespace Core {
 
                 var width = Mathf.Max((float) ((EndMilisec - CurrMilisec) / (EndMilisec - TargetMilisec)), 0) * MilisecToBeatF;
                 var eased = DOVirtual.EasedValue(0, 1, width, Ease.OutExpo);
-                trail.startColor = trail.endColor = new Color(color.r, color.g, color.b, eased / 3 + 0.2f);
+                trail.color = new Color(color.r, color.g, color.b, eased / 3 + 0.2f);
                 yield return null;
             }
 
@@ -100,7 +102,7 @@ namespace Core {
             var sprite = GetComponent<SpriteRenderer>();
             var color = Color.Lerp(sprite.color, Color.clear, 0.5f);
             sprite.DOColor(color, 0.5f);
-            DOTween.To(() => trail.startColor, c => trail.startColor = trail.endColor = c, color, 0.5f);
+            trail.DOColor(color, 0.5f);
             ShowJudgementText(Judgment.Miss);
         }
 
@@ -108,7 +110,7 @@ namespace Core {
             var sprite = GetComponent<SpriteRenderer>();
             var color = Color.Lerp(sprite.color, Color.clear, 0.5f);
             sprite.DOColor(color, 0.5f);
-            DOTween.To(() => trail.startColor, c => trail.startColor = trail.endColor = c, color, 0.5f);
+            trail.DOColor(color, 0.5f);
             ShowJudgementText(judgment);
             //noteParticle.Stop();
         }

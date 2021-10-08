@@ -43,6 +43,7 @@ namespace UI.Settings {
 
         public override string GetText(object value) {
             if (value is Language language) {
+                if (language == Language.LEET) return "1337";
                 return Translate.TryGet("Language.Name", out var langname, language) ? langname : language.ToString();
             } else return ((Enum) value).GetEnumName();
         }

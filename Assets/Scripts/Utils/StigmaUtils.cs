@@ -16,6 +16,7 @@ namespace Utils {
         }
 
         public static Dictionary<TKey, TValue> Copy<TKey, TValue>(this Dictionary<TKey, TValue> original) {
+            if (original == null) return null;
             var result = new Dictionary<TKey, TValue>();
             foreach (var (key, value) in original) {
                 result[key] = value;
