@@ -30,7 +30,6 @@ namespace Core {
             double timeOffset = -Distance * BeatToSecond;
             var judgment = StigmaUtils.GetJudgement(timeOffset);
             if (judgment == Judgment.None) return Judgment.None;
-
             return judgment;
         }
 

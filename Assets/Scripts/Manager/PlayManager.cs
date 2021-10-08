@@ -14,6 +14,7 @@ namespace Manager {
     public class PlayManager : MonoBehaviour {
         public static PlayManager Instance => instance;
         private static PlayManager instance;
+        public static bool IsPlaying = false;
 
         public NoteGenerator generator;
         public TMP_Text exampleText;
@@ -83,7 +84,7 @@ namespace Manager {
 
         public void StartPlay() {
             spaceToPlay.DOColor(new Color(1, 1, 1, 0), 0.25f);
-
+            ProgressBar.instance.StartProgress();
             EndPlay();
             isPlayingLevel = true;
             currentRawMilisec = 0;
@@ -108,9 +109,9 @@ namespace Manager {
 
             scoreText.text = string.Empty;
             comboText.text = string.Empty;
-
-            comboText.gameObject.SetActive(true);
-            scoreText.gameObject.SetActive(true);
+            IsPlaying = true;
+            comboText.gameObject.SetActive(IsPlaying);
+            scoreText.gameObject.SetActive(IsPlaying);
         }
 
         public void EndPlay() {
@@ -126,9 +127,10 @@ namespace Manager {
                 }
                 Destroy(obj);
             }
-
-            comboText.gameObject.SetActive(false);
-            scoreText.gameObject.SetActive(false);
+            ProgressBar.instance.EndProgress();
+            IsPlaying = false;
+            comboText.gameObject.SetActive(IsPlaying);
+            scoreText.gameObject.SetActive(IsPlaying);
         }
 
         public void Retry() {

@@ -75,9 +75,9 @@ namespace Manager {
             Paused = true;
         }
 
-        public void Unpause(bool fixSinc = false) {
+        public void Unpause(bool fixSync = false) {
             EventInstance.setPaused(false);
-            if (fixSinc) {
+            if (fixSync) {
                 int timelinePos = (int) (PlayManager.Instance.CurrentMilisec - offset);
                 EventInstance.setTimelinePosition(timelinePos);
             }
