@@ -398,4 +398,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trail: {fileID: 4912045003299485707}
   judgmentPrefab: {fileID: 7842399672895959261, guid: dff60777c9cc14747a4a82cc9c35e99e, type: 3}
-  noteParticle: {fileID: 6796136091953437850, guid: 1e0f8f90b329d824b9038419636f188e, type: 3}
+  noteParticlePrefab: {fileID: 4138744717051708116, guid: 1e0f8f90b329d824b9038419636f188e, type: 3}
+  noteParticle: {fileID: 0}

@@ -13,6 +13,7 @@ namespace Core {
 
         public TrailRenderer trail;
         public GameObject judgmentPrefab;
+        public GameObject noteParticlePrefab;
         public ParticleSystem noteParticle;
 
         [NonSerialized] public double EndMilisec;
@@ -190,7 +191,7 @@ namespace Core {
 
 
         public void ShowNoteParticle() {
-            var obj = Instantiate(noteParticle.gameObject);
+            var obj = Instantiate(noteParticlePrefab);
             obj.transform.position = new Vector3(transform.position.x, JudgmentLine.transform.position.y);
             noteParticle = obj.GetComponent<ParticleSystem>();
         }

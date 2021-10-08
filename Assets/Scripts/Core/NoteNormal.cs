@@ -10,6 +10,7 @@ namespace Core {
     public class NoteNormal : NoteBase {
         public override bool HasLength => false;
 
+        public GameObject noteParticlePrefab;
         public ParticleSystem noteParticle;
         public GameObject judgmentPrefab;
 
@@ -129,8 +130,9 @@ namespace Core {
         }
         
         public void ShowNoteParticle() {
-            var obj = Instantiate(noteParticle.gameObject);
+            var obj = Instantiate(noteParticlePrefab);
             obj.transform.position = transform.position;
+            noteParticle = obj.GetComponent<ParticleSystem>();
             DOTween.Sequence().AppendCallback(() => Destroy(obj)).SetDelay(2);
         }
     }
