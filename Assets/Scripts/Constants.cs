@@ -37,6 +37,7 @@ public static class Constants {
         (Judgment.Miss, new Color(0.6f, 0.6f, 0.6f))
     );
 
-    public static string DataPath => Application.dataPath;
+    
+    public static string DataPath => Application.persistentDataPath;
     public static string ResourcePath => Path.Combine(Application.dataPath, "Resources");
 }

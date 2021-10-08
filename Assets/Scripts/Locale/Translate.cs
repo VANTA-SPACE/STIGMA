@@ -97,6 +97,7 @@ namespace Locale {
             _availableLanguages = new List<Language>();
             string result;
             if (Application.isEditor && Application.isPlaying) {
+#if  UNITY_EDITOR
                 var path = Path.Combine(Constants.ResourcePath, "translation.csv");
                 try {
                     using var client = new WebClient();
@@ -110,6 +111,7 @@ namespace Locale {
                 path = path + ".tmp";
                 result = File.ReadAllBytes(path).Encode(Encoding.GetEncoding(65001)).Replace("\r", "");
                 File.Delete(path);
+#endif
             } else {
                 if (!Application.isPlaying) Debug.Log("Not loading sheet due to not playing ");
                 result = Resources.Load<TextAsset>("translation").text.Replace("\r", "");

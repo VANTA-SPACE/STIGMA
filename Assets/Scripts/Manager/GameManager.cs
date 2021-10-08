@@ -33,6 +33,8 @@ namespace Manager {
         private RectTransform _panel4Rect;
         private RectTransform _panel5Rect;
 
+        public static bool DoQuit;
+
         public List<KeyCode> invalidKeys = new List<KeyCode> {
             KeyCode.None
         };

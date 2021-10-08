@@ -11,7 +11,9 @@ namespace UI {
         public enum ButtonType {
             Resume,
             Retry,
-            Exit
+            Exit,
+            Close,
+            ExitGame
         }
 
         private void Awake() {
@@ -30,6 +32,12 @@ namespace UI {
                 case ButtonType.Exit:
                     var transition = Trans.FromLeft | Trans.FromRight | Trans.ToUp | Trans.ToDown;
                     GameManager.Instance.LoadScene(Constants.INTRO_SCENE, transition);
+                    break;
+                case ButtonType.Close:
+                    SceneIntro.Instance.HideExitMenu();
+                    break;
+                case ButtonType.ExitGame:
+                    GameManager.Instance.Transition(Trans.FadeStart, Application.Quit);
                     break;
             }
         }

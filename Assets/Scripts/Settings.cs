@@ -252,6 +252,7 @@ public static class Settings {
             .As<string, object, string, Dictionary<string, object>>();
         SettingData = Json.Deserialize(Resources.Load<TextAsset>("settingProperties").text)
             .As<string, object, string, Dictionary<string, object>>();
+        SettingValues["Graphic"]["ScreenResolution"] = Screen.resolutions.Last();
     }
 
     private static IEnumerator DecodeSettingsCo(Dictionary<string, object> settings) {

@@ -20,6 +20,7 @@ namespace UI.Settings {
             base.Init(property);
             var data = (Dictionary<string, object>) global::Settings.SettingData[property.Category].GetOrDefault(property.Property);
             Options = data["options"].As<List<object>>();
+            if (property.Property == "ScreenResolution") Options = Screen.resolutions.Cast<object>().ToList();
             countNormal = Options.Count;
             if (data.ContainsKey("hiddens")) {
                 Options = Options.Concat(data["hiddens"].As<List<object>>()).ToList();
@@ -27,7 +28,6 @@ namespace UI.Settings {
             countHidden = Options.Count;
             allowOverflow = (bool) data.GetOrDefault("allowOverflow", true);
             Debug.Log($"{property.Property}: {allowOverflow}");
-            if (property.Property == "ScreenResolution") Options = Screen.resolutions.Cast<object>().ToList();
             
             buttonLeft.onClick.AddListener(() => {
                 var val = Value;
