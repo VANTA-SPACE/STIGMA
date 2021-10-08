@@ -84,7 +84,6 @@ namespace Manager {
 
         public void StartPlay() {
             spaceToPlay.DOColor(new Color(1, 1, 1, 0), 0.25f);
-            ProgressBar.instance.StartProgress();
             EndPlay();
             isPlayingLevel = true;
             currentRawMilisec = 0;
@@ -127,7 +126,6 @@ namespace Manager {
                 }
                 Destroy(obj);
             }
-            ProgressBar.instance.EndProgress();
             IsPlaying = false;
             comboText.gameObject.SetActive(IsPlaying);
             scoreText.gameObject.SetActive(IsPlaying);
@@ -185,8 +183,7 @@ namespace Manager {
                                    (Accurary / CheckedNotes).ToString("0.00") + "%";
             }
             
-            if (!isPlayingLevel || Paused || CurrentMilisec <= LevelData.EndMilisec + 4 * BeatToSecond * 1000) return;
-            Debug.Log($"{CurrentMilisec} > {LevelData.EndMilisec + 4 * BeatToSecond * 1000}");
+            if (!isPlayingLevel || Paused || CurrentMilisec <= LevelData.EndMSAnd4Beats) return;
             FinishGame();
         }
 

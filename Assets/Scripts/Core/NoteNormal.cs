@@ -64,40 +64,40 @@ namespace Core {
                 case Judgment.PerfectEarly:
                     PlayManager.Instance.JudgmentCount[Judgment.PerfectEarly]++;
                     goto case Judgment.Perfect;
-                    
+
                 case Judgment.PerfectLate:
                     PlayManager.Instance.JudgmentCount[Judgment.PerfectEarly]++;
                     goto case Judgment.Perfect;
-                    
+
                 case Judgment.Perfect:
                     PlayManager.Instance.JudgmentCount[Judgment.Perfect]++;
                     PlayManager.Instance.Accurary += 100;
                     PlayManager.Instance.Combo++;
                     PlayManager.Instance.Score += 1000000f / PlayManager.Instance.LevelData.NoteDatas.Count;
                     break;
-                
+
                 case Judgment.GoodEarly:
                     PlayManager.Instance.JudgmentCount[Judgment.GoodEarly]++;
                     goto case Judgment.Good;
-                    
+
                 case Judgment.GoodLate:
                     PlayManager.Instance.JudgmentCount[Judgment.GoodLate]++;
                     goto case Judgment.Good;
-                    
+
                 case Judgment.Good:
                     PlayManager.Instance.JudgmentCount[Judgment.Good]++;
                     PlayManager.Instance.Accurary += 70;
                     PlayManager.Instance.Combo++;
                     PlayManager.Instance.Score += 700000f / PlayManager.Instance.LevelData.NoteDatas.Count;
                     break;
-                
+
                 case Judgment.Bad:
                     PlayManager.Instance.JudgmentCount[Judgment.Bad]++;
                     PlayManager.Instance.Accurary += 30;
                     PlayManager.Instance.Combo = 0;
                     PlayManager.Instance.Score += 300000f / PlayManager.Instance.LevelData.NoteDatas.Count;
                     break;
-                
+
                 case Judgment.Miss:
                     PlayManager.Instance.JudgmentCount[Judgment.Miss]++;
                     PlayManager.Instance.Combo = 0;
@@ -107,7 +107,7 @@ namespace Core {
                     Debug.Log(judgment.ToString());
                     throw new ArgumentOutOfRangeException(nameof(judgment));
             }
-            
+
             var obj = Instantiate(judgmentPrefab);
             obj.transform.position = new Vector3(transform.position.x, -2f);
             var tmp = obj.transform.GetChild(0).GetComponent<TMP_Text>();
@@ -120,8 +120,7 @@ namespace Core {
             //     tmp.enableVertexGradient = false;
             // }
 
-            switch (judgment)
-            {
+            switch (judgment) {
                 case Judgment.Perfect:
                 case Judgment.PerfectEarly:
                 case Judgment.PerfectLate:
@@ -150,22 +149,19 @@ namespace Core {
             //     if (judge[0] == "Perfect" && !Settings.ShowELOnPerfect) tmp.text = judge[0].ToUpper();
             //     else tmp.text = judge[0].ToUpper() + "\n" + judge[1].ToLower();
             // }
-            
+
             // EDIT NO EL - TILTO
             tmp.text = judge[0].ToUpper();
         }
-        
-        public void ShowNoteParticle(Judgment judgment)
-        {
+
+        public void ShowNoteParticle(Judgment judgment) {
             GameObject obj;
-            if (judgment == Judgment.Perfect || judgment == Judgment.PerfectEarly || judgment == Judgment.PerfectLate)
-            {
+            if (judgment == Judgment.Perfect || judgment == Judgment.PerfectEarly || judgment == Judgment.PerfectLate) {
                 obj = Instantiate(noteParticlePrefabPerfect);
-            }
-            else
-            {
+            } else {
                 obj = Instantiate(noteParticlePrefabElse);
             }
+
             obj.transform.position = transform.position;
             noteParticle = obj.GetComponent<ParticleSystem>();
             DOTween.Sequence().AppendCallback(() => Destroy(obj)).SetDelay(2);

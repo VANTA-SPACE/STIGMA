@@ -1039,7 +1039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 955fa039a1880d34ba5c46503856beb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  introScene: PlayScene
+  introScene: SceneIntro
   logo: {fileID: 215205560}
   vantaGames: {fileID: 1441478226}
 --- !u!1 &1360273011

@@ -63,6 +63,7 @@ namespace Core {
                 default:
                     throw new ArgumentOutOfRangeException(nameof(keyCode));
             }
+
             ShowNoteParticle(judgment);
             var color = GetComponent<SpriteRenderer>().color;
             while (Input.GetKey(keyCode)) {
@@ -71,14 +72,15 @@ namespace Core {
                     break;
                 }
 
-                var width = Mathf.Max((float) ((EndMilisec - CurrMilisec) / (EndMilisec - TargetMilisec)), 0) * MilisecToBeatF;
+                var width = Mathf.Max((float) ((EndMilisec - CurrMilisec) / (EndMilisec - TargetMilisec)), 0) *
+                            MilisecToBeatF;
                 var eased = DOVirtual.EasedValue(0, 1, width, Ease.OutExpo);
                 trail.color = new Color(color.r, color.g, color.b, eased / 3 + 0.2f);
                 yield return null;
             }
 
             HideNoteParticle();
-            
+
             double timeOffset = (float) ((EndMilisec - CurrMilisec) * MilisecToBeat);
             var positive = timeOffset <= 0;
             timeOffset = (float) (Math.Abs(startTimeOffset) / 4 + Math.Abs(timeOffset)) / 4;
@@ -148,40 +150,40 @@ namespace Core {
                 case Judgment.PerfectEarly:
                     PlayManager.Instance.JudgmentCount[Judgment.PerfectEarly]++;
                     goto case Judgment.Perfect;
-                    
+
                 case Judgment.PerfectLate:
                     PlayManager.Instance.JudgmentCount[Judgment.PerfectEarly]++;
                     goto case Judgment.Perfect;
-                    
+
                 case Judgment.Perfect:
                     PlayManager.Instance.JudgmentCount[Judgment.Perfect]++;
                     PlayManager.Instance.Accurary += 100;
                     PlayManager.Instance.Combo++;
                     PlayManager.Instance.Score += 1000000f / PlayManager.Instance.LevelData.NoteDatas.Count;
                     break;
-                
+
                 case Judgment.GoodEarly:
                     PlayManager.Instance.JudgmentCount[Judgment.GoodEarly]++;
                     goto case Judgment.Good;
-                    
+
                 case Judgment.GoodLate:
                     PlayManager.Instance.JudgmentCount[Judgment.GoodLate]++;
                     goto case Judgment.Good;
-                    
+
                 case Judgment.Good:
                     PlayManager.Instance.JudgmentCount[Judgment.Good]++;
                     PlayManager.Instance.Accurary += 70;
                     PlayManager.Instance.Combo++;
                     PlayManager.Instance.Score += 700000f / PlayManager.Instance.LevelData.NoteDatas.Count;
                     break;
-                
+
                 case Judgment.Bad:
                     PlayManager.Instance.JudgmentCount[Judgment.Bad]++;
                     PlayManager.Instance.Accurary += 30;
                     PlayManager.Instance.Combo = 0;
                     PlayManager.Instance.Score += 300000f / PlayManager.Instance.LevelData.NoteDatas.Count;
                     break;
-                
+
                 case Judgment.Miss:
                     PlayManager.Instance.JudgmentCount[Judgment.Miss]++;
                     PlayManager.Instance.Combo = 0;
@@ -195,14 +197,12 @@ namespace Core {
 
         public void ShowNoteParticle(Judgment judgment) {
             GameObject obj;
-            if (judgment == Judgment.Perfect || judgment == Judgment.PerfectEarly || judgment == Judgment.PerfectLate)
-            {
+            if (judgment == Judgment.Perfect || judgment == Judgment.PerfectEarly || judgment == Judgment.PerfectLate) {
                 obj = Instantiate(noteParticlePrefabPerfect);
-            }
-            else
-            {
+            } else {
                 obj = Instantiate(noteParticlePrefabElse);
             }
+
             obj.transform.position = new Vector3(transform.position.x, JudgmentLine.transform.position.y);
             noteParticle = obj.GetComponent<ParticleSystem>();
         }

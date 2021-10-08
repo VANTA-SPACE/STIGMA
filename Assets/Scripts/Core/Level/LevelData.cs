@@ -9,6 +9,7 @@ namespace Core.Level {
         public List<NoteData> NoteDatas;
         public string EventName;
         public double EndMilisec;
+        public double EndMSAnd4Beats;
 
         public LevelData(double bpm, double offset, List<NoteData> noteDatas, string eventName) {
             Bpm = bpm;
@@ -42,6 +43,7 @@ namespace Core.Level {
             
             NoteDatas.Sort(n => n.StartBeat);
             EndMilisec = NoteDatas.Last().EndMilisec;
+            EndMSAnd4Beats = EndMilisec + 4 * 60 / Bpm * 1000;
         }
     }
 }

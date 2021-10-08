@@ -15,6 +15,9 @@ namespace Manager {
         public double offset;
         
         public EventInstance EventInstance;
+        public EventDescription EventDescription;
+        [NonSerialized] public int Length;
+        
         public bool Playing { get; private set; }
         public bool Paused { get; private set; }
 
@@ -38,8 +41,7 @@ namespace Manager {
             StartCoroutine(_playMainEventCo(eventName));
         }
 
-        private IEnumerator _playMainEventCo(string eventName)
-        {
+        private IEnumerator _playMainEventCo(string eventName) {
             if (offset == 0) yield return new WaitUntil(() => true);
             else yield return new WaitUntil(() => PlayManager.Instance.CurrentMilisec >= offset);
             if (Playing) {
@@ -51,6 +53,8 @@ namespace Manager {
             // event:/Scene_Intro
             
             EventInstance = RuntimeManager.CreateInstance("event:/"+eventName);
+            EventInstance.getDescription(out EventDescription);
+            EventDescription.getLength(out Length);
             SetVolume(Settings.MasterVolume / 100f);
             EventInstance.start();
 
