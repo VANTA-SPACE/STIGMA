@@ -148,7 +148,7 @@ public static class Settings {
                 var data = Json.Deserialize(File.ReadAllText(path));
                 DecodeSettings((Dictionary<string, object>) data);
             }
-        } catch (Exception e) {
+        } catch (Exception) {
             DecodeSettings(new Dictionary<string, object>());
         }
 
@@ -166,7 +166,7 @@ public static class Settings {
         var path = Path.Combine(Constants.DataPath, "settings.json");
         try {
             File.WriteAllText(path, Json.Serialize(SettingValues, false));
-        } catch (Exception e) { }
+        } catch (Exception) { }
     }
 
     public static IEnumerator LoadSettingsCo() {
