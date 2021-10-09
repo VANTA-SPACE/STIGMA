@@ -24,12 +24,22 @@ namespace Manager {
 
         public Image pausePanel;
         public RectTransform pauseMenu;
+        public ProgressBar progressBar;
+        public Gauge gauge;
+        
         [NonSerialized] public bool Paused;
 
         [NonSerialized] public float Accurary;
         [NonSerialized] public int Combo;
         [NonSerialized] public float Score;
         [NonSerialized] public int CheckedNotes;
+
+        public float GaugeValue {
+            get => gaugeValue;
+            set => gaugeValue = Mathf.Clamp(value, 0, 100);
+        }
+
+        private float gaugeValue;
 
         public LevelData LevelData;
         public Dictionary<Judgment, int> JudgmentCount;
@@ -43,7 +53,7 @@ namespace Manager {
         public double currentBpm;
         
         public int TotalMiss => JudgmentCount[Judgment.Miss];
-        public int Totalnotes => LevelData.NoteDatas.Count;
+        public int TotalNotes => LevelData.NoteDatas.Count;
                 
         public double MilisecToBeat => BaseBpm / 60 / 1000;
         public float MilisecToBeatF => (float) BaseBpm / 60 / 1000;
@@ -88,12 +98,15 @@ namespace Manager {
             isPlayingLevel = true;
             currentRawMilisec = 0;
             LoadLevel("exlevel");
+            progressBar.StartProgress();
+            gauge.StartGauge();
             Debug.Log("Started Playing");
 
             Accurary = 0;
             Combo = 0;
             Score = 0;
             CheckedNotes = 0;
+            GaugeValue = 100;
             
             JudgmentCount = new Dictionary<Judgment, int>() {
                 {Judgment.Perfect, 0},
@@ -117,6 +130,8 @@ namespace Manager {
             isPlayingLevel = false;
             currentRawMilisec = 0;
             SoundManager.Instance.StopEvent();
+            progressBar.StopProgress();
+            gauge.StopGauge();
             Debug.Log("Stopped Playing");
             for (int i = 0; i < generator.transform.childCount; i++) {
                 var obj = generator.transform.GetChild(i).gameObject;
@@ -177,10 +192,9 @@ namespace Manager {
 
             var curr = isPlayingLevel ? $"{CurrentBeat:0.0000}" : "Not playing";
             if (CheckedNotes == 0) {
-                exampleText.text = $"CurrentBeat: {curr}\nPaused: {Paused}\nAccurary: 100.00%";
+                exampleText.text = $"CurrentBeat: {curr}\nPaused: {Paused}\nAccurary: 100.00%\nGauge: 100.00%%";
             } else {
-                exampleText.text = $"CurrentBeat: {curr}\nPaused: {Paused}\nAccurary: " +
-                                   (Accurary / CheckedNotes).ToString("0.00") + "%";
+                exampleText.text = $"CurrentBeat: {curr}\nPaused: {Paused}\nAccurary: {Accurary / CheckedNotes:0.00}%\nGauge: {gaugeValue:0.00}%";
             }
             
             if (!isPlayingLevel || Paused || CurrentMilisec <= LevelData.EndMSAnd4Beats) return;

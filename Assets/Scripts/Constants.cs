@@ -20,6 +20,15 @@ public static class Constants {
     public const double NOTEJUDGMENT_NORMAL = 6;
     public const double NOTEJUDGMENT_BAD = 10;
     public const double NOTEJUDGMENT_ELOFFSET = 1;
+
+    public const float PERFECT_TOTALGAUGE = 50f;
+    public const float PERFECTEL_TOTALGAUGE = 30f;
+    public const float BAD_TOTALGAUGE = -80f;
+    public const float MISS_TOTALGAUGE = -150f;
+    
+    public const float GOOD_FIXEDGAUGE = 0.5f;
+
+    public const float GAUGE_RESULT_F = 40f;
     
     //노트 너비
     public const float NOTE_WIDTH = 1.6f;

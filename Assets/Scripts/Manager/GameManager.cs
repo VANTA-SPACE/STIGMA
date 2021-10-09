@@ -39,6 +39,7 @@ namespace Manager {
         public List<KeyCode> invalidKeys = new List<KeyCode> {
             KeyCode.None
         };
+
         public List<KeyCode> mouseKeys = new List<KeyCode> {
             KeyCode.Mouse0,
             KeyCode.Mouse1,
@@ -48,21 +49,22 @@ namespace Manager {
             KeyCode.Mouse5,
             KeyCode.Mouse6
         };
-    
+
         public float transitionLength = 3;
         private bool _doingEffect = false;
-    
+
         public static GameManager Instance => _instance;
         private static GameManager _instance;
 
         public static int ScreenWidth => Screen.width;
         public static int ScreenHeight => Screen.height;
-        
+
         private void Awake() {
             if (Instance != null) {
                 Destroy(gameObject);
                 return;
             }
+
             DontDestroyOnLoad(gameObject);
 
             _instance = this;
@@ -96,6 +98,7 @@ namespace Manager {
                 _panel3Rect.anchoredPosition = new Vector2(0, 0);
                 _panel4Rect.anchoredPosition = new Vector2(0, 0);
             }
+
             _panel5Rect.anchoredPosition = new Vector2(0, 0);
         }
 
@@ -111,29 +114,37 @@ namespace Manager {
                 panel1.color = Color.black;
                 panel1.gameObject.SetActive(true);
                 _panel1Rect.anchoredPosition = new Vector2(0, ScreenHeight);
-                _panel1Rect.DOAnchorPosY(transitionType.HasFlag(Trans.FromDown) ? ScreenHeight / 2 : 0, transitionLength);
+                _panel1Rect.DOAnchorPosY(transitionType.HasFlag(Trans.FromDown) ? ScreenHeight / 2 : 0,
+                    transitionLength);
             }
+
             if (transitionType.HasFlag(Trans.FromDown)) {
                 flag = true;
                 panel2.color = Color.black;
                 panel2.gameObject.SetActive(true);
                 _panel2Rect.anchoredPosition = new Vector2(0, -ScreenHeight);
-                _panel2Rect.DOAnchorPosY(transitionType.HasFlag(Trans.FromUp) ? -ScreenHeight / 2 : 0, transitionLength);
+                _panel2Rect.DOAnchorPosY(transitionType.HasFlag(Trans.FromUp) ? -ScreenHeight / 2 : 0,
+                    transitionLength);
             }
+
             if (transitionType.HasFlag(Trans.FromLeft)) {
                 flag = true;
                 panel3.color = Color.black;
                 panel3.gameObject.SetActive(true);
                 _panel3Rect.anchoredPosition = new Vector2(-ScreenWidth, 0);
-                _panel3Rect.DOAnchorPosX(transitionType.HasFlag(Trans.FromRight) ? -ScreenWidth / 2 : 0, transitionLength);
+                _panel3Rect.DOAnchorPosX(transitionType.HasFlag(Trans.FromRight) ? -ScreenWidth / 2 : 0,
+                    transitionLength);
             }
+
             if (transitionType.HasFlag(Trans.FromRight)) {
                 flag = true;
                 panel4.color = Color.black;
                 panel4.gameObject.SetActive(true);
                 _panel4Rect.anchoredPosition = new Vector2(ScreenWidth, 0);
-                _panel4Rect.DOAnchorPosX(transitionType.HasFlag(Trans.FromLeft) ? ScreenWidth / 2 : 0, transitionLength);
+                _panel4Rect.DOAnchorPosX(transitionType.HasFlag(Trans.FromLeft) ? ScreenWidth / 2 : 0,
+                    transitionLength);
             }
+
             if (transitionType.HasFlag(Trans.FadeStart)) {
                 flag = true;
                 panel5.color = Color.clear;
@@ -149,6 +160,7 @@ namespace Manager {
         private static void SetAnchorPosX(RectTransform transform, float x) {
             transform.anchoredPosition = new Vector2(x, transform.anchoredPosition.y);
         }
+
         private static void SetAnchorPosY(RectTransform transform, float y) {
             transform.anchoredPosition = new Vector2(transform.anchoredPosition.x, y);
         }
@@ -157,7 +169,7 @@ namespace Manager {
             ResetPanel(false);
             Debug.Log($"Undarken {ScreenWidth} {ScreenHeight}");
             DOTween.Sequence().AppendCallback(() => {
-                _doingEffect = false; 
+                _doingEffect = false;
                 ResetPanel();
             }).SetDelay(transitionLength);
             if (transitionType.HasFlag(Trans.ToUp)) {
@@ -166,24 +178,28 @@ namespace Manager {
                 panel1.gameObject.SetActive(true);
                 _panel1Rect.DOAnchorPosY(ScreenHeight, transitionLength);
             }
+
             if (transitionType.HasFlag(Trans.ToDown)) {
                 panel2.color = Color.black;
                 SetAnchorPosY(_panel2Rect, transitionType.HasFlag(Trans.ToDown) ? -ScreenHeight / 2 : 0);
                 panel2.gameObject.SetActive(true);
                 _panel2Rect.DOAnchorPosY(-ScreenHeight, transitionLength);
             }
+
             if (transitionType.HasFlag(Trans.ToLeft)) {
                 panel3.color = Color.black;
                 SetAnchorPosX(_panel3Rect, transitionType.HasFlag(Trans.ToRight) ? -ScreenWidth / 2 : 0);
                 panel3.gameObject.SetActive(true);
                 _panel3Rect.DOAnchorPosX(-ScreenWidth, transitionLength);
             }
+
             if (transitionType.HasFlag(Trans.ToRight)) {
                 panel4.color = Color.black;
                 SetAnchorPosX(_panel4Rect, transitionType.HasFlag(Trans.ToLeft) ? ScreenWidth / 2 : 0);
                 panel4.gameObject.SetActive(true);
                 _panel4Rect.DOAnchorPosX(ScreenWidth, transitionLength);
             }
+
             if (transitionType.HasFlag(Trans.FadeEnd)) {
                 panel5.color = Color.black;
                 panel5.gameObject.SetActive(true);
@@ -199,13 +215,11 @@ namespace Manager {
             });
         }
 
-        public void LoadScene(string sceneToLoad, Trans transitionType = Trans.FromRight | Trans.ToLeft, bool resetTimescale = true) {
+        public void LoadScene(string sceneToLoad, Trans transitionType = Trans.FromRight | Trans.ToLeft,
+            bool resetTimescale = true) {
             Time.timeScale = 1;
             DOTween.timeScale = 1;
-            Transition(transitionType, () =>
-            {
-                SceneManager.LoadScene(sceneToLoad);
-            });
+            Transition(transitionType, () => { SceneManager.LoadScene(sceneToLoad); });
         }
 
         public bool ValidAnyKeyDown(bool checkMouseKey = true) {

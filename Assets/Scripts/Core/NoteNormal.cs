@@ -63,17 +63,23 @@ namespace Core {
             switch (judgment) {
                 case Judgment.PerfectEarly:
                     PlayManager.Instance.JudgmentCount[Judgment.PerfectEarly]++;
+                    PlayManager.Instance.GaugeValue += Constants.PERFECTEL_TOTALGAUGE / PlayManager.Instance.TotalNotes;
                     goto case Judgment.Perfect;
 
                 case Judgment.PerfectLate:
                     PlayManager.Instance.JudgmentCount[Judgment.PerfectEarly]++;
+                    PlayManager.Instance.GaugeValue += Constants.PERFECTEL_TOTALGAUGE / PlayManager.Instance.TotalNotes;
                     goto case Judgment.Perfect;
 
                 case Judgment.Perfect:
+                    if (judgment == Judgment.Perfect) {
+                        PlayManager.Instance.GaugeValue += Constants.PERFECT_TOTALGAUGE / PlayManager.Instance.TotalNotes;
+                    }
+
                     PlayManager.Instance.JudgmentCount[Judgment.Perfect]++;
                     PlayManager.Instance.Accurary += 100;
                     PlayManager.Instance.Combo++;
-                    PlayManager.Instance.Score += 1000000f / PlayManager.Instance.LevelData.NoteDatas.Count;
+                    PlayManager.Instance.Score += 1000000f / PlayManager.Instance.TotalNotes;
                     break;
 
                 case Judgment.GoodEarly:
@@ -88,19 +94,22 @@ namespace Core {
                     PlayManager.Instance.JudgmentCount[Judgment.Good]++;
                     PlayManager.Instance.Accurary += 70;
                     PlayManager.Instance.Combo++;
-                    PlayManager.Instance.Score += 700000f / PlayManager.Instance.LevelData.NoteDatas.Count;
+                    PlayManager.Instance.Score += 700000f / PlayManager.Instance.TotalNotes;
+                    PlayManager.Instance.GaugeValue += Constants.GOOD_FIXEDGAUGE;
                     break;
 
                 case Judgment.Bad:
                     PlayManager.Instance.JudgmentCount[Judgment.Bad]++;
                     PlayManager.Instance.Accurary += 30;
                     PlayManager.Instance.Combo = 0;
-                    PlayManager.Instance.Score += 300000f / PlayManager.Instance.LevelData.NoteDatas.Count;
+                    PlayManager.Instance.Score += 300000f / PlayManager.Instance.TotalNotes;
+                    PlayManager.Instance.GaugeValue += Constants.BAD_TOTALGAUGE / PlayManager.Instance.TotalNotes;
                     break;
 
                 case Judgment.Miss:
                     PlayManager.Instance.JudgmentCount[Judgment.Miss]++;
                     PlayManager.Instance.Combo = 0;
+                    PlayManager.Instance.GaugeValue += Constants.MISS_TOTALGAUGE / PlayManager.Instance.TotalNotes;
                     break;
 
                 default:

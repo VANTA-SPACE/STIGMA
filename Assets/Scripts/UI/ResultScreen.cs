@@ -29,24 +29,27 @@ namespace UI {
         private void Awake() {
             _instance = this;
             var manager = PlayManager.Instance;
-            Init(manager.Accurary, manager.Totalnotes, manager.Score, manager.JudgmentCount);
+            Init(manager.Accurary, manager.TotalNotes, manager.Score, manager.GaugeValue <= Constants.GAUGE_RESULT_F, manager.JudgmentCount);
             Show();
         }
 
-        private void Init(float accurary, int totalnote, float score, Dictionary<Judgment, int> judgmentCount) {
+        private void Init(float accurary, int totalnote, float score, bool fail, Dictionary<Judgment, int> judgmentCount) {
             var totalMiss = judgmentCount[Judgment.Miss];
-            accText.text = (accurary / totalnote).ToString("###.00") + "%";
-            if (accurary / totalnote >= 100) {
+            var relAcc = accurary / totalnote;
+            accText.text = relAcc.ToString("##0.00") + "%";
+            if (fail) {
+                rankText.text = "<color=#777777>F</color>";
+            } else if (relAcc >= 100) {
                 rankText.text = "<color=#4D45FF>Ϛ</color>";
-            } else if (accurary / totalnote >= 97) {
+            } else if (relAcc >= 97) {
                 rankText.text = "<color=#ff9f1f>Σ</color>";
-            } else if (accurary / totalnote >= 95) {
+            } else if (relAcc >= 95) {
                 rankText.text = "<color=#ffdb3f>S</color>";
-            } else if (accurary / totalnote >= 90) {
+            } else if (relAcc >= 90) {
                 rankText.text = "<color=#7fff00>A</color>";
-            } else if (accurary / totalnote >= 80) {
+            } else if (relAcc >= 80) {
                 rankText.text = "<color=#2fffaf>B</color>";
-            } else if (accurary / totalnote >= 70) {
+            } else if (relAcc >= 70) {
                 rankText.text = "<color=#2f9fff>C</color>";
             } else {
                 rankText.text = "<color=#ff3f1f>D</color>";
