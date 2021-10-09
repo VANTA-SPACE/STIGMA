@@ -210,7 +210,7 @@ namespace Manager {
         public void PauseGame() {
             DOTween.Kill("UnpauseGame", true);
             Paused = true;
-            SoundManager.Instance.Pause();
+            SoundManager2.Instance.Pause();
             pauseMenu.localScale = new Vector3(0, 0, 0);
             pausePanel.gameObject.SetActive(true);
             pausePanel.DOColor(new Color(0, 0, 0, 0.8f), 0.2f).SetId("PauseGame");
@@ -220,7 +220,7 @@ namespace Manager {
         public void UnpauseGame() {
             DOTween.Kill("PauseGame", true);
             Paused = false;
-            SoundManager.Instance.Unpause(true);
+            SoundManager2.Instance.Unpause(true);
             pausePanel.DOColor(Color.clear, 0.2f).OnComplete(() => pausePanel.gameObject.SetActive(false))
                 .SetId("UnpauseGame");
             pauseMenu.DOScale(Vector3.zero, 0.15f).SetEase(Ease.OutExpo).SetId("UnpauseGame");

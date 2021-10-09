@@ -17,7 +17,6 @@ namespace Manager {
         public EventInstance EventInstance;
         public EventDescription EventDescription;
         [NonSerialized] public int Length;
-        
         public bool Playing { get; private set; }
         public bool Paused { get; private set; }
 
@@ -73,23 +72,8 @@ namespace Manager {
             RuntimeManager.DetachInstanceFromGameObject(EventInstance);
             Playing = false;
         }
-
-        public void Pause() {
-            EventInstance.setPaused(true);
-            Paused = true;
-        }
-
-        public void Unpause(bool fixSync = false) {
-            EventInstance.setPaused(false);
-            if (fixSync) {
-                int timelinePos = (int) (PlayManager.Instance.CurrentMilisec - offset);
-                EventInstance.setTimelinePosition(timelinePos);
-            }
-
-            Paused = false;
-        }
-
-        public void SetVolume(float volume) {
+        public void SetVolume(float volume)
+        {
             EventInstance.setVolume(volume);
         }
     }
