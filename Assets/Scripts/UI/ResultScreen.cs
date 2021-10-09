@@ -29,7 +29,7 @@ namespace UI {
         private void Awake() {
             _instance = this;
             var manager = PlayManager.Instance;
-            Init(manager.Accurary, manager.TotalNotes, manager.Score, manager.GaugeValue <= Constants.GAUGE_RESULT_F, manager.JudgmentCount);
+            Init(/*manager.Accurary*/ manager.TotalNotes * 100, manager.TotalNotes, manager.Score, manager.GaugeValue <= Constants.GAUGE_RESULT_F, manager.JudgmentCount);
             Show();
         }
 

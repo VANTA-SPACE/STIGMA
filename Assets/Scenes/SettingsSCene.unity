@@ -1450,6 +1450,7 @@ MonoBehaviour:
   prefix: 
   localeKey: Exit
   suffix: " \u2192"
+  formats: []
 --- !u!114 &1073068212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1600,6 +1601,7 @@ MonoBehaviour:
   prefix: 
   localeKey: Settings.ApplyChanges
   suffix: 
+  formats: []
 --- !u!114 &1086143455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1912,6 +1914,7 @@ MonoBehaviour:
   prefix: 
   localeKey: Settings.ApplyChanges
   suffix: 
+  formats: []
 --- !u!114 &1166299401
 MonoBehaviour:
   m_ObjectHideFlags: 0
