@@ -1218,6 +1218,29 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 0
   Exists: 0
+--- !u!114 &-5678153689990612095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Song_FromtheVoid
+  m_EditorClassIdentifier: 
+  Path: event:/Song_FromtheVoid
+  guid: 587c8fa6c985f14e8fa330fe03aa01a0
+  Banks:
+  - {fileID: -4815318303969796371}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 138352
 --- !u!114 &-5666785234703496122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1541,10 +1564,10 @@ MonoBehaviour:
   Path: Stigmasound/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637693280439926834
+  lastModified: 637694781814638463
   FileSizes:
   - Name: Desktop
-    Value: 854
+    Value: 1012
   Exists: 1
 --- !u!114 &-5144987525024279983
 MonoBehaviour:
@@ -1671,10 +1694,10 @@ MonoBehaviour:
   Path: Stigmasound/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637693280438328525
+  lastModified: 637694781814608493
   FileSizes:
   - Name: Desktop
-    Value: 3033952
+    Value: 7338624
   Exists: 1
 --- !u!114 &-4780925393603909056
 MonoBehaviour:
@@ -1825,6 +1848,28 @@ MonoBehaviour:
   m_Name: parameter:/Title/Transition
   m_EditorClassIdentifier: 
   Name: Transition
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 1
+  IsGlobal: 0
+  Exists: 0
+--- !u!114 &-4281718316189559201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Scene_Intro/MainState
+  m_EditorClassIdentifier: 
+  Name: MainState
   Min: 0
   Max: 1
   Default: 0
@@ -2391,6 +2436,28 @@ MonoBehaviour:
   MaxDistance: 0
   Length: 120000
 --- !u!114 &-2880633813340398002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Scene_Intro/MainState
+  m_EditorClassIdentifier: 
+  Name: MainState
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 1
+  IsGlobal: 0
+  Exists: 0
+--- !u!114 &-2852886503961984070
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3007,6 +3074,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 120000
+--- !u!114 &-1199627655831988667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Song_FromtheVoid
+  m_EditorClassIdentifier: 
+  Path: event:/Song_FromtheVoid
+  guid: 587c8fa6c985f14e8fa330fe03aa01a0
+  Banks:
+  - {fileID: -4815318303969796371}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 138352
 --- !u!114 &-1183649036781798432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3532,12 +3622,15 @@ MonoBehaviour:
   EditorEvents:
   - {fileID: 5993428248638164707}
   - {fileID: -1239207128058075218}
+  - {fileID: 1766025262131250060}
+  - {fileID: -1199627655831988667}
+  - {fileID: 3678244198330895633}
   EditorParameters: []
   MasterBanks:
   - {fileID: -4815318303969796371}
   StringsBanks:
   - {fileID: -5158473204476222907}
-  stringsBankWriteTime: 637693283821906646
+  stringsBankWriteTime: 637694781814638463
   cacheVersion: 8
 --- !u!114 &10449187532453930
 MonoBehaviour:
@@ -3940,6 +4033,29 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 0
   Exists: 0
+--- !u!114 &912795844058887418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Level_Selection
+  m_EditorClassIdentifier: 
+  Path: event:/Level_Selection
+  guid: 1183313af7b78f4fbec21a32cd09c236
+  Banks:
+  - {fileID: -4815318303969796371}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 15000
 --- !u!114 &1033445158969192754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4116,6 +4232,28 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 0
   Exists: 0
+--- !u!114 &1375726039595805422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Scene_Intro/MainState
+  m_EditorClassIdentifier: 
+  Name: MainState
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 1
+  IsGlobal: 0
+  Exists: 0
 --- !u!114 &1544725222882876544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4204,6 +4342,29 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 0
   Exists: 1
+--- !u!114 &1766025262131250060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Level_Selection
+  m_EditorClassIdentifier: 
+  Path: event:/Level_Selection
+  guid: 1183313af7b78f4fbec21a32cd09c236
+  Banks:
+  - {fileID: -4815318303969796371}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 15000
 --- !u!114 &1880579090271219090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5224,6 +5385,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 97000
+--- !u!114 &3678244198330895633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Song_LightSlateGray
+  m_EditorClassIdentifier: 
+  Path: event:/Song_LightSlateGray
+  guid: f8c73b975982d047ad16fa5fe0da778f
+  Banks:
+  - {fileID: -4815318303969796371}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 159994
 --- !u!114 &3724352876399477220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5710,6 +5894,29 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 0
   Exists: 0
+--- !u!114 &5563180731749462184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Song_LightSlateGray
+  m_EditorClassIdentifier: 
+  Path: event:/Song_LightSlateGray
+  guid: f8c73b975982d047ad16fa5fe0da778f
+  Banks:
+  - {fileID: -4815318303969796371}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 159994
 --- !u!114 &5588950009880709347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5907,7 +6114,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 2301763666232708215}
+  - {fileID: 8445398288721816727}
   MinDistance: 0
   MaxDistance: 0
   Length: 97000
@@ -6487,6 +6694,28 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 0
   Exists: 0
+--- !u!114 &8445398288721816727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Scene_Intro/MainState
+  m_EditorClassIdentifier: 
+  Name: MainState
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 1
+  IsGlobal: 0
+  Exists: 1
 --- !u!114 &8517360211495870548
 MonoBehaviour:
   m_ObjectHideFlags: 0

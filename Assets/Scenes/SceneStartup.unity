@@ -175,10 +175,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   versionType: 1
   majorVer: 0
-  minorVer: 15
+  minorVer: 16
   patchVer: 0
   metadata: 
-  releaseNum: 15
+  releaseNum: 16
 --- !u!114 &3201138
 MonoBehaviour:
   m_ObjectHideFlags: 0
