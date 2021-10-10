@@ -8,9 +8,9 @@ using TMPro;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
-using Utils;
 
-namespace Manager {
+namespace Manager
+{
     public class PlayManager : MonoBehaviour {
         public static PlayManager Instance => instance;
         private static PlayManager instance;

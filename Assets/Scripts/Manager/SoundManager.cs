@@ -2,12 +2,12 @@ using System;
 using System.Collections;
 using FMOD.Studio;
 using FMODUnity;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using STOP_MODE = FMOD.Studio.STOP_MODE;
 
-namespace Manager {
+namespace Manager
+{
     public class SoundManager : MonoBehaviour {
         public static SoundManager Instance => _instance;
         private static SoundManager _instance;
