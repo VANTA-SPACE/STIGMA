@@ -24,7 +24,7 @@ PC 리듬 게임이며, 본 게임은 무료이다.
  
  **[Web Demo](https://papertoy1127.github.io/Stigma/)**
  
- **[Assets](https://drive.google.com/drive/folders/1CKml1jkgM95sUgtDOaWWjYV4FAsxPNWW)*
+ **[Assets](https://drive.google.com/drive/folders/1CKml1jkgM95sUgtDOaWWjYV4FAsxPNWW)**
  
  **[Translation](https://docs.google.com/spreadsheets/d/14LI14cXLixkUbz1Ap4UzH1hRZkZCKbd6ysrvhExC_Mo)**
 
