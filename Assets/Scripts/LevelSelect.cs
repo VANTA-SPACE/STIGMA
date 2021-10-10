@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Core.Level;
+using Serialization;
 
 public class LevelSelect : MonoBehaviour
 {
@@ -10,20 +12,29 @@ public class LevelSelect : MonoBehaviour
     ScrollRect rect;
     public List<RectTransform> objs = new List<RectTransform>();
     public GameObject TestObj;
+    public List<LevelData> datas = new List<LevelData>();
     // Start is called before the first frame update
     void Start()
     {
         rect = GetComponent<ScrollRect>();
-        for(int i = 0; i < 10; i++)
-        {
-            Add(TestObj);
-        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+    public void Init()
+    {
+        foreach (TextAsset ass in Resources.LoadAll<TextAsset>("Levels/"))
+        {
+            datas.Add(new LevelData((Dictionary<string, object>)Json.Deserialize(ass.text)));
+        }
+        for (int i = 0; i < datas.Count; i++)
+        {
+            
+        }
     }
     float space = 20;
     public void Add(GameObject obj)

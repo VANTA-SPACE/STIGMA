@@ -18,10 +18,7 @@ namespace Serialization {
 
 			return Parser.Parse(json);
 		}
-
-		public static string Serialize(object obj, bool ensureAscii = true) {
-			return Serializer.Serialize(obj, ensureAscii);
-		}
+		public static string Serialize(object obj, bool ensureAscii = true) => Serializer.Serialize(obj, ensureAscii);
 
 		private sealed class Parser : IDisposable {
 			private Parser(string jsonString) {
