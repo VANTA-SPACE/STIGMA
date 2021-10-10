@@ -29,13 +29,13 @@ namespace UI {
         private void Awake() {
             _instance = this;
             var manager = PlayManager.Instance;
-            Init(/*manager.Accurary*/ manager.TotalNotes * 100, manager.TotalNotes, manager.Score, manager.GaugeValue <= Constants.GAUGE_RESULT_F, manager.JudgmentCount);
+            Init(manager.TotalNotes * 100, manager.TotalNotes, manager.Score, manager.GaugeValue <= Constants.GAUGE_RESULT_F, manager.JudgmentCount);
             Show();
         }
 
         private void Init(float accurary, int totalnote, float score, bool fail, Dictionary<Judgment, int> judgmentCount) {
             var totalMiss = judgmentCount[Judgment.Miss];
-            var relAcc = accurary / totalnote;
+            var relAcc = PlayManager.Instance.Accurary / totalnote;
             accText.text = relAcc.ToString("##0.00") + "%";
             if (fail) {
                 rankText.text = "<color=#777777>F</color>";
@@ -55,9 +55,9 @@ namespace UI {
                 rankText.text = "<color=#ff3f1f>D</color>";
             }
 
-            if (accurary / totalnote >= 100) {
+            if (PlayManager.Instance.Accurary / totalnote >= 100) {
                 fcText.text = "<color=#ffdb3f>AP</color>";
-            } else if (totalMiss == 0) {
+            } else if ((PlayManager.Instance.TotalMiss + judgmentCount[Judgment.Bad]) == 0) {
                 fcText.text = "<color=#2f9fff>FC</color>";
             } else {
                 fcText.text = "";
