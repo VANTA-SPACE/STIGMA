@@ -32,7 +32,6 @@ namespace UI {
             Init(manager.TotalNotes * 100, manager.TotalNotes, manager.Score, manager.GaugeValue <= Constants.GAUGE_RESULT_F, manager.JudgmentCount);
             Show();
         }
-
         private void Init(float accurary, int totalnote, float score, bool fail, Dictionary<Judgment, int> judgmentCount) {
             var totalMiss = judgmentCount[Judgment.Miss];
             var relAcc = PlayManager.Instance.Accurary / totalnote;
