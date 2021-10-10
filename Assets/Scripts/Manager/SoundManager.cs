@@ -8,12 +8,11 @@ using UnityEngine.SceneManagement;
 using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 namespace Manager {
-    public class SoundManager : MonoBehaviour
-    {
+    public class SoundManager : MonoBehaviour {
         public static SoundManager Instance => _instance;
         private static SoundManager _instance;
         public double offset;
-        
+
         public EventInstance EventInstance;
         public EventDescription EventDescription;
         [NonSerialized] public int Length;
@@ -28,13 +27,11 @@ namespace Manager {
                 return;
             }
 
-            SceneManager.sceneLoaded += (scene, mode) => {
-                StopEvent();
-            };
+            SceneManager.sceneLoaded += (scene, mode) => { StopEvent(); };
             _instance = this;
         }
 
-        public void PlayMainEvent(string eventName, double msOffset = 0) {
+        public void PlayLevelEvent(string eventName, double msOffset = 0) {
             Debug.Log(msOffset);
             offset = msOffset;
             StartCoroutine(_playMainEventCo(eventName));
@@ -46,12 +43,30 @@ namespace Manager {
             if (Playing) {
                 RuntimeManager.DetachInstanceFromGameObject(EventInstance);
             }
-            
+
             Playing = true;
 
             // event:/Scene_Intro
-            
-            EventInstance = RuntimeManager.CreateInstance("event:/"+eventName);
+
+            EventInstance = RuntimeManager.CreateInstance("event:/" + eventName);
+            EventInstance.getDescription(out EventDescription);
+            EventDescription.getLength(out Length);
+            SetVolume(Settings.MasterVolume / 100f);
+            EventInstance.start();
+
+            RuntimeManager.AttachInstanceToGameObject(EventInstance, transform);
+        }
+        
+        
+        public void PlayEvent(string eventName) {
+            offset = 0;
+            if (Playing) {
+                RuntimeManager.DetachInstanceFromGameObject(EventInstance);
+            }
+
+            Playing = true;
+
+            EventInstance = RuntimeManager.CreateInstance("event:/" + eventName);
             EventInstance.getDescription(out EventDescription);
             EventDescription.getLength(out Length);
             SetVolume(Settings.MasterVolume / 100f);
@@ -60,10 +75,9 @@ namespace Manager {
             RuntimeManager.AttachInstanceToGameObject(EventInstance, transform);
         }
 
-        public void EditParameter(String parameterName, float value)
-        {
+        public void EditParameter(String parameterName, float value) {
             EventInstance.getDescription(out EventDescription parameterDescription);
-            parameterDescription.getParameterDescriptionByName(parameterName, out PARAMETER_DESCRIPTION titleParameterDescription);
+            parameterDescription.getParameterDescriptionByName(parameterName, out var titleParameterDescription);
             EventInstance.setParameterByID(titleParameterDescription.id, value);
         }
 
@@ -72,8 +86,8 @@ namespace Manager {
             RuntimeManager.DetachInstanceFromGameObject(EventInstance);
             Playing = false;
         }
-        public void SetVolume(float volume)
-        {
+
+        public void SetVolume(float volume) {
             EventInstance.setVolume(volume);
         }
     }

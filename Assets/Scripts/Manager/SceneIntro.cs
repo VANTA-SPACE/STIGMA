@@ -30,7 +30,7 @@ namespace Manager {
         {
             if (SoundManager.Instance)
             {
-                SoundManager.Instance.PlayMainEvent("Scene_Intro");
+                SoundManager.Instance.PlayLevelEvent("Scene_Intro");
             }
         }
 

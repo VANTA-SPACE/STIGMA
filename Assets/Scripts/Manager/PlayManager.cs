@@ -81,7 +81,7 @@ namespace Manager {
             currentBpm = BaseBpm;
             const int beatDelay = 2;
             milisecOffset = -levelData.Offset + beatDelay * 60 / BaseBpm * 1000;
-            SoundManager.Instance.PlayMainEvent(levelData.EventName, levelData.Offset);
+            SoundManager.Instance.PlayLevelEvent(levelData.EventName, levelData.Offset);
             generator.GenerateNotes(levelData.NoteDatas);
             //Other tasks
         }
