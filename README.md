@@ -10,10 +10,10 @@ PC 리듬 게임이며, 본 게임은 무료이다.
 스토리는 (일단은) 존재하지 않는다.
 
 판정에서 얼리/레이트 여부는 기재한다.
- * 퍼펙트 판정 범위는 8프레임
- * 굿 판정 범위는 16프레임
- * 배드 판정 범위는 24프레임
- * 얼리, 레이트 범위는 각각 4프레임
+ * 퍼펙트 판정 범위는 2.5프레임
+ * 굿 판정 범위는 6프레임
+ * 배드 판정 범위는 10프레임
+ * 얼리, 레이트 범위는 각각 1프레임
 
 만점은 1,000,000이며 콤보는 점수에 영향을 미치지 않는다.
 
@@ -22,9 +22,11 @@ PC 리듬 게임이며, 본 게임은 무료이다.
 
 난이도 분류는 Pure / Neutral / Corrupt
  
- **[Web Demo](https://papertoy1127.github.io/Stigma/)** 
+ **[Web Demo](https://papertoy1127.github.io/Stigma/)**
  
- **[Translation](https://docs.google.com/spreadsheets/d/14LI14cXLixkUbz1Ap4UzH1hRZkZCKbd6ysrvhExC_Mo/edit?usp=sharing)**
+ **[Assets](https://drive.google.com/drive/folders/1CKml1jkgM95sUgtDOaWWjYV4FAsxPNWW)**
+ 
+ **[Translation](https://docs.google.com/spreadsheets/d/14LI14cXLixkUbz1Ap4UzH1hRZkZCKbd6ysrvhExC_Mo)**
 
 ## RANK
  * Ϛ - 정확도 100%
