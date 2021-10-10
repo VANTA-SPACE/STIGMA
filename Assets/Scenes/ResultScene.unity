@@ -1566,7 +1566,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Spetrelia <size=48>(STIGMA Edit)</size>
+  m_text: Flowing Time</size>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a37bf687b78613747be3c960494b487f, type: 2}
   m_sharedMaterial: {fileID: 7780926503261838805, guid: a37bf687b78613747be3c960494b487f, type: 2}
@@ -3345,7 +3345,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <size=48>CORRUPT </size>25
+  m_text: <size=48>PURE </size>4
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a37bf687b78613747be3c960494b487f, type: 2}
   m_sharedMaterial: {fileID: 7780926503261838805, guid: a37bf687b78613747be3c960494b487f, type: 2}
@@ -3354,8 +3354,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294915712
-  m_fontColor: {r: 0.5026453, g: 0.21226418, b: 1, a: 1}
+    rgba: 4278255360
+  m_fontColor: {r: 0, g: 1, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3822,7 +3822,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a716a224021d30d41ae3c1b9a9487587, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c89f3b6fff9ad36458d750c9500f03d6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
