@@ -97,7 +97,7 @@ namespace Manager {
             EndPlay();
             isPlayingLevel = true;
             currentRawMilisec = 0;
-            LoadLevel("exlevel");
+            LoadLevel("lightslategray");
             progressBar.StartProgress();
             gauge.StartGauge();
             Debug.Log("Started Playing");

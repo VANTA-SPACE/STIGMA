@@ -1,5 +1,0 @@
-{0c379d55-d668-4ab9-95e8-0631dd22efca} bank:/Master
-{942abd81-a713-06fb-13a1-8ccf2cd1e952} bank:/Master.strings
-{8d42b30f-67da-4a6b-92a7-e58e4fce2231} bus:/
-{823746d1-22ab-4de2-a46e-e0c18e7e5d78} bus:/Reverb
-{ab78d851-d378-4f59-9d4c-37f7dc17d411} parameter:/Transition
