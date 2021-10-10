@@ -1,6 +1,6 @@
 {
     "Bpm": 165.0,
-    "Offset": 00,
+    "Offset": 0,
     "NoteDatas": [
         {"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 0.0, "NotePos": "$ENUM(NotePos:POS_0)$"},
 		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 2.0, "NotePos": "$ENUM(NotePos:POS_0)$"},
@@ -9,7 +9,7 @@
 		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 8.0, "NotePos": "$ENUM(NotePos:POS_3)$"},
 		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 10.0, "NotePos": "$ENUM(NotePos:POS_3)$"},
 		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 12.0, "NotePos": "$ENUM(NotePos:POS_2)$"},
-		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 14.0, "NotePos": "$ENUM(NotePos:POS_2)$"},
+		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 14.0, "NotePos": "$ENUM(NotePos:POS_1)$"},
 		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 16.0, "NotePos": "$ENUM(NotePos:POS_0)$"},
 		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 18.0, "NotePos": "$ENUM(NotePos:POS_0)$"},
 		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 20.0, "NotePos": "$ENUM(NotePos:POS_1)$"},
@@ -17,7 +17,7 @@
 		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 24.0, "NotePos": "$ENUM(NotePos:POS_3)$"},
 		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 26.0, "NotePos": "$ENUM(NotePos:POS_3)$"},
 		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 28.0, "NotePos": "$ENUM(NotePos:POS_2)$"},
-		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 30.0, "NotePos": "$ENUM(NotePos:POS_2)$"},
+		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 30.0, "NotePos": "$ENUM(NotePos:POS_1)$"},
 		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 32.0, "NotePos": "$ENUM(NotePos:POS_0)$"},
 		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 34.0, "NotePos": "$ENUM(NotePos:POS_0)$"},
 		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 36.0, "NotePos": "$ENUM(NotePos:POS_1)$"},
@@ -25,7 +25,7 @@
 		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 40.0, "NotePos": "$ENUM(NotePos:POS_3)$"},
 		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 42.0, "NotePos": "$ENUM(NotePos:POS_3)$"},
 		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 44.0, "NotePos": "$ENUM(NotePos:POS_2)$"},
-		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 46.0, "NotePos": "$ENUM(NotePos:POS_2)$"},
+		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 46.0, "NotePos": "$ENUM(NotePos:POS_1)$"},
 		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 48.0, "NotePos": "$ENUM(NotePos:POS_0)$"},
 		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 50.0, "NotePos": "$ENUM(NotePos:POS_0)$"},
 		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 52.0, "NotePos": "$ENUM(NotePos:POS_1)$"},
@@ -33,7 +33,10 @@
 		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 56.0, "NotePos": "$ENUM(NotePos:POS_3)$"},
 		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 58.0, "NotePos": "$ENUM(NotePos:POS_3)$"},
 		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 60.0, "NotePos": "$ENUM(NotePos:POS_2)$"},
-		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 62.0, "NotePos": "$ENUM(NotePos:POS_2)$"},
+		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 62.0, "NotePos": "$ENUM(NotePos:POS_1)$"},
+		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 63.0, "NotePos": "$ENUM(NotePos:POS_3)$"},
+		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 63.5, "NotePos": "$ENUM(NotePos:POS_2)$"},
+		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 64.0, "NotePos": "$ENUM(NotePos:POS_1)$"},
     ],
     "EventName": "Song_FlowingTime"
 }

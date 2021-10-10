@@ -90,5 +90,20 @@ namespace Manager {
         public void SetVolume(float volume) {
             EventInstance.setVolume(volume);
         }
+        public void Pause()
+        {
+            EventInstance.setPaused(true);
+            Paused = true;
+        }
+        public void Unpause(bool fixSync = false)
+        {
+            EventInstance.setPaused(false);
+            if (fixSync)
+            {
+                int timelinePos = (int)(PlayManager.Instance.CurrentMilisec - offset);
+                EventInstance.setTimelinePosition(timelinePos);
+            }
+            Paused = false;
+        }
     }
 }
