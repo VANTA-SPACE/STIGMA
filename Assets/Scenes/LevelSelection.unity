@@ -1830,8 +1830,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 650272213}
   m_HandleRect: {fileID: 650272212}
   m_Direction: 0
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5644,7 +5644,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: GS
+  m_text: FC
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7164528993163d140a303dbc8398c5ed, type: 2}
   m_sharedMaterial: {fileID: -3441930426179899165, guid: 7164528993163d140a303dbc8398c5ed, type: 2}
