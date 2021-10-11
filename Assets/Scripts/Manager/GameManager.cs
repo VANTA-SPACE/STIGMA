@@ -50,7 +50,7 @@ namespace Manager {
             KeyCode.Mouse6
         };
 
-        public float transitionLength = 3;
+        public float transitionLength = 0.3f;
         private bool _doingEffect = false;
         private DontDestroyManager<GameManager> dontDestroyManagerImplementation;
 
@@ -206,10 +206,10 @@ namespace Manager {
         }
 
         public void LoadScene(string sceneToLoad, Trans transitionType = Trans.FromRight | Trans.ToLeft,
-            bool resetTimescale = true) {
+            bool resetTimescale = true, LoadSceneMode mode = LoadSceneMode.Single) {
             Time.timeScale = 1;
             DOTween.timeScale = 1;
-            Transition(transitionType, () => { SceneManager.LoadScene(sceneToLoad); });
+            Transition(transitionType, () => { SceneManager.LoadScene(sceneToLoad, mode); });
         }
 
         public bool ValidAnyKeyDown(bool checkMouseKey = true) {

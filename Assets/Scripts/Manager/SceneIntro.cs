@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace Manager {
     public class SceneIntro : Manager<SceneIntro> {
-        public static string SceneToLoad = Constants.PLAY_SCENE;
+        public static string SceneToLoad = Constants.LEVEL_SELECT_SCENE;
         public Image exitPanel;
         public RectTransform exitMenu;
         public bool showMenu;
@@ -19,7 +19,7 @@ namespace Manager {
 
         private void Start() {
             if (SoundManager.Instance) {
-                SoundManager.Instance.PlayLevelEvent("Scene_Intro");
+                SoundManager.Instance.PlayEvent("Scene_Intro");
             }
         }
 

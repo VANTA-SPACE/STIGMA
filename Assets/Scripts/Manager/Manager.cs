@@ -16,7 +16,7 @@ namespace Manager {
             private set => instance = value;
         }
 
-        protected static T instance;
+        private static T instance;
 
         protected void Awake() {
             if (instance != null && instance != this) {

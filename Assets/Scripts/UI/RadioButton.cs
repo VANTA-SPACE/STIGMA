@@ -7,6 +7,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Utils;
+using Coroutine = Utils.Coroutine;
 
 namespace UI {
     public class RadioButton : MonoBehaviour, IPointerClickHandler {
@@ -18,6 +19,7 @@ namespace UI {
         public int value;
         public bool isDefault;
         public List<SerializableKeyValuePair<Graphic, SerializableKeyValuePair<Color, Color>>> graphics;
+        public UnityEvent<bool> onUpdate = new UnityEvent<bool>();
 
         private void Awake() {
             RadioButtonManager.Instance.Values ??= new Dictionary<string, int>();
@@ -31,15 +33,20 @@ namespace UI {
             } else {
                 Values[id] = value;
             }
+            
+            StartCoroutine(Coroutine.MakeCoroutine(() => {
+                UpdateGraphics(true);
+            }));
         }
 
         private void Start() {
             if (!TargetGraphics.ContainsKey(id)) TargetGraphics[id] = new UnityEvent();
-            TargetGraphics[id].AddListener(() => this?.UpdateGraphics());
-            UpdateGraphics(true);
+            TargetGraphics[id].AddListener(() => this?.UpdateGraphics(false));
         }
 
         public void OnPointerClick(PointerEventData eventData) {
+            Debug.Log("Pointer Click");
+            
             if (enumFlag) {
                 Values[id] ^= value;
             } else {
@@ -55,11 +62,13 @@ namespace UI {
                     if (graphic == null) continue;
                     graphic.DOColor(color2, immediate ? 0 : 0.15f);
                 }
+                onUpdate.Invoke(true);
             } else {
                 foreach (var (graphic, (color1, _)) in graphics) {
                     if (graphic == null) continue;
                     graphic.DOColor(color1, immediate ? 0 : 0.15f);
                 }
+                onUpdate.Invoke(false);
             }
         }
     }

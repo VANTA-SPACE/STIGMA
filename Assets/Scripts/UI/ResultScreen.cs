@@ -23,7 +23,7 @@ namespace UI {
 
         
         public static void ShowResultScene() {
-            GameManager.Instance.LoadScene("ResultScene", Trans.FadeStart | Trans.FadeEnd);
+            GameManager.Instance.LoadScene("ResultScene", Trans.FadeStart | Trans.FadeEnd, true, LoadSceneMode.Additive);
         }
 
         private void Awake() {

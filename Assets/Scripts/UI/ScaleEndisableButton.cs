@@ -16,36 +16,40 @@ namespace UI {
         public float duration = 0.3f;
 
         private void Awake() {
-            StartCoroutine(Scale(true));
+            foreach (var target in targets) {
+                var graphic = target.GetComponent<Graphic>();
+                var graphics = target.GetComponentsInChildren<Graphic>();
+                graphic.DOFade(0, 0);
+                graphics.Do(g => g.DOFade(0, 0));
+            }
+            targets.Do(t => t.gameObject.SetActive(false));
         }
 
         public void OnPointerClick(PointerEventData eventData) {
             StopAllCoroutines();
-            StartCoroutine(Scale(true));
             enableTargets = !enableTargets;
-            StartCoroutine(new List<object> {
-                null,
-                Scale(false)
-            }.GetEnumerator());
+            StartCoroutine(Scale());
         }
 
-        public IEnumerator Scale(bool immediate = false) {
+        public IEnumerator Scale() {
             //var scale = enableTargets ? Vector2.one : Vector2.zero;
             int opacity = enableTargets ? 1 : 0;
-            float delay = immediate ? 0 : 0.3f;
-            var realTargets = enableTargets ? targets : targets.Reverse();
+            float delay = 0.3f;
+            var realTargets = enableTargets ? targets : targets.Reverse().ToArray();
             string id = $"ScaleEndisable_{gameObject.GetInstanceID()}";
-            DOTween.Kill(id, true);
+            DOTween.Kill(id, false);
+            realTargets.Do(t => t.gameObject.SetActive(true));
             foreach (var target in realTargets) {
-                if (enableTargets) target.gameObject.SetActive(true);
-                var graphic = target.GetComponent<Graphic>();
                 var graphics = target.GetComponentsInChildren<Graphic>();
-                graphic.DOFade(opacity, delay).SetId(id);
                 graphics.Do(g => g.DOFade(opacity, delay).SetId(id));
-                if (!enableTargets)
-                    DOTween.Sequence().AppendCallback(() => target.gameObject.SetActive(false)).SetDelay(delay);
-                //target.DOScale(scale, duration).SetId(id);
-                if (!immediate) yield return new WaitForSecondsRealtime(interval);
+                
+                var graphic = target.GetComponent<Graphic>();
+                graphic.DOFade(opacity, delay).SetId(id);
+                
+                if (!enableTargets) 
+                    DOTween.Sequence().AppendCallback(() => target.gameObject.SetActive(false)).SetDelay(interval * realTargets.Length + duration).SetId(id);
+                
+                yield return new WaitForSecondsRealtime(interval);
             }
         }
     }
