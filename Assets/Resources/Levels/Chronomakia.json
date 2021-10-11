@@ -1,6 +1,6 @@
 {
     "Bpm": 200.0,
-    "Offset": -3300,
+    "Offset": -2200,
     "NoteDatas": [
         {"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 0.0, "NotePos": "$ENUM(NotePos:POS_0)$"},
 		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 0.0, "NotePos": "$ENUM(NotePos:POS_2)$"},

@@ -1,0 +1,27 @@
+{
+    "Bpm": 220.0,
+    "Offset": -100,
+    "NoteDatas": [
+        {"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 0.0, "NotePos": "$ENUM(NotePos:POS_1)$"},
+		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 2.0, "NotePos": "$ENUM(NotePos:POS_0)$"},
+		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 4.0, "NotePos": "$ENUM(NotePos:POS_3)$"},
+		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 6.0, "NotePos": "$ENUM(NotePos:POS_2)$"},
+		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 7.0, "NotePos": "$ENUM(NotePos:POS_0)$"},
+		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 8.0, "NotePos": "$ENUM(NotePos:POS_1)$"},
+		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 10.0, "NotePos": "$ENUM(NotePos:POS_0)$"},
+		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 12.0, "NotePos": "$ENUM(NotePos:POS_3)$"},
+		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 14.0, "NotePos": "$ENUM(NotePos:POS_2)$"},
+		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 15.0, "NotePos": "$ENUM(NotePos:POS_0)$"},
+		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 16.0, "NotePos": "$ENUM(NotePos:POS_1)$"},
+		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 18.0, "NotePos": "$ENUM(NotePos:POS_0)$"},
+		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 20.0, "NotePos": "$ENUM(NotePos:POS_3)$"},
+		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 22.0, "NotePos": "$ENUM(NotePos:POS_2)$"},
+		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 23.0, "NotePos": "$ENUM(NotePos:POS_0)$"},
+		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 24.0, "NotePos": "$ENUM(NotePos:POS_1)$"},
+		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 26.0, "NotePos": "$ENUM(NotePos:POS_0)$"},
+		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 28.0, "NotePos": "$ENUM(NotePos:POS_3)$"},
+		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 30.0, "NotePos": "$ENUM(NotePos:POS_2)$"},
+		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 31.0, "NotePos": "$ENUM(NotePos:POS_0)$"},
+    ],
+    "EventName": "Song_Tetration"
+}
