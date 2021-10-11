@@ -5,6 +5,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Utils;
 
 namespace Manager {
     [Flags]
@@ -158,10 +159,10 @@ namespace Manager {
         public void Undarken(Trans transitionType) {
             ResetPanel(false);
             Debug.Log($"Undarken {ScreenWidth} {ScreenHeight}");
-            DOTween.Sequence().AppendCallback(() => {
+            StartCoroutine(StigmaUtils.SetDelay(() => {
                 _doingEffect = false;
                 ResetPanel();
-            }).SetDelay(transitionLength);
+            }, transitionLength));
             if (transitionType.HasFlag(Trans.ToUp)) {
                 panel1.color = Color.black;
                 SetAnchorPosY(_panel1Rect, transitionType.HasFlag(Trans.ToDown) ? ScreenHeight / 2 : 0);
@@ -180,6 +181,7 @@ namespace Manager {
                 panel3.color = Color.black;
                 SetAnchorPosX(_panel3Rect, transitionType.HasFlag(Trans.ToRight) ? -ScreenWidth / 2 : 0);
                 panel3.gameObject.SetActive(true);
+                Debug.Log("To Left");
                 _panel3Rect.DOAnchorPosX(-ScreenWidth, transitionLength);
             }
 
@@ -187,6 +189,7 @@ namespace Manager {
                 panel4.color = Color.black;
                 SetAnchorPosX(_panel4Rect, transitionType.HasFlag(Trans.ToLeft) ? ScreenWidth / 2 : 0);
                 panel4.gameObject.SetActive(true);
+                Debug.Log("To Right");
                 _panel4Rect.DOAnchorPosX(ScreenWidth, transitionLength);
             }
 

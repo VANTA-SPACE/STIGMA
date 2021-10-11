@@ -32,7 +32,7 @@ namespace Manager {
             if (GameManager.Instance.ValidAnyKeyDown(false)) {
                 Debug.Log("STIGMA - SOUND CHANGING");
                 SoundManager.Instance.EditParameter("MainState", 1.0f);
-                Trans transition = Trans.FromUp | Trans.FromDown | Trans.ToLeft | Trans.ToRight;
+                const Trans transition = Trans.FromUp | Trans.FromDown | Trans.FadeEnd;
                 GameManager.Instance.LoadScene(SceneToLoad, transition);
             }
         }
