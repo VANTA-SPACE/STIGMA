@@ -38,7 +38,8 @@ namespace Manager {
         public override void Init() {
             var levelDatas = (List<object>) Json.Deserialize(Resources.Load<TextAsset>("Levels/levels").text);
             foreach (Dictionary<string, object> level in levelDatas) {
-                var data = new PartialLevelData(level["id"].As<int>(), level["name"].As<string>(), null);
+                var covername = level["cover"].As<string>();
+                var data = new PartialLevelData(level["id"].As<int>(), level["name"].As<string>(), Resources.Load<Sprite>(covername));
                 levels.Add(data);
             }
             levels.Sort(data => data.id);

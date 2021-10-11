@@ -107,12 +107,12 @@ namespace Utils {
         }
 
         public static bool CheckMiss(double timeOffset) {
-            var frameOffset = timeOffset / Time.deltaTime;
+            var frameOffset = timeOffset * 60;
             return frameOffset > Constants.NOTEJUDGMENT_BAD;
         }
 
         public static Judgment GetJudgement(double timeOffset) {
-            var frameOffset = timeOffset / Time.deltaTime;
+            var frameOffset = timeOffset * 60;
             if (frameOffset < -Constants.NOTEJUDGMENT_BAD) return Judgment.None;
             else if (frameOffset < -Constants.NOTEJUDGMENT_NORMAL) return Judgment.Bad;
             else if (frameOffset < -Constants.NOTEJUDGMENT_NORMAL + Constants.NOTEJUDGMENT_ELOFFSET)
