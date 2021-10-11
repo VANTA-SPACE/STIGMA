@@ -6,16 +6,14 @@ using UnityEngine.Events;
 using Utils;
 
 namespace Manager {
-    public class SettingScreen : MonoBehaviour {
+    public class SettingScreen : Manager<SettingScreen> {
         public static UnityEvent UpdateProps = new UnityEvent();
-        public static SettingScreen Instance { get; private set; }
-        
-        private string _currentCategory = "General";
+        private string currentCategory = "General";
 
-        public string currentCategory {
-            get => _currentCategory;
+        public string CurrentCategory {
+            get => currentCategory;
             set {
-                _currentCategory = value;
+                currentCategory = value;
                 UpdateCategory();
             }
         }
@@ -25,12 +23,7 @@ namespace Manager {
         public Transform propertyParent;
         [NonSerialized] public SettingDrawer_Keymap CurrentKeymap;
 
-        private void Awake() {
-            if (Instance != null) {
-                Destroy(gameObject);
-                return;
-            }
-            Instance = this;
+        public override void Init() {
             UpdateProps.RemoveAllListeners();
             Properties = new Dictionary<string, List<SettingProperty>>();
             foreach ((string category, var values) in Settings.SettingValues) {
@@ -49,7 +42,7 @@ namespace Manager {
         public void UpdateCategory() {
             CurrentKeymap = null;
             foreach (var (category, properties) in Properties) {
-                var value = category == currentCategory;
+                var value = category == CurrentCategory;
                 foreach (var property in properties) {
                     property.gameObject.SetActive(value);
                 }

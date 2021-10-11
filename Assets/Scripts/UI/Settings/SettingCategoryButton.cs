@@ -16,7 +16,7 @@ namespace UI.Settings {
         [NonSerialized] public Color32 Color = UnityEngine.Color.white;
 
         private void Awake() {
-            if (screen.currentCategory == categoryName) {
+            if (screen.CurrentCategory == categoryName) {
                 Color = UnityEngine.Color.white;
             } else {
                 Color = new Color32(255, 255, 255, 192);
@@ -25,7 +25,7 @@ namespace UI.Settings {
                 graphic.color = Color;
             }
             screen.OnUpdateCategory.AddListener(() => {
-                if (screen.currentCategory == categoryName) {
+                if (screen.CurrentCategory == categoryName) {
                     Color = UnityEngine.Color.white;
                 } else {
                     Color = new Color32(255, 255, 255, 192);
@@ -37,7 +37,7 @@ namespace UI.Settings {
         }
 
         public void OnPointerClick(PointerEventData eventData) {
-            screen.currentCategory = categoryName;
+            screen.CurrentCategory = categoryName;
         }
 
         public void OnPointerEnter(PointerEventData eventData) {

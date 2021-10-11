@@ -22,7 +22,7 @@ namespace Manager {
         FadeEnd = 0b1000000000
     }
 
-    public class GameManager : MonoBehaviour {
+    public class GameManager : DontDestroyManager<GameManager> {
         public Image panel1;
         public Image panel2;
         public Image panel3;
@@ -52,22 +52,12 @@ namespace Manager {
 
         public float transitionLength = 3;
         private bool _doingEffect = false;
-
-        public static GameManager Instance => _instance;
-        private static GameManager _instance;
+        private DontDestroyManager<GameManager> dontDestroyManagerImplementation;
 
         public static int ScreenWidth => Screen.width;
         public static int ScreenHeight => Screen.height;
 
-        private void Awake() {
-            if (Instance != null) {
-                Destroy(gameObject);
-                return;
-            }
-
-            DontDestroyOnLoad(gameObject);
-
-            _instance = this;
+        public override void Init() {
             _panel1Rect = panel1.GetComponent<RectTransform>();
             _panel2Rect = panel2.GetComponent<RectTransform>();
             _panel3Rect = panel3.GetComponent<RectTransform>();

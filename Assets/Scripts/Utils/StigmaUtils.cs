@@ -283,5 +283,17 @@ namespace Utils {
             Debug.Log($"Key: Enum.{type.Name}.{@enum}");
             return Translate.TryGet($"Enum.{type.Name}.{@enum}", out string result, language) ? result : @enum.ToString();
         }
+
+        public static void Do<T>(this IEnumerable<T> enumerable, Action<T> action) {
+            foreach (var value in enumerable) {
+                action(value);
+            }
+        }
+        
+        private enum IntWrapper { }
+
+        public static bool HasFlag(int target, int flag) {
+            return ((IntWrapper) target).HasFlag((IntWrapper) flag);
+        }
     }
 }

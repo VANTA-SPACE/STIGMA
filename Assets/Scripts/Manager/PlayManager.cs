@@ -8,12 +8,10 @@ using TMPro;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
+using Utils;
 
-namespace Manager
-{
-    public class PlayManager : MonoBehaviour {
-        public static PlayManager Instance => instance;
-        private static PlayManager instance;
+namespace Manager {
+    public class PlayManager : Manager<PlayManager> {
         public static bool IsPlaying = false;
 
         public NoteGenerator generator;
@@ -63,13 +61,7 @@ namespace Manager
 
         public JudgmentLine JudgmentLine => JudgmentLine.Instance;
 
-        private void Awake() {
-            if (instance != null) {
-                Destroy(gameObject);
-                return;
-            }
-
-            instance = this;
+        public override void Init() {
             pausePanel.gameObject.SetActive(false);
 
             comboText.gameObject.SetActive(false);
@@ -92,12 +84,12 @@ namespace Manager
             LoadLevel(level);
         }
 
-        public void StartPlay() {
+        public void StartPlay(string levelName) {
             spaceToPlay.DOColor(new Color(1, 1, 1, 0), 0.25f);
             EndPlay();
             isPlayingLevel = true;
             currentRawMilisec = 0;
-            LoadLevel("Flowing Time");
+            LoadLevel(levelName);
             progressBar.StartProgress();
             gauge.StartGauge();
             Debug.Log("Started Playing");
@@ -178,7 +170,7 @@ namespace Manager
                     }
                 } else {
                     if (GameManager.Instance.ValidAnyKeyDown()) {
-                        StartPlay();
+                        StartPlay("Flowing Time");
                     }
                 }
             }
