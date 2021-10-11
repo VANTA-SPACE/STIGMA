@@ -1,6 +1,6 @@
 [
 	{"id": -1, "name": "Tutorial", "cover": null},
-	{"id": 1, "name": "Alone Flower", "cover": null},
+	{"id": 1, "name": "Alone Flower", "cover": "Alone Flower"},
 	{"id": 2, "name": "Blazing Destiny", "cover": null},
 	{"id": 3, "name": "Chronomakia", "cover": null},
 	{"id": 4, "name": "Deep Sea Diver", "cover": null},
