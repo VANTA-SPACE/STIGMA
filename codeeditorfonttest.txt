@@ -1,0 +1,56 @@
+편집기 폰트 테스트용 파일임
+
+ABCDEFGHIJKLMNOPQRSTUVWXY
+abcdefghijklmnopqrstuvwxy
+가나다라마바사
+아자차카타파하
+Sansisgod
+Iamsans
+Thereforeiamagod
+샌즈는신이다
+나는샌즈다
+고로나는신이다
+쐧쐋뛇쐏쐧뚫
+
+using system
+
+namespace sansisgod
+{
+    class Main
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Sans Is GOD");
+        }
+    }
+
+
+}
+
+PowerLine / Ligature font test
+<=
+>=
+==
+!=
+?=
+/=
+<==
+>==
+<>
+++
+-- 
+## 
+#= 
+^= 
+#?
+$>
+<$
+<|
+|>
+.=
+::
+...
+__
+@_ 
+~>
+<~
