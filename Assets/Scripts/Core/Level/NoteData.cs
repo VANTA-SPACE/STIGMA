@@ -67,7 +67,6 @@ namespace Core.Level {
             }
             NotePos = (NotePos) data["NotePos"].As<int>();
             AdditionalData = data;
-            Debug.Log($"Data is {Json.Serialize(data)}");
         }
     }
 }

@@ -3,6 +3,7 @@ using Manager;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Utils;
 
 namespace UI {
     public class PauseMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler {
@@ -30,14 +31,15 @@ namespace UI {
                     PlayManager.Instance.Retry();
                     break;
                 case ButtonType.Exit:
-                    var transition = Trans.FromLeft | Trans.FromRight | Trans.ToUp | Trans.ToDown;
-                    GameManager.Instance.LoadScene(Constants.INTRO_SCENE, transition);
+                    var transition = Trans.FromLeft | Trans.FromRight | Trans.FadeEnd;
+                    GameManager.Instance.LoadScene(Constants.LEVEL_SELECT_SCENE, transition);
                     break;
                 case ButtonType.Close:
                     SceneIntro.Instance.HideExitMenu();
                     break;
                 case ButtonType.ExitGame:
-                    GameManager.Instance.Transition(Trans.FadeStart, Application.Quit);
+                    GameManager.Instance.Darken(Trans.FadeStart);
+                    StartCoroutine(StigmaUtils.SetDelay(Application.Quit, 0.3f));
                     break;
             }
         }

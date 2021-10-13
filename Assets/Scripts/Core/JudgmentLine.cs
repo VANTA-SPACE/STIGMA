@@ -27,15 +27,27 @@ namespace Core {
                 {NotePos.POS_3, new Queue<NoteBase>()},
             };
             Positions = new Dictionary<NotePos, Vector2>();
+            var position = transform.position;
+            var x = position.x;
+            var y = position.y;
+            Positions[NotePos.POS_0] =
+                new Vector2(x, y) + new Vector2(Constants.NOTE_WIDTH * -1.5f, 0);
+            Positions[NotePos.POS_1] =
+                new Vector2(x, y) + new Vector2(Constants.NOTE_WIDTH * -0.5f, 0);
+            Positions[NotePos.POS_2] =
+                new Vector2(x, y) + new Vector2(Constants.NOTE_WIDTH * 0.5f, 0);
+            Positions[NotePos.POS_3] =
+                new Vector2(x, y) + new Vector2(Constants.NOTE_WIDTH * 1.5f, 0);
         }
 
         // Update is called once per frame
         void Update() {
             if (PlayManager.Instance.isPlayingLevel) {
-                var position = transform.position;
+                var transform1 = transform;
+                var position = transform1.position;
                 var x = position.x;
                 var y = position.y;
-                var angle = transform.eulerAngles.z;
+                var angle = transform1.eulerAngles.z;
                 Positions[NotePos.POS_0] =
                     new Vector2(x, y) + new Vector2(Constants.NOTE_WIDTH * -1.5f, 0).Rotate(angle);
                 Positions[NotePos.POS_1] =

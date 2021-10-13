@@ -52,5 +52,13 @@ namespace Utils {
             var ar = task.BeginInvoke(callback, null);
             yield return new WaitUntil(() => ar.IsCompleted);
         }
+
+        public static IEnumerator MakeCoroutine(Action action, int frameDelay = 1) {
+            for (int i = 0; i < frameDelay; i++) {
+                yield return null;
+            }
+            action();
+            yield break;
+        }
     }
 }

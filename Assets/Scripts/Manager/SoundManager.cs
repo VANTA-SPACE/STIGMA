@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using FMOD.Studio;
 using FMODUnity;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using STOP_MODE = FMOD.Studio.STOP_MODE;
@@ -13,6 +12,7 @@ namespace Manager {
         private static SoundManager _instance;
         public double offset;
 
+        public string currentEventName;
         public EventInstance EventInstance;
         public EventDescription EventDescription;
         [NonSerialized] public int Length;
@@ -32,8 +32,9 @@ namespace Manager {
         }
 
         public void PlayLevelEvent(string eventName, double msOffset = 0) {
-            Debug.Log(msOffset);
+            Debug.Log($"Play {eventName}");
             offset = msOffset;
+            currentEventName = eventName;
             StartCoroutine(_playMainEventCo(eventName));
         }
 
@@ -56,32 +57,19 @@ namespace Manager {
 
             RuntimeManager.AttachInstanceToGameObject(EventInstance, transform);
         }
-        
-        
+
+
         public void PlayEvent(string eventName) {
-            offset = 0;
-            if (Playing) {
-                RuntimeManager.DetachInstanceFromGameObject(EventInstance);
-            }
-
-            Playing = true;
-
-            EventInstance = RuntimeManager.CreateInstance("event:/" + eventName);
-            EventInstance.getDescription(out EventDescription);
-            EventDescription.getLength(out Length);
-            SetVolume(Settings.MasterVolume / 100f);
-            EventInstance.start();
-
-            RuntimeManager.AttachInstanceToGameObject(EventInstance, transform);
+            PlayLevelEvent(eventName, 0);
         }
 
         public void EditParameter(String parameterName, float value) {
-            EventInstance.getDescription(out EventDescription parameterDescription);
-            parameterDescription.getParameterDescriptionByName(parameterName, out var titleParameterDescription);
+            EventDescription.getParameterDescriptionByName(parameterName, out var titleParameterDescription);
             EventInstance.setParameterByID(titleParameterDescription.id, value);
         }
 
         public void StopEvent(bool fadeOut = false) {
+            Debug.Log("Stop event");
             EventInstance.stop(fadeOut ? STOP_MODE.ALLOWFADEOUT : STOP_MODE.IMMEDIATE);
             RuntimeManager.DetachInstanceFromGameObject(EventInstance);
             Playing = false;
@@ -90,19 +78,19 @@ namespace Manager {
         public void SetVolume(float volume) {
             EventInstance.setVolume(volume);
         }
-        public void Pause()
-        {
+
+        public void Pause() {
             EventInstance.setPaused(true);
             Paused = true;
         }
-        public void Unpause(bool fixSync = false)
-        {
+
+        public void Unpause(bool fixSync = false) {
             EventInstance.setPaused(false);
-            if (fixSync)
-            {
-                int timelinePos = (int)(PlayManager.Instance.CurrentMilisec - offset);
+            if (fixSync) {
+                int timelinePos = (int) (PlayManager.Instance.CurrentMilisec - offset);
                 EventInstance.setTimelinePosition(timelinePos);
             }
+
             Paused = false;
         }
     }

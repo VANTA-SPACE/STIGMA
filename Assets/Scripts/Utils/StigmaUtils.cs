@@ -107,12 +107,12 @@ namespace Utils {
         }
 
         public static bool CheckMiss(double timeOffset) {
-            var frameOffset = timeOffset / Time.deltaTime;
+            var frameOffset = timeOffset * 60;
             return frameOffset > Constants.NOTEJUDGMENT_BAD;
         }
 
         public static Judgment GetJudgement(double timeOffset) {
-            var frameOffset = timeOffset / Time.deltaTime;
+            var frameOffset = timeOffset * 60;
             if (frameOffset < -Constants.NOTEJUDGMENT_BAD) return Judgment.None;
             else if (frameOffset < -Constants.NOTEJUDGMENT_NORMAL) return Judgment.Bad;
             else if (frameOffset < -Constants.NOTEJUDGMENT_NORMAL + Constants.NOTEJUDGMENT_ELOFFSET)
@@ -282,6 +282,18 @@ namespace Utils {
             var type = @enum.GetType();
             Debug.Log($"Key: Enum.{type.Name}.{@enum}");
             return Translate.TryGet($"Enum.{type.Name}.{@enum}", out string result, language) ? result : @enum.ToString();
+        }
+
+        public static void Do<T>(this IEnumerable<T> enumerable, Action<T> action) {
+            foreach (var value in enumerable) {
+                action(value);
+            }
+        }
+        
+        private enum IntWrapper { }
+
+        public static bool HasFlag(int target, int flag) {
+            return ((IntWrapper) target).HasFlag((IntWrapper) flag);
         }
     }
 }

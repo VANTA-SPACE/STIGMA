@@ -11,9 +11,7 @@ using UnityEngine.UI;
 using Utils;
 
 namespace Manager {
-    public class PlayManager : MonoBehaviour {
-        public static PlayManager Instance => instance;
-        private static PlayManager instance;
+    public class PlayManager : Manager<PlayManager> {
         public static bool IsPlaying = false;
 
         public NoteGenerator generator;
@@ -63,13 +61,7 @@ namespace Manager {
 
         public JudgmentLine JudgmentLine => JudgmentLine.Instance;
 
-        private void Awake() {
-            if (instance != null) {
-                Destroy(gameObject);
-                return;
-            }
-
-            instance = this;
+        public override void Init() {
             pausePanel.gameObject.SetActive(false);
 
             comboText.gameObject.SetActive(false);
@@ -77,18 +69,28 @@ namespace Manager {
         }
 
         public void LoadLevel(LevelData levelData) {
+            currentRawMilisec = 0;
+            Accurary = 0;
+            Combo = 0;
+            Score = 0;
+            CheckedNotes = 0;
+            GaugeValue = 100;
+            
             LevelData = levelData;
             currentBpm = BaseBpm;
+            
+            scoreText.text = string.Empty;
+            comboText.text = string.Empty;
+            
             const int beatDelay = 2;
             milisecOffset = -levelData.Offset + beatDelay * 60 / BaseBpm * 1000;
-            SoundManager.Instance.PlayLevelEvent(levelData.EventName, levelData.Offset);
-            generator.GenerateNotes(levelData.NoteDatas);
             //Other tasks
         }
 
         public void LoadLevel(string levelname) {
             var level = new LevelData(
                 (Dictionary<string, object>) Json.Deserialize(Resources.Load<TextAsset>("Levels/" + levelname).text));
+            Debug.Log($"Loading level {levelname}");
             LoadLevel(level);
         }
 
@@ -96,18 +98,13 @@ namespace Manager {
             spaceToPlay.DOColor(new Color(1, 1, 1, 0), 0.25f);
             EndPlay();
             isPlayingLevel = true;
-            currentRawMilisec = 0;
-            LoadLevel("Flowing Time");
+            SoundManager.Instance.PlayLevelEvent(LevelData.EventName, LevelData.Offset);
+            generator.GenerateNotes(LevelData.NoteDatas);
+            
             progressBar.StartProgress();
             gauge.StartGauge();
             Debug.Log("Started Playing");
 
-            Accurary = 0;
-            Combo = 0;
-            Score = 0;
-            CheckedNotes = 0;
-            GaugeValue = 100;
-            
             JudgmentCount = new Dictionary<Judgment, int>() {
                 {Judgment.Perfect, 0},
                 {Judgment.PerfectEarly, 0},

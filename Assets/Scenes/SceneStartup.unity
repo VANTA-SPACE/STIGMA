@@ -636,6 +636,7 @@ GameObject:
   - component: {fileID: 950219435}
   - component: {fileID: 950219434}
   - component: {fileID: 950219433}
+  - component: {fileID: 950219436}
   m_Layer: 2
   m_Name: Canvas
   m_TagString: Untagged
@@ -728,6 +729,19 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 10000
   m_TargetDisplay: 0
+--- !u!114 &950219436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950219431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28e6973a493f450c9f3407abc557c29e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 950219435}
 --- !u!1 &1077715500
 GameObject:
   m_ObjectHideFlags: 0
@@ -916,6 +930,7 @@ GameObject:
   - component: {fileID: 1367241071}
   - component: {fileID: 1367241070}
   - component: {fileID: 1367241069}
+  - component: {fileID: 1367241072}
   m_Layer: 2
   m_Name: Canvas (1)
   m_TagString: Untagged
@@ -1004,6 +1019,19 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 10000
   m_TargetDisplay: 0
+--- !u!114 &1367241072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367241067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28e6973a493f450c9f3407abc557c29e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 1367241071}
 --- !u!1 &1382060105
 GameObject:
   m_ObjectHideFlags: 0
@@ -1257,6 +1285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: 0
+  currentEventName: 
 --- !u!1 &1815578533
 GameObject:
   m_ObjectHideFlags: 0
@@ -1409,8 +1438,8 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -326476547
+  m_SortingOrder: 32767
   m_TargetDisplay: 0
 --- !u!224 &1991291895
 RectTransform:

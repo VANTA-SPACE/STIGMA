@@ -10,6 +10,7 @@ public static class Constants {
     public const string STARTUP_SCENE = "SceneStartup";
     public const string INTRO_SCENE = "SceneIntro";
     public const string PLAY_SCENE = "PlayScene";
+    public const string LEVEL_SELECT_SCENE = "LevelSelection";
     
     //이벤트
     public const string TitleEvent = "event:/Title";
@@ -38,11 +39,11 @@ public static class Constants {
     
 
     public static readonly ConstDict<Judgment, Color> JudgmentColors = new ConstDict<Judgment, Color>(
-        // (Judgment.PerfectEarly, new Color(1f, 1f, 0.6f)),
-        // (Judgment.PerfectLate, new Color(1f, 1f, 0.6f)),
+        (Judgment.PerfectEarly, new Color(1f, 1f, 0.6f)),
+        (Judgment.PerfectLate, new Color(1f, 1f, 0.6f)),
         (Judgment.Good, new Color(0.4f, 0.8f, 1f)),
-        // (Judgment.GoodEarly, new Color(0.5f, 0.6f, 0.7f)),
-        // (Judgment.GoodLate, new Color(0.5f, 0.6f, 0.7f)),
+        (Judgment.GoodEarly, new Color(0.5f, 0.6f, 0.7f)),
+        (Judgment.GoodLate, new Color(0.5f, 0.6f, 0.7f)),
         (Judgment.Bad, new Color(0.8f, 0.2f, 0.1f)),
         (Judgment.Miss, new Color(0.6f, 0.6f, 0.6f))
     );

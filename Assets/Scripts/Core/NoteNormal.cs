@@ -24,6 +24,8 @@ namespace Core {
             NotePos = data.NotePos;
             JudgmentLine.AssignedNotes[NotePos].Enqueue(this);
             Inited = true;
+            
+            transform.position = GetPosition();
         }
 
         public override Judgment CheckJudgment() {

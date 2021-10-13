@@ -39,6 +39,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Overlay
+    uniqueID: 3968490749
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

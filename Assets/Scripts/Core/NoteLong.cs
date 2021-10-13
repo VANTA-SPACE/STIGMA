@@ -35,6 +35,8 @@ namespace Core {
                 new Vector2(1, (float) data.NoteLength * MilisecToBeatF * Constants.NOTE_SPEED_MODIFIER);
             Pressing = false;
             Inited = true;
+            
+            transform.position = GetPosition();
         }
 
         public override Judgment CheckJudgment() {
@@ -118,9 +120,8 @@ namespace Core {
             //noteParticle.Stop();
         }
 
-        protected override void Update() {
-            if (!trail.enabled) trail.enabled = true;
-            base.Update();
+        private void Start() {
+            trail.enabled = true;
         }
 
         public void ShowJudgementText(Judgment judgment) {
