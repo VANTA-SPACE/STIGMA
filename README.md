@@ -39,7 +39,7 @@ PC 리듬 게임이며, 본 게임은 무료이다.
  * F - 클리어 게이지 40% 미만
 
 ## VERSION
-현재 버전: **Alpha r17**
+현재 버전: **Alpha r18**
  * 음악 재생 및 일시 정지 화면 구현
  * 사운드 구현법 개편
  * 노트 낙하 및 판정선 / 판정 구현
@@ -52,9 +52,10 @@ PC 리듬 게임이며, 본 게임은 무료이다.
  * 곡 선택창 / 설정창 구현
 ### TODO
 **버전별 목표**
- * **r18** - 하드 게이지 구현
- * **r19** - 채보 로딩창 구현
- * **r20** - 메인 메뉴 구현
+ * **r19** - 하드 게이지 구현
+ * **r20** - 채보 로딩창 구현
+ * **r21** - 메인 메뉴 구현
+ * (수록곡 추가 시에도 버전 갱신됨)
 
 **지속적 TODO**
  * 채보 데이터 보완
@@ -68,3 +69,42 @@ PC 리듬 게임이며, 본 게임은 무료이다.
  * [Bug] - 버그 리포트
  * [Suggestion] - 제안
  * [ETC] - 기타 이슈
+ 
+## MUSIC
+ * Lesitia (feat. Ketose, Upload18) - Tutorial
+
+ * Ketose - From the Void
+ * Album Art by Kyanite
+
+ * Ketose - LightSlateGray
+ * Album Art by TBvwv
+
+ * Lesitia - Flowing Time
+ * Album Art by Ketose
+
+ * Lesitia - Spetrelia (STIGMA Edit)
+ * Album Art by Kyanite
+
+ * Lesitia - TΞtrΔTiØN (Short Ver)
+ * Album Art by Lesitia
+
+ * Riya - Cleyera
+ * Album Art by Kyanite
+
+ * Riya - Final Hope
+ * Album Art by Kyanite
+
+ * Riya - Intruder
+ * Album Art by Kyanite
+
+ * TBvwv - Blazing Destiny
+ * Album Art by TBvwv
+
+ * TBvwv - Deep-Sea-Diver
+ * Album Art by TBvwv
+
+ * Shiina Kaito - Chronomakia
+ * Album Art by Lesitia
+
+ * Upload18 - Alone Flower
+ * Album Art by TBvwv
