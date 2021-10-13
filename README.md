@@ -67,40 +67,52 @@ PC 리듬 게임이며, 본 게임은 무료이다.
  * [ETC] - 기타 이슈
  
 ## MUSIC
- * Lesitia (feat. Ketose, Upload18) - Tutorial
+Lesitia (feat. Ketose, Upload18) - Tutorial
 
- * Ketose - From the Void
+
+Ketose - From the Void
  * Album Art by Kyanite
 
- * Ketose - LightSlateGray
+
+Ketose - LightSlateGray
  * Album Art by TBvwv
 
- * Lesitia - Flowing Time
+
+Lesitia - Flowing Time
  * Album Art by Ketose
 
- * Lesitia - Spetrelia (STIGMA Edit)
+
+Lesitia - Spetrelia (STIGMA Edit)
  * Album Art by Kyanite
 
- * Lesitia - TΞtrΔTiØN (Short Ver)
+
+Lesitia - TΞtrΔTiØN (Short Ver)
  * Album Art by Lesitia
 
- * Riya - Cleyera
+
+Riya - Cleyera
  * Album Art by Kyanite
 
- * Riya - Final Hope
+
+Riya - Final Hope
  * Album Art by Kyanite
 
- * Riya - Intruder
+
+Riya - Intruder
  * Album Art by Kyanite
 
- * TBvwv - Blazing Destiny
+
+TBvwv - Blazing Destiny
  * Album Art by TBvwv
 
- * TBvwv - Deep-Sea-Diver
+
+TBvwv - Deep-Sea-Diver
  * Album Art by TBvwv
 
- * Shiina Kaito - Chronomakia
+
+Shiina Kaito - Chronomakia
  * Album Art by Lesitia
 
- * Upload18 - Alone Flower
+
+Upload18 - Alone Flower
  * Album Art by TBvwv
