@@ -24,6 +24,8 @@ PC 리듬 게임이며, 본 게임은 무료이다.
  
  **[Web Demo](https://papertoy1127.github.io/Stigma/)**
 
+**[Ediror](https://github.com/sqUve-kr/STIGMA-Editor)**
+
 ## RANK
  * Ϛ - 정확도 100%
  * Σ - 정확도 97% 이상
