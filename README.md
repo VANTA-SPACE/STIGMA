@@ -24,8 +24,6 @@ PC 리듬 게임이며, 본 게임은 무료이다.
  
  **[Web Demo](https://papertoy1127.github.io/Stigma/)**
 
-
-
 ## RANK
  * Ϛ - 정확도 100%
  * Σ - 정확도 97% 이상
@@ -69,7 +67,7 @@ PC 리듬 게임이며, 본 게임은 무료이다.
  * [ETC] - 기타 이슈
  
 ## MUSIC
-Lesitia (feat. Ketose, Upload18) - Tutorial
+Lesitia (feat. Ketose, Upload18) - Tutorial (이지 채보 완성)
 
 
 Ketose - From the Void
@@ -78,6 +76,10 @@ Ketose - From the Void
 
 Ketose - LightSlateGray
  * Album Art by TBvwv
+
+
+KOTDARI - Save (이지 채보 완성)
+ * Album Art by Tilto
 
 
 Lesitia - Flowing Time
