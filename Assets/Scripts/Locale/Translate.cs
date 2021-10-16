@@ -95,7 +95,7 @@ namespace Locale {
 
         public static Dictionary<string, Dictionary<Language, string>> LoadLanguages() {
             _availableLanguages = new List<Language>();
-            string result;
+            string result = string.Empty;
             if (Application.isEditor && Application.isPlaying) {
 #if  UNITY_EDITOR
                 var path = Path.Combine(Constants.ResourcePath, "translation.csv");
