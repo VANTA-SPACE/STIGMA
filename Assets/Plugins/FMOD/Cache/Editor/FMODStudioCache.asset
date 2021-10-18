@@ -1306,6 +1306,28 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 0
   Exists: 0
+--- !u!114 &-7844262988413098344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Scene_Intro/MainState
+  m_EditorClassIdentifier: 
+  Name: MainState
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 1
+  IsGlobal: 0
+  Exists: 0
 --- !u!114 &-7841183206017638402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3369,6 +3391,28 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 0
   Exists: 1
+--- !u!114 &-5618603319906253334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Scene_Intro/MainState
+  m_EditorClassIdentifier: 
+  Name: MainState
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 1
+  IsGlobal: 0
+  Exists: 0
 --- !u!114 &-5540111678930152768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3824,10 +3868,10 @@ MonoBehaviour:
   Path: Stigmasound/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637699334028572852
+  lastModified: 637701779592770451
   FileSizes:
   - Name: Desktop
-    Value: 1574
+    Value: 1620
   Exists: 1
 --- !u!114 &-5144987525024279983
 MonoBehaviour:
@@ -4109,10 +4153,10 @@ MonoBehaviour:
   Path: Stigmasound/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637699334026768907
+  lastModified: 637701779591097605
   FileSizes:
   - Name: Desktop
-    Value: 26906016
+    Value: 28352032
   Exists: 1
 --- !u!114 &-4795141516889472320
 MonoBehaviour:
@@ -5272,6 +5316,29 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 0
   Exists: 0
+--- !u!114 &-3590454699963582465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Song_FollowtheSignal
+  m_EditorClassIdentifier: 
+  Path: event:/Song_FollowtheSignal
+  guid: 05e4be154c42784f8f802a5516f103f7
+  Banks:
+  - {fileID: -4815318303969796371}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 101500
 --- !u!114 &-3516751525264740358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8685,12 +8752,13 @@ MonoBehaviour:
   - {fileID: -2911178945555491767}
   - {fileID: -4380004150935904358}
   - {fileID: -8078817699384129818}
+  - {fileID: -3590454699963582465}
   EditorParameters: []
   MasterBanks:
   - {fileID: -4815318303969796371}
   StringsBanks:
   - {fileID: -5158473204476222907}
-  stringsBankWriteTime: 637699334028572852
+  stringsBankWriteTime: 637701779592770451
   cacheVersion: 8
 --- !u!114 &10449187532453930
 MonoBehaviour:
@@ -13483,7 +13551,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 149500
+  Length: 150000
 --- !u!114 &4770907978101068789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14370,6 +14438,28 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 0
   Exists: 1
+--- !u!114 &5766918526409925452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Scene_Intro/MainState
+  m_EditorClassIdentifier: 
+  Name: MainState
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 1
+  IsGlobal: 0
+  Exists: 0
 --- !u!114 &5776406443856268713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14589,7 +14679,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 1924779695080835579}
+  - {fileID: 9080684479170329960}
   MinDistance: 0
   MaxDistance: 0
   Length: 97000
@@ -16788,6 +16878,28 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 0
   Exists: 0
+--- !u!114 &9080684479170329960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Scene_Intro/MainState
+  m_EditorClassIdentifier: 
+  Name: MainState
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 1
+  IsGlobal: 0
+  Exists: 1
 --- !u!114 &9081348808090117935
 MonoBehaviour:
   m_ObjectHideFlags: 0
