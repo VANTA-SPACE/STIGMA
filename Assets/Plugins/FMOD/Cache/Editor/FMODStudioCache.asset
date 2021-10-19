@@ -22,6 +22,28 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 0
   Exists: 0
+--- !u!114 &-9152516130544052228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Scene_Intro/MainState
+  m_EditorClassIdentifier: 
+  Name: MainState
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 1
+  IsGlobal: 0
+  Exists: 0
 --- !u!114 &-9122191778751380572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1884,6 +1906,28 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 97000
+--- !u!114 &-7373920600500675317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Scene_Intro/MainState
+  m_EditorClassIdentifier: 
+  Name: MainState
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 1
+  IsGlobal: 0
+  Exists: 0
 --- !u!114 &-7369606038724419569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2813,6 +2857,28 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 0
   Exists: 0
+--- !u!114 &-6340708199091368121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Scene_Intro/MainState
+  m_EditorClassIdentifier: 
+  Name: MainState
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 1
+  IsGlobal: 0
+  Exists: 1
 --- !u!114 &-6333440149330698316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3868,7 +3934,7 @@ MonoBehaviour:
   Path: Stigmasound/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637701779592770451
+  lastModified: 637701829319901157
   FileSizes:
   - Name: Desktop
     Value: 1620
@@ -4153,7 +4219,7 @@ MonoBehaviour:
   Path: Stigmasound/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637701779591097605
+  lastModified: 637701829319881177
   FileSizes:
   - Name: Desktop
     Value: 28352032
@@ -4226,6 +4292,28 @@ MonoBehaviour:
   IsGlobal: 0
   Exists: 0
 --- !u!114 &-4681726351190989253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Scene_Intro/MainState
+  m_EditorClassIdentifier: 
+  Name: MainState
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 1
+  IsGlobal: 0
+  Exists: 0
+--- !u!114 &-4506719796106514166
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6091,6 +6179,28 @@ MonoBehaviour:
   IsGlobal: 0
   Exists: 0
 --- !u!114 &-2550937783295280020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Scene_Intro/MainState
+  m_EditorClassIdentifier: 
+  Name: MainState
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 1
+  IsGlobal: 0
+  Exists: 0
+--- !u!114 &-2530028804385271864
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8758,7 +8868,7 @@ MonoBehaviour:
   - {fileID: -4815318303969796371}
   StringsBanks:
   - {fileID: -5158473204476222907}
-  stringsBankWriteTime: 637701779592770451
+  stringsBankWriteTime: 637701829319901157
   cacheVersion: 8
 --- !u!114 &10449187532453930
 MonoBehaviour:
@@ -14679,7 +14789,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 9080684479170329960}
+  - {fileID: -6340708199091368121}
   MinDistance: 0
   MaxDistance: 0
   Length: 97000
