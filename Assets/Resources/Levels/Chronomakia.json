@@ -226,7 +226,7 @@
 		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 284.0, "NotePos": "$ENUM(NotePos:POS_0)$"},
 		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 285.0, "NotePos": "$ENUM(NotePos:POS_2)$"},
 		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 286.0, "NotePos": "$ENUM(NotePos:POS_3)$"},
-		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 287.0, "NotePos": "$ENUM(NotePos:POS_1)$"},
+		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 287.0, "NotePos": "$ENUM(NotePos:POS_0)$"},
 		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 288.0, "NotePos": "$ENUM(NotePos:POS_1)$"},
 		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 288.0, "NotePos": "$ENUM(NotePos:POS_3)$"},
 		{"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 289.0, "NotePos": "$ENUM(NotePos:POS_2)$"},
