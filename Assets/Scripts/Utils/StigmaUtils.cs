@@ -114,18 +114,24 @@ namespace Utils {
         public static Judgment GetJudgement(double timeOffset) {
             var frameOffset = timeOffset * 60;
             if (frameOffset < -Constants.NOTEJUDGMENT_BAD) return Judgment.None;
-            else if (frameOffset < -Constants.NOTEJUDGMENT_NORMAL) return Judgment.Bad;
-            else if (frameOffset < -Constants.NOTEJUDGMENT_NORMAL + Constants.NOTEJUDGMENT_ELOFFSET)
+            else if (frameOffset < -Constants.NOTEJUDGMENT_GOOD) return Judgment.Bad;
+            else if (frameOffset < -Constants.NOTEJUDGMENT_GOOD + Constants.NOTEJUDGMENT_ELOFFSET)
                 return Judgment.GoodEarly;
-            else if (frameOffset < -Constants.NOTEJUDGMENT_PERFECT) return Judgment.Good;
+            else if (frameOffset < -Constants.NOTEJUDGMENT_GREAT) return Judgment.Good;
+            else if (frameOffset < -Constants.NOTEJUDGMENT_GREAT + Constants.NOTEJUDGMENT_ELOFFSET)
+                return Judgment.GreatEarly;
+            else if (frameOffset < -Constants.NOTEJUDGMENT_PERFECT) return Judgment.Great;
             else if (frameOffset < -Constants.NOTEJUDGMENT_PERFECT + Constants.NOTEJUDGMENT_ELOFFSET)
                 return Judgment.PerfectEarly;
             else if (frameOffset <= Constants.NOTEJUDGMENT_PERFECT - Constants.NOTEJUDGMENT_ELOFFSET)
                 return Judgment.Perfect;
             else if (frameOffset <= Constants.NOTEJUDGMENT_PERFECT) return Judgment.PerfectLate;
-            else if (frameOffset <= Constants.NOTEJUDGMENT_NORMAL - Constants.NOTEJUDGMENT_ELOFFSET)
+            else if (frameOffset <= Constants.NOTEJUDGMENT_GREAT - Constants.NOTEJUDGMENT_ELOFFSET)
+                return Judgment.Great;
+            else if (frameOffset <= Constants.NOTEJUDGMENT_GREAT) return Judgment.GreatLate;
+            else if (frameOffset <= Constants.NOTEJUDGMENT_GOOD - Constants.NOTEJUDGMENT_ELOFFSET)
                 return Judgment.Good;
-            else if (frameOffset <= Constants.NOTEJUDGMENT_NORMAL) return Judgment.GoodLate;
+            else if (frameOffset <= Constants.NOTEJUDGMENT_GOOD) return Judgment.GoodLate;
             else if (frameOffset <= Constants.NOTEJUDGMENT_BAD) return Judgment.Bad;
             else return Judgment.Miss;
         }
@@ -146,17 +152,29 @@ namespace Utils {
                     frameMin = Constants.NOTEJUDGMENT_PERFECT - Constants.NOTEJUDGMENT_ELOFFSET;
                     frameMax = Constants.NOTEJUDGMENT_PERFECT;
                     break;
+                case Judgment.Great:
+                    frameMax = Constants.NOTEJUDGMENT_GREAT - Constants.NOTEJUDGMENT_ELOFFSET;
+                    frameMin = -frameMax;
+                    break;
+                case Judgment.GreatEarly:
+                    frameMin = -Constants.NOTEJUDGMENT_GREAT;
+                    frameMax = -Constants.NOTEJUDGMENT_GREAT + Constants.NOTEJUDGMENT_ELOFFSET;
+                    break;
+                case Judgment.GreatLate:
+                    frameMin = Constants.NOTEJUDGMENT_GREAT - Constants.NOTEJUDGMENT_ELOFFSET;
+                    frameMax = Constants.NOTEJUDGMENT_GREAT;
+                    break;
                 case Judgment.Good:
-                    frameMax = Constants.NOTEJUDGMENT_NORMAL - Constants.NOTEJUDGMENT_ELOFFSET;
+                    frameMax = Constants.NOTEJUDGMENT_GOOD - Constants.NOTEJUDGMENT_ELOFFSET;
                     frameMin = -frameMax;
                     break;
                 case Judgment.GoodEarly:
-                    frameMin = -Constants.NOTEJUDGMENT_NORMAL;
-                    frameMax = -Constants.NOTEJUDGMENT_NORMAL + Constants.NOTEJUDGMENT_ELOFFSET;
+                    frameMin = -Constants.NOTEJUDGMENT_GOOD;
+                    frameMax = -Constants.NOTEJUDGMENT_GOOD + Constants.NOTEJUDGMENT_ELOFFSET;
                     break;
                 case Judgment.GoodLate:
-                    frameMin = Constants.NOTEJUDGMENT_NORMAL - Constants.NOTEJUDGMENT_ELOFFSET;
-                    frameMax = Constants.NOTEJUDGMENT_NORMAL;
+                    frameMin = Constants.NOTEJUDGMENT_GOOD - Constants.NOTEJUDGMENT_ELOFFSET;
+                    frameMax = Constants.NOTEJUDGMENT_GOOD;
                     break;
                 case Judgment.Bad:
                     frameMax = Constants.NOTEJUDGMENT_BAD;

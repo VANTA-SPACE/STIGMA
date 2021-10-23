@@ -83,6 +83,22 @@ namespace Core {
                     PlayManager.Instance.Combo++;
                     PlayManager.Instance.Score += 1000000f / PlayManager.Instance.TotalNotes;
                     break;
+                
+                case Judgment.GreatEarly:
+                    PlayManager.Instance.JudgmentCount[Judgment.GreatEarly]++;
+                    goto case Judgment.Great;
+
+                case Judgment.GreatLate:
+                    PlayManager.Instance.JudgmentCount[Judgment.GreatLate]++;
+                    goto case Judgment.Great;
+
+                case Judgment.Great:
+                    PlayManager.Instance.JudgmentCount[Judgment.Great]++;
+                    PlayManager.Instance.Accurary += 75;
+                    PlayManager.Instance.Combo++;
+                    PlayManager.Instance.Score += 750000f / PlayManager.Instance.TotalNotes;
+                    PlayManager.Instance.GaugeValue += Constants.GOOD_FIXEDGAUGE;
+                    break;
 
                 case Judgment.GoodEarly:
                     PlayManager.Instance.JudgmentCount[Judgment.GoodEarly]++;
@@ -94,17 +110,17 @@ namespace Core {
 
                 case Judgment.Good:
                     PlayManager.Instance.JudgmentCount[Judgment.Good]++;
-                    PlayManager.Instance.Accurary += 70;
+                    PlayManager.Instance.Accurary += 50;
                     PlayManager.Instance.Combo++;
-                    PlayManager.Instance.Score += 700000f / PlayManager.Instance.TotalNotes;
+                    PlayManager.Instance.Score += 500000f / PlayManager.Instance.TotalNotes;
                     PlayManager.Instance.GaugeValue += Constants.GOOD_FIXEDGAUGE;
                     break;
 
                 case Judgment.Bad:
                     PlayManager.Instance.JudgmentCount[Judgment.Bad]++;
-                    PlayManager.Instance.Accurary += 30;
+                    PlayManager.Instance.Accurary += 25;
                     PlayManager.Instance.Combo = 0;
-                    PlayManager.Instance.Score += 300000f / PlayManager.Instance.TotalNotes;
+                    PlayManager.Instance.Score += 250000f / PlayManager.Instance.TotalNotes;
                     PlayManager.Instance.GaugeValue += Constants.BAD_TOTALGAUGE / PlayManager.Instance.TotalNotes;
                     break;
 
@@ -138,6 +154,12 @@ namespace Core {
                     tmp.colorGradient = new VertexGradient(new Color(1, 1, 0.6f), new Color(0.9f, 0.6f, 1)
                         , new Color(0.9f, 0.6f, 1), new Color(0.9f, 0.6f, 1));
                     tmp.enableVertexGradient = true;
+                    break;
+                case Judgment.Great:
+                case Judgment.GreatEarly:
+                case Judgment.GreatLate:
+                    tmp.color = Constants.JudgmentColors[Judgment.Great];
+                    tmp.enableVertexGradient = false;
                     break;
                 case Judgment.Good:
                 case Judgment.GoodEarly:

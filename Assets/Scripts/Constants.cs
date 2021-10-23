@@ -20,8 +20,9 @@ public static class Constants {
     // 각 노트별 판정 (60프레임 기준)
     // 기본 설정 : 8 / 16 / 24 / 6
     public const double NOTEJUDGMENT_PERFECT = 2.5;
-    public const double NOTEJUDGMENT_NORMAL = 6;
-    public const double NOTEJUDGMENT_BAD = 10;
+    public const double NOTEJUDGMENT_GREAT = 6;
+    public const double NOTEJUDGMENT_GOOD = 10;
+    public const double NOTEJUDGMENT_BAD = 16;
     public const double NOTEJUDGMENT_ELOFFSET = 1;
 
     public const float PERFECT_TOTALGAUGE = 50f;
@@ -42,11 +43,14 @@ public static class Constants {
 
     public static readonly ReadOnlyDictionary<Judgment, Color> JudgmentColors = new ReadOnlyDictionary<Judgment, Color>(
         new Dictionary<Judgment, Color> {
-            {Judgment.PerfectEarly, new Color(1f, 1f, 0.6f)},
-            {Judgment.PerfectLate, new Color(1f, 1f, 0.6f)},
+            {Judgment.PerfectEarly, new Color(0.9f, 0.6f, 1)},
+            {Judgment.PerfectLate, new Color(0.9f, 0.6f, 1)},
+            {Judgment.Great, new Color(1f, 1f, 0.6f)},
+            {Judgment.GreatEarly, new Color(1f, 1f, 0.6f)},
+            {Judgment.GreatLate, new Color(1f, 1f, 0.6f)},
             {Judgment.Good, new Color(0.4f, 0.8f, 1f)},
-            {Judgment.GoodEarly, new Color(0.5f, 0.6f, 0.7f)},
-            {Judgment.GoodLate, new Color(0.5f, 0.6f, 0.7f)},
+            {Judgment.GoodEarly, new Color(0.4f, 0.8f, 1f)},
+            {Judgment.GoodLate, new Color(0.4f, 0.8f, 1f)},
             {Judgment.Bad, new Color(0.8f, 0.2f, 0.1f)},
             {Judgment.Miss, new Color(0.6f, 0.6f, 0.6f)},
         });

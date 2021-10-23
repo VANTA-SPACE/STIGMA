@@ -11,6 +11,7 @@ namespace UI {
         private static ResultScreen _instance;
         
         public TMP_Text perfectText;
+        public TMP_Text greatText;
         public TMP_Text goodText;
         public TMP_Text badText;
         public TMP_Text missText;
@@ -63,6 +64,7 @@ namespace UI {
             }
             
             perfectText.text = $"<size=36>(E{judgmentCount[Judgment.PerfectEarly]} / L{judgmentCount[Judgment.PerfectLate]})</size> {judgmentCount[Judgment.Perfect]}";
+            greatText.text = $"<size=36>(E{judgmentCount[Judgment.GreatEarly]} / L{judgmentCount[Judgment.GreatLate]})</size> {judgmentCount[Judgment.Great]}";
             goodText.text = $"<size=36>(E{judgmentCount[Judgment.GoodEarly]} / L{judgmentCount[Judgment.GoodLate]})</size> {judgmentCount[Judgment.Good]}";
             badText.text = $"{judgmentCount[Judgment.Bad]}";
             missText.text = $"{totalMiss}";

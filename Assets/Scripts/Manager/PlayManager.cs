@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Core;
 using Core.Level;
@@ -9,6 +10,7 @@ using UI;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
+using Coroutine = UnityEngine.Coroutine;
 
 namespace Manager {
     public class PlayManager : Manager<PlayManager> {
@@ -109,6 +111,9 @@ namespace Manager {
                 {Judgment.Perfect, 0},
                 {Judgment.PerfectEarly, 0},
                 {Judgment.PerfectLate, 0},
+                {Judgment.Great, 0},
+                {Judgment.GreatEarly, 0},
+                {Judgment.GreatLate, 0},
                 {Judgment.Good, 0},
                 {Judgment.GoodEarly, 0},
                 {Judgment.GoodLate, 0},
@@ -162,15 +167,15 @@ namespace Manager {
 
                     if (CheckedNotes == 0) {
                         scoreText.text = "0";
-                        comboText.text = $"Combo: <color=#ffff7f>{Combo}</color>";
+                        comboText.text = $"<color=#ffff7f>{Combo}</color>";
                     } else {
                         scoreText.text = Score.ToString("#,###,##0");
                         if ((int) (Accurary / CheckedNotes) == 100) {
-                            comboText.text = $"Combo: <color=#ffff7f>{Combo}</color>";
+                            comboText.text = $"<color=#ffff7f>{Combo}</color>";
                         } else if (TotalMiss == 0) {
-                            comboText.text = $"Combo: <color=#7fbfff>{Combo}</color>";
+                            comboText.text = $"<color=#7fbfff>{Combo}</color>";
                         } else {
-                            comboText.text = $"Combo: {Combo}";
+                            comboText.text = $"{Combo}";
                         }
                     }
                 } else {
@@ -183,7 +188,7 @@ namespace Manager {
             if (CheckedNotes == 0) {
                 Accurary = 0;
             } else {
-                Accurary = (JudgmentCount[Judgment.Perfect] + (JudgmentCount[Judgment.Good] * 0.7f) + (JudgmentCount[Judgment.Bad] * 0.3f)) * 100;
+                Accurary = (JudgmentCount[Judgment.Perfect] + (JudgmentCount[Judgment.Great] * 0.75f) + (JudgmentCount[Judgment.Good] * 0.5f) + (JudgmentCount[Judgment.Bad] * 0.25f)) * 100;
             }
 
 

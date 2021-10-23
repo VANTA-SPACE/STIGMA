@@ -31,13 +31,13 @@ namespace Core {
             var x = position.x;
             var y = position.y;
             Positions[NotePos.POS_0] =
-                new Vector2(x, y) + new Vector2(Constants.NOTE_WIDTH * -1.5f, 0);
+                new Vector2(x, y) + new Vector2(Constants.NOTE_WIDTH * -1.35f, 0);
             Positions[NotePos.POS_1] =
-                new Vector2(x, y) + new Vector2(Constants.NOTE_WIDTH * -0.5f, 0);
+                new Vector2(x, y) + new Vector2(Constants.NOTE_WIDTH * -0.45f, 0);
             Positions[NotePos.POS_2] =
-                new Vector2(x, y) + new Vector2(Constants.NOTE_WIDTH * 0.5f, 0);
+                new Vector2(x, y) + new Vector2(Constants.NOTE_WIDTH * 0.45f, 0);
             Positions[NotePos.POS_3] =
-                new Vector2(x, y) + new Vector2(Constants.NOTE_WIDTH * 1.5f, 0);
+                new Vector2(x, y) + new Vector2(Constants.NOTE_WIDTH * 1.35f, 0);
         }
 
         // Update is called once per frame
@@ -49,13 +49,13 @@ namespace Core {
                 var y = position.y;
                 var angle = transform1.eulerAngles.z;
                 Positions[NotePos.POS_0] =
-                    new Vector2(x, y) + new Vector2(Constants.NOTE_WIDTH * -1.5f, 0).Rotate(angle);
+                    new Vector2(x, y) + new Vector2(Constants.NOTE_WIDTH * -1.35f, 0).Rotate(angle);
                 Positions[NotePos.POS_1] =
-                    new Vector2(x, y) + new Vector2(Constants.NOTE_WIDTH * -0.5f, 0).Rotate(angle);
+                    new Vector2(x, y) + new Vector2(Constants.NOTE_WIDTH * -0.45f, 0).Rotate(angle);
                 Positions[NotePos.POS_2] =
-                    new Vector2(x, y) + new Vector2(Constants.NOTE_WIDTH * 0.5f, 0).Rotate(angle);
+                    new Vector2(x, y) + new Vector2(Constants.NOTE_WIDTH * 0.45f, 0).Rotate(angle);
                 Positions[NotePos.POS_3] =
-                    new Vector2(x, y) + new Vector2(Constants.NOTE_WIDTH * 1.5f, 0).Rotate(angle);
+                    new Vector2(x, y) + new Vector2(Constants.NOTE_WIDTH * 1.35f, 0).Rotate(angle);
 
                 foreach (var (key, queue) in AssignedNotes) {
                     if (!queue.Any()) continue;

@@ -128,13 +128,30 @@ namespace Core {
             var obj = Instantiate(judgmentPrefab);
             obj.transform.position = new Vector3(transform.position.x, -2f);
             var tmp = obj.transform.GetChild(0).GetComponent<TMP_Text>();
-            if (judgment == Judgment.Perfect) {
-                tmp.colorGradient = new VertexGradient(new Color(1, 1, 0.6f), new Color(0.9f, 0.6f, 1)
-                    , new Color(0.9f, 0.6f, 1), new Color(0.9f, 0.6f, 1));
-                tmp.enableVertexGradient = true;
-            } else {
-                tmp.color = Constants.JudgmentColors[judgment];
-                tmp.enableVertexGradient = false;
+            switch (judgment) {
+                case Judgment.Perfect:
+                case Judgment.PerfectEarly:
+                case Judgment.PerfectLate:
+                    tmp.colorGradient = new VertexGradient(new Color(1, 1, 0.6f), new Color(0.9f, 0.6f, 1)
+                        , new Color(0.9f, 0.6f, 1), new Color(0.9f, 0.6f, 1));
+                    tmp.enableVertexGradient = true;
+                    break;
+                case Judgment.Great:
+                case Judgment.GreatEarly:
+                case Judgment.GreatLate:
+                    tmp.color = Constants.JudgmentColors[Judgment.Great];
+                    tmp.enableVertexGradient = false;
+                    break;
+                case Judgment.Good:
+                case Judgment.GoodEarly:
+                case Judgment.GoodLate:
+                    tmp.color = Constants.JudgmentColors[Judgment.Good];
+                    tmp.enableVertexGradient = false;
+                    break;
+                default:
+                    tmp.color = Constants.JudgmentColors[judgment];
+                    tmp.enableVertexGradient = false;
+                    break;
             }
 
             string[] judge = judgment.ToString().SplitCapital().Split(' ');
@@ -150,17 +167,39 @@ namespace Core {
             switch (judgment) {
                 case Judgment.PerfectEarly:
                     PlayManager.Instance.JudgmentCount[Judgment.PerfectEarly]++;
+                    PlayManager.Instance.GaugeValue += Constants.PERFECTEL_TOTALGAUGE / PlayManager.Instance.TotalNotes;
                     goto case Judgment.Perfect;
 
                 case Judgment.PerfectLate:
                     PlayManager.Instance.JudgmentCount[Judgment.PerfectEarly]++;
+                    PlayManager.Instance.GaugeValue += Constants.PERFECTEL_TOTALGAUGE / PlayManager.Instance.TotalNotes;
                     goto case Judgment.Perfect;
 
                 case Judgment.Perfect:
+                    if (judgment == Judgment.Perfect) {
+                        PlayManager.Instance.GaugeValue += Constants.PERFECT_TOTALGAUGE / PlayManager.Instance.TotalNotes;
+                    }
+
                     PlayManager.Instance.JudgmentCount[Judgment.Perfect]++;
                     PlayManager.Instance.Accurary += 100;
                     PlayManager.Instance.Combo++;
-                    PlayManager.Instance.Score += 1000000f / PlayManager.Instance.LevelData.NoteDatas.Count;
+                    PlayManager.Instance.Score += 1000000f / PlayManager.Instance.TotalNotes;
+                    break;
+                
+                case Judgment.GreatEarly:
+                    PlayManager.Instance.JudgmentCount[Judgment.GreatEarly]++;
+                    goto case Judgment.Great;
+
+                case Judgment.GreatLate:
+                    PlayManager.Instance.JudgmentCount[Judgment.GreatLate]++;
+                    goto case Judgment.Great;
+
+                case Judgment.Great:
+                    PlayManager.Instance.JudgmentCount[Judgment.Great]++;
+                    PlayManager.Instance.Accurary += 75;
+                    PlayManager.Instance.Combo++;
+                    PlayManager.Instance.Score += 750000f / PlayManager.Instance.TotalNotes;
+                    PlayManager.Instance.GaugeValue += Constants.GOOD_FIXEDGAUGE;
                     break;
 
                 case Judgment.GoodEarly:
@@ -173,24 +212,28 @@ namespace Core {
 
                 case Judgment.Good:
                     PlayManager.Instance.JudgmentCount[Judgment.Good]++;
-                    PlayManager.Instance.Accurary += 70;
+                    PlayManager.Instance.Accurary += 50;
                     PlayManager.Instance.Combo++;
-                    PlayManager.Instance.Score += 700000f / PlayManager.Instance.LevelData.NoteDatas.Count;
+                    PlayManager.Instance.Score += 500000f / PlayManager.Instance.TotalNotes;
+                    PlayManager.Instance.GaugeValue += Constants.GOOD_FIXEDGAUGE;
                     break;
 
                 case Judgment.Bad:
                     PlayManager.Instance.JudgmentCount[Judgment.Bad]++;
-                    PlayManager.Instance.Accurary += 30;
+                    PlayManager.Instance.Accurary += 25;
                     PlayManager.Instance.Combo = 0;
-                    PlayManager.Instance.Score += 300000f / PlayManager.Instance.LevelData.NoteDatas.Count;
+                    PlayManager.Instance.Score += 250000f / PlayManager.Instance.TotalNotes;
+                    PlayManager.Instance.GaugeValue += Constants.BAD_TOTALGAUGE / PlayManager.Instance.TotalNotes;
                     break;
 
                 case Judgment.Miss:
                     PlayManager.Instance.JudgmentCount[Judgment.Miss]++;
                     PlayManager.Instance.Combo = 0;
+                    PlayManager.Instance.GaugeValue += Constants.MISS_TOTALGAUGE / PlayManager.Instance.TotalNotes;
                     break;
 
                 default:
+                    Debug.Log(judgment.ToString());
                     throw new ArgumentOutOfRangeException(nameof(judgment));
             }
         }
