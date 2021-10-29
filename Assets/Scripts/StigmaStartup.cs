@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Coroutine = Utils.Coroutine;
 
 public class StigmaStartup : MonoBehaviour {
     public string introScene;
@@ -41,5 +42,12 @@ public class StigmaStartup : MonoBehaviour {
 
     private void Start() {
         StartCoroutine(ShowLogo());
+    }
+
+    private void Update() {
+        if (Input.anyKeyDown) {
+            StopAllCoroutines();
+            GameManager.Instance.LoadScene(introScene, Trans.FadeEnd);
+        }
     }
 }

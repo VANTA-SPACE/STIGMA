@@ -53,7 +53,8 @@ public static class Constants {
             {Judgment.GoodLate, new Color(0.4f, 0.8f, 1f)},
             {Judgment.Bad, new Color(0.8f, 0.2f, 0.1f)},
             {Judgment.Miss, new Color(0.6f, 0.6f, 0.6f)},
-        });
+        }
+    );
 
     
     public static string DataPath => Application.persistentDataPath;

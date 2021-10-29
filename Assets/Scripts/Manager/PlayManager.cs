@@ -8,6 +8,7 @@ using Serialization;
 using TMPro;
 using UI;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using Utils;
 using Coroutine = UnityEngine.Coroutine;
@@ -26,13 +27,18 @@ namespace Manager {
         public RectTransform pauseMenu;
         public ProgressBar progressBar;
         public Gauge gauge;
-        
-        [NonSerialized] public bool Paused;
 
-        [NonSerialized] public float Accurary;
-        [NonSerialized] public int Combo;
-        [NonSerialized] public float Score;
-        [NonSerialized] public int CheckedNotes;
+        public UnityEvent OnStartPlay = new UnityEvent();
+        public UnityEvent OnEndPlay = new UnityEvent();
+        
+        public bool Paused;
+
+        public float Accurary;
+        public int Combo;
+        public float Score;
+        public int CheckedNotes;
+
+        public bool Replayable;
 
         public float GaugeValue {
             get => gaugeValue;
@@ -68,22 +74,13 @@ namespace Manager {
 
             comboText.gameObject.SetActive(false);
             scoreText.gameObject.SetActive(false);
+            Replayable = true;
         }
 
         public void LoadLevel(LevelData levelData) {
-            currentRawMilisec = 0;
-            Accurary = 0;
-            Combo = 0;
-            Score = 0;
-            CheckedNotes = 0;
-            GaugeValue = 100;
-            
             LevelData = levelData;
             currentBpm = BaseBpm;
-            
-            scoreText.text = string.Empty;
-            comboText.text = string.Empty;
-            
+
             const int beatDelay = 2;
             milisecOffset = -levelData.Offset + beatDelay * 60 / BaseBpm * 1000;
             //Other tasks
@@ -97,6 +94,8 @@ namespace Manager {
         }
 
         public void StartPlay() {
+            OnStartPlay.Invoke();
+            
             spaceToPlay.DOColor(new Color(1, 1, 1, 0), 0.25f);
             EndPlay();
             isPlayingLevel = true;
@@ -126,6 +125,7 @@ namespace Manager {
             IsPlaying = true;
             comboText.gameObject.SetActive(IsPlaying);
             scoreText.gameObject.SetActive(IsPlaying);
+            
         }
 
         public void EndPlay() {
@@ -144,8 +144,20 @@ namespace Manager {
                 Destroy(obj);
             }
             IsPlaying = false;
+            currentRawMilisec = 0;
+            Accurary = 0;
+            Combo = 0;
+            Score = 0;
+            CheckedNotes = 0;
+            GaugeValue = 100;
+                        
+            scoreText.text = string.Empty;
+            comboText.text = string.Empty;
+
             comboText.gameObject.SetActive(IsPlaying);
             scoreText.gameObject.SetActive(IsPlaying);
+            
+            OnEndPlay.Invoke();
         }
 
         public void Retry() {
@@ -154,8 +166,9 @@ namespace Manager {
         }
 
         public void FinishGame() {
-            EndPlay();
             ResultScreen.ShowResultScene();
+            EndPlay();
+            Replayable = false;
         }
 
         // Update is called once per frame
@@ -179,7 +192,7 @@ namespace Manager {
                         }
                     }
                 } else {
-                    if (GameManager.Instance.ValidAnyKeyDown()) {
+                    if (GameManager.Instance.ValidAnyKeyDown() && Replayable) {
                         StartPlay();
                     }
                 }

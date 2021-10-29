@@ -35,6 +35,8 @@ namespace Manager {
         private RectTransform _panel4Rect;
         private RectTransform _panel5Rect;
 
+        public float Timescale;
+
         public static bool DoQuit;
 
         public List<KeyCode> invalidKeys = new List<KeyCode> {
@@ -212,7 +214,7 @@ namespace Manager {
             bool resetTimescale = true, LoadSceneMode mode = LoadSceneMode.Single) {
             Time.timeScale = 1;
             DOTween.timeScale = 1;
-            Transition(transitionType, () => { SceneManager.LoadScene(sceneToLoad, mode); });
+            Transition(transitionType, () => SceneManager.LoadScene(sceneToLoad, mode));
         }
 
         public bool ValidAnyKeyDown(bool checkMouseKey = true) {
@@ -241,6 +243,10 @@ namespace Manager {
 
         private void OnApplicationQuit() {
             Events.OnApplicationQuit.Invoke();
+        }
+
+        private void Update() {
+            Timescale = Time.timeScale;
         }
     }
 }

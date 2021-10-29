@@ -38,6 +38,8 @@ namespace Core {
                 new Vector2(x, y) + new Vector2(Constants.NOTE_WIDTH * 0.45f, 0);
             Positions[NotePos.POS_3] =
                 new Vector2(x, y) + new Vector2(Constants.NOTE_WIDTH * 1.35f, 0);
+            
+            PlayManager.Instance.OnStartPlay.AddListener(OnStartPlay);
         }
 
         // Update is called once per frame
@@ -64,6 +66,15 @@ namespace Core {
 
                 CheckKeyPress();
             }
+        }
+
+        void OnStartPlay() {
+            AssignedNotes = new Dictionary<NotePos, Queue<NoteBase>> {
+                {NotePos.POS_0, new Queue<NoteBase>()},
+                {NotePos.POS_1, new Queue<NoteBase>()},
+                {NotePos.POS_2, new Queue<NoteBase>()},
+                {NotePos.POS_3, new Queue<NoteBase>()},
+            };
         }
 
         public void CheckKeyPress() {

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Core;
 using Manager;
@@ -9,6 +10,13 @@ using UnityEngine.SceneManagement;
 namespace UI {
     public class ResultScreen : MonoBehaviour {
         private static ResultScreen _instance;
+
+        public static ResultScreen Instance {
+            get {
+                if (_instance == null || _instance.gameObject == null) _instance = FindObjectOfType<ResultScreen>();
+                return _instance;
+            }
+        }
         
         public TMP_Text perfectText;
         public TMP_Text greatText;
@@ -24,18 +32,21 @@ namespace UI {
 
         
         public static void ShowResultScene() {
-            GameManager.Instance.LoadScene("ResultScene", Trans.FadeStart | Trans.FadeEnd, true, LoadSceneMode.Additive);
+            var manager = PlayManager.Instance;
+            GameManager.Instance.StartCoroutine(InitCo(PlayManager.Instance.Accurary, manager.TotalNotes, manager.Score,
+                manager.GaugeValue <= Constants.GAUGE_RESULT_F, manager.JudgmentCount));
+            GameManager.Instance.LoadScene("ResultScene", Trans.FadeStart | Trans.FadeEnd, true);
         }
 
-        private void Awake() {
-            _instance = this;
-            var manager = PlayManager.Instance;
-            Init(manager.TotalNotes * 100, manager.TotalNotes, manager.Score, manager.GaugeValue <= Constants.GAUGE_RESULT_F, manager.JudgmentCount);
-            Show();
+        public static IEnumerator InitCo(float accurary, int totalnote, float score, bool fail, Dictionary<Judgment, int> judgmentCount) {
+            yield return new WaitUntil(() => SceneManager.GetActiveScene().name == "ResultScene");
+            Instance.Init(accurary, totalnote, score, fail, judgmentCount);
+            Instance.Show();
         }
+        
         private void Init(float accurary, int totalnote, float score, bool fail, Dictionary<Judgment, int> judgmentCount) {
             var totalMiss = judgmentCount[Judgment.Miss];
-            var relAcc = PlayManager.Instance.Accurary / totalnote;
+            var relAcc = accurary;
             accText.text = relAcc.ToString("##0.00") + "%";
             if (fail) {
                 rankText.text = "<color=#777777>F</color>";
@@ -55,9 +66,9 @@ namespace UI {
                 rankText.text = "<color=#ff3f1f>D</color>";
             }
 
-            if (PlayManager.Instance.Accurary / totalnote >= 100) {
+            if (accurary / totalnote >= 100) {
                 fcText.text = "<color=#ffdb3f>AP</color>";
-            } else if ((PlayManager.Instance.TotalMiss + judgmentCount[Judgment.Bad]) == 0) {
+            } else if ((totalMiss + judgmentCount[Judgment.Bad]) == 0) {
                 fcText.text = "<color=#2f9fff>FC</color>";
             } else {
                 fcText.text = "";
