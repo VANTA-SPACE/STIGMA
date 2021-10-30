@@ -183,7 +183,7 @@ namespace Core {
                     PlayManager.Instance.JudgmentCount[Judgment.Perfect]++;
                     PlayManager.Instance.Accurary += 100;
                     PlayManager.Instance.Combo++;
-                    PlayManager.Instance.Score += 1000000f / PlayManager.Instance.TotalNotes;
+                    PlayManager.Instance.Score += 1000000f;
                     break;
                 
                 case Judgment.GreatEarly:
@@ -196,9 +196,9 @@ namespace Core {
 
                 case Judgment.Great:
                     PlayManager.Instance.JudgmentCount[Judgment.Great]++;
-                    PlayManager.Instance.Accurary += 75;
+                    PlayManager.Instance.Accurary += 90;
                     PlayManager.Instance.Combo++;
-                    PlayManager.Instance.Score += 750000f / PlayManager.Instance.TotalNotes;
+                    PlayManager.Instance.Score += 900000f;
                     PlayManager.Instance.GaugeValue += Constants.GOOD_FIXEDGAUGE;
                     break;
 
@@ -212,17 +212,17 @@ namespace Core {
 
                 case Judgment.Good:
                     PlayManager.Instance.JudgmentCount[Judgment.Good]++;
-                    PlayManager.Instance.Accurary += 50;
+                    PlayManager.Instance.Accurary += 60;
                     PlayManager.Instance.Combo++;
-                    PlayManager.Instance.Score += 500000f / PlayManager.Instance.TotalNotes;
+                    PlayManager.Instance.Score += 600000f;
                     PlayManager.Instance.GaugeValue += Constants.GOOD_FIXEDGAUGE;
                     break;
 
                 case Judgment.Bad:
                     PlayManager.Instance.JudgmentCount[Judgment.Bad]++;
-                    PlayManager.Instance.Accurary += 25;
+                    PlayManager.Instance.Accurary += 20;
                     PlayManager.Instance.Combo = 0;
-                    PlayManager.Instance.Score += 250000f / PlayManager.Instance.TotalNotes;
+                    PlayManager.Instance.Score += 200000f;
                     PlayManager.Instance.GaugeValue += Constants.BAD_TOTALGAUGE / PlayManager.Instance.TotalNotes;
                     break;
 

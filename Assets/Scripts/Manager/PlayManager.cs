@@ -182,10 +182,10 @@ namespace Manager {
                         scoreText.text = "0";
                         comboText.text = $"<color=#ffff7f>{Combo}</color>";
                     } else {
-                        scoreText.text = Score.ToString("#,###,##0");
+                        scoreText.text = (Score / TotalNotes).ToString("#,###,##0");
                         if ((int) (Accurary / CheckedNotes) == 100) {
                             comboText.text = $"<color=#ffff7f>{Combo}</color>";
-                        } else if (TotalMiss == 0) {
+                        } else if (JudgmentCount[Judgment.Bad] + TotalMiss == 0) {
                             comboText.text = $"<color=#7fbfff>{Combo}</color>";
                         } else {
                             comboText.text = $"{Combo}";
@@ -201,7 +201,7 @@ namespace Manager {
             if (CheckedNotes == 0) {
                 Accurary = 0;
             } else {
-                Accurary = (JudgmentCount[Judgment.Perfect] + (JudgmentCount[Judgment.Great] * 0.75f) + (JudgmentCount[Judgment.Good] * 0.5f) + (JudgmentCount[Judgment.Bad] * 0.25f)) * 100;
+                Accurary = (JudgmentCount[Judgment.Perfect] + (JudgmentCount[Judgment.Great] * 0.9f) + (JudgmentCount[Judgment.Good] * 0.6f) + (JudgmentCount[Judgment.Bad] * 0.2f)) * 100;
             }
 
 
