@@ -82,11 +82,12 @@ namespace Locale {
         public static string Get(string key, Language? language = null) =>
             TryGet(key, out string value, language) ? value : $"KeyNotFound {key}";
 
-        public static bool TryGetFormatted(string key, out string value, Language? language = null,
-            params object[] formats) {
+        public static bool TryGetFormatted(string key, out string value, Language? language = null, params object[] formats) {
             if (formats == null) return TryGet(key, out value, language);
             if (!TryGet(key, out value, language)) return false;
-            value = string.Format(value, formats);
+            try {
+                value = string.Format(value, formats);
+            } catch { }
             return true;
         }
 

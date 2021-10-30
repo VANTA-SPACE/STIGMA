@@ -45,8 +45,7 @@ namespace Utils {
             }
 
             if (value is T result) return result;
-
-
+            
             if (type == typeof(bool)) {
                 return (T) (object) Convert.ToBoolean(value);
             }

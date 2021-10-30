@@ -33,7 +33,7 @@ namespace UI {
         
         public static void ShowResultScene() {
             var manager = PlayManager.Instance;
-            GameManager.Instance.StartCoroutine(InitCo(PlayManager.Instance.Accurary, manager.TotalNotes, manager.Score, manager.GaugeValue <= Constants.GAUGE_RESULT_F, manager.JudgmentCount));
+            GameManager.Instance.StartCoroutine(InitCo(manager.Accurary / manager.CheckedNotes, manager.TotalNotes, manager.Score, manager.GaugeValue <= Constants.GAUGE_RESULT_F, manager.JudgmentCount));
             GameManager.Instance.LoadScene("ResultScene", Trans.FadeStart | Trans.FadeEnd, true);
         }
 
@@ -46,7 +46,7 @@ namespace UI {
         private void Init(float accurary, int totalnote, float score, bool fail, Dictionary<Judgment, int> judgmentCount) {
             var totalMiss = judgmentCount[Judgment.Miss];
             var relAcc = accurary;
-            accText.text = (relAcc / totalnote).ToString("##0.00") + "%";
+            accText.text = relAcc.ToString("##0.00") + "%";
             if (fail) {
                 rankText.text = "<color=#777777>F</color>";
             } else if (relAcc >= 100) {
@@ -78,7 +78,7 @@ namespace UI {
             goodText.text = $"<size=36>(E{judgmentCount[Judgment.GoodEarly]} / L{judgmentCount[Judgment.GoodLate]})</size> {judgmentCount[Judgment.Good]}";
             badText.text = $"{judgmentCount[Judgment.Bad]}";
             missText.text = $"{totalMiss}";
-            scoreText.text = (score / totalnote).ToString("#,###,##0");
+            scoreText.text = (score / totalnote).ToString("######0");
         }
         private void Show() {
             gameObject.SetActive(true);

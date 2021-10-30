@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -55,7 +54,6 @@ namespace Manager {
 
         public float transitionLength = 0.3f;
         private bool _doingEffect = false;
-        private DontDestroyManager<GameManager> dontDestroyManagerImplementation;
 
         public static int ScreenWidth => Screen.width;
         public static int ScreenHeight => Screen.height;

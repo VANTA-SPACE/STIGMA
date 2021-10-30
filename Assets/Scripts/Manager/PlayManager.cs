@@ -182,7 +182,7 @@ namespace Manager {
                         scoreText.text = "0";
                         comboText.text = $"<color=#ffff7f>{Combo}</color>";
                     } else {
-                        scoreText.text = (Score / TotalNotes).ToString("#,###,##0");
+                        scoreText.text = (Score / TotalNotes).ToString("######0");
                         if ((int) (Accurary / CheckedNotes) == 100) {
                             comboText.text = $"<color=#ffff7f>{Combo}</color>";
                         } else if (JudgmentCount[Judgment.Bad] + TotalMiss == 0) {
