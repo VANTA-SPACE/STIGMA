@@ -3554,7 +3554,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   graphic: {fileID: 194611755}
   transitions: 396
-  sceneToLoad: SceneIntro
+  sceneToLoad: LevelSelection
   sizeMultiplier: 1.05
   color:
     serializedVersion: 2
