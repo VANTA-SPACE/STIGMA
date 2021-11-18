@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{623a4d87-9f70-4d78-a062-b7cc23ba98c4}">
+		<property name="assetPath">
+			<value>Undefined Limitations.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>159</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{1065a78a-b7e7-42f3-a1d1-c82b586ca0e3}</destination>
+		</relationship>
+	</object>
+</objects>

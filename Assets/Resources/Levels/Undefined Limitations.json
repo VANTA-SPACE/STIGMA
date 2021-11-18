@@ -1,0 +1,8 @@
+{
+    "Bpm": 160.0,
+    "Offset": -1850,
+    "NoteDatas": [
+        {"NoteType": "$ENUM(NoteType:Normal)$", "StartBeat": 0.0, "NotePos": "$ENUM(NotePos:POS_0)$"},
+    ],
+    "EventName": "Song_UndefinedLimitations"
+}
