@@ -558,7 +558,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c88c26a6e53221043b64615e27ec3c00, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5afc5d99d84a74e4fad24c37be568698, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1065,6 +1065,7 @@ MonoBehaviour:
   panel3: {fileID: 2018334447}
   panel4: {fileID: 186544948}
   panel5: {fileID: 1077715501}
+  Timescale: 0
   invalidKeys: 000000001b0000003d010000
   mouseKeys: 43010000440100004501000046010000470100004801000049010000
   transitionLength: 0.3
