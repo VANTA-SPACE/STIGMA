@@ -34,8 +34,8 @@ public static class Constants {
 
     public const float GAUGE_RESULT_F = 40f;
     
-    //노트 너비
-    public const float NOTE_WIDTH = 1.6f;
+    //노트와 노트 사이 너비
+    public const float NOTE_WIDTH = 1.63f;
     
     //노트 속도
     public const float NOTE_SPEED_MODIFIER = 2f;
