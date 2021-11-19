@@ -354,6 +354,29 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 0
   Exists: 0
+--- !u!114 &-8911253030004080768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Song_UndefinedLimitations
+  m_EditorClassIdentifier: 
+  Path: event:/Song_UndefinedLimitations
+  guid: 4eca0db5458c8d4999d684d94d1523f0
+  Banks:
+  - {fileID: -4815318303969796371}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 160000
 --- !u!114 &-8864490710647217829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3278,6 +3301,52 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 0
   Exists: 0
+--- !u!114 &-6257944483053609722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Song_UndefinedLimitations
+  m_EditorClassIdentifier: 
+  Path: event:/Song_UndefinedLimitations
+  guid: 4eca0db5458c8d4999d684d94d1523f0
+  Banks:
+  - {fileID: -4815318303969796371}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 160000
+--- !u!114 &-6139966021875686052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Song_LaCle
+  m_EditorClassIdentifier: 
+  Path: event:/Song_LaCle
+  guid: 5c72319e2a3f6b4d816562d2d40ee930
+  Banks:
+  - {fileID: -4815318303969796371}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 132000
 --- !u!114 &-6137768912234840809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4360,6 +4429,28 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 0
   Exists: 0
+--- !u!114 &-5195220069655840413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Scene_Intro/MainState
+  m_EditorClassIdentifier: 
+  Name: MainState
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 1
+  IsGlobal: 0
+  Exists: 0
 --- !u!114 &-5180237670411754150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4419,10 +4510,10 @@ MonoBehaviour:
   Path: Stigmasound/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637722335230083308
+  lastModified: 637728692538738655
   FileSizes:
   - Name: Desktop
-    Value: 1710
+    Value: 1712
   Exists: 1
 --- !u!114 &-5144987525024279983
 MonoBehaviour:
@@ -4770,10 +4861,10 @@ MonoBehaviour:
   Path: Stigmasound/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637722335225783413
+  lastModified: 637728692536357983
   FileSizes:
   - Name: Desktop
-    Value: 32763360
+    Value: 32958272
   Exists: 1
 --- !u!114 &-4795141516889472320
 MonoBehaviour:
@@ -6642,6 +6733,28 @@ MonoBehaviour:
   MaxDistance: 0
   Length: 114000
 --- !u!114 &-2880633813340398002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Scene_Intro/MainState
+  m_EditorClassIdentifier: 
+  Name: MainState
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 1
+  IsGlobal: 0
+  Exists: 0
+--- !u!114 &-2857604493168855855
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8781,6 +8894,28 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 0
   Exists: 0
+--- !u!114 &-855542249760586962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Scene_Intro/MainState
+  m_EditorClassIdentifier: 
+  Name: MainState
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 1
+  IsGlobal: 0
+  Exists: 0
 --- !u!114 &-849078171655583686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8891,6 +9026,29 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 0
   Exists: 0
+--- !u!114 &-802373253024042576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Song_UndefinedLimitations
+  m_EditorClassIdentifier: 
+  Path: event:/Song_UndefinedLimitations
+  guid: 4eca0db5458c8d4999d684d94d1523f0
+  Banks:
+  - {fileID: -4815318303969796371}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 160000
 --- !u!114 &-798091465584105915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9523,8 +9681,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/Song_AloneFlower
   guid: 3a6da05042dc5f4c9004eade106ed4a7
-  Banks:
-  - {fileID: -4815318303969796371}
+  Banks: []
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -9978,10 +10135,8 @@ MonoBehaviour:
   - {fileID: 7206252824890693882}
   - {fileID: -3887477988166522262}
   - {fileID: 7772208407658979523}
-  - {fileID: -342691275301672910}
   - {fileID: 1369467241200673009}
   - {fileID: 4884446222264927686}
-  - {fileID: 1889095962740505515}
   - {fileID: 4370218893862820571}
   - {fileID: -2911178945555491767}
   - {fileID: -4380004150935904358}
@@ -9989,12 +10144,14 @@ MonoBehaviour:
   - {fileID: -3590454699963582465}
   - {fileID: 3983781293626605309}
   - {fileID: 1093073946222360006}
+  - {fileID: -802373253024042576}
+  - {fileID: 4818102236424459954}
   EditorParameters: []
   MasterBanks:
   - {fileID: -4815318303969796371}
   StringsBanks:
   - {fileID: -5158473204476222907}
-  stringsBankWriteTime: 637722335230083308
+  stringsBankWriteTime: 637728692538738655
   cacheVersion: 8
 --- !u!114 &10449187532453930
 MonoBehaviour:
@@ -10684,6 +10841,28 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 97000
+--- !u!114 &704706683843502428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Scene_Intro/MainState
+  m_EditorClassIdentifier: 
+  Name: MainState
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 1
+  IsGlobal: 0
+  Exists: 0
 --- !u!114 &717985057816665793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11172,7 +11351,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 130000
+  Length: 148000
 --- !u!114 &1123509510187284529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11874,8 +12053,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/Song_DeepSeaDiver
   guid: e1c5e5c3acd6f144978f297a44c404d7
-  Banks:
-  - {fileID: -4815318303969796371}
+  Banks: []
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -15517,6 +15695,51 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 148803
+--- !u!114 &4818102236424459954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Song_LaCle
+  m_EditorClassIdentifier: 
+  Path: event:/Song_LaCle
+  guid: 5c72319e2a3f6b4d816562d2d40ee930
+  Banks:
+  - {fileID: -4815318303969796371}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 132000
+--- !u!114 &4836180266735020919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Scene_Intro/MainState
+  m_EditorClassIdentifier: 
+  Name: MainState
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 1
+  IsGlobal: 0
+  Exists: 1
 --- !u!114 &4849599888452550660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16446,6 +16669,28 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 0
   Exists: 0
+--- !u!114 &5783782282956318222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Scene_Intro/MainState
+  m_EditorClassIdentifier: 
+  Name: MainState
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 1
+  IsGlobal: 0
+  Exists: 0
 --- !u!114 &5791283733589738378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16665,7 +16910,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 6995495589270698568}
+  - {fileID: 4836180266735020919}
   MinDistance: 0
   MaxDistance: 0
   Length: 97000
@@ -19414,6 +19659,29 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 0
   Exists: 0
+--- !u!114 &9051946249650770960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Song_LaCle
+  m_EditorClassIdentifier: 
+  Path: event:/Song_LaCle
+  guid: 5c72319e2a3f6b4d816562d2d40ee930
+  Banks:
+  - {fileID: -4815318303969796371}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 132000
 --- !u!114 &9080684479170329960
 MonoBehaviour:
   m_ObjectHideFlags: 0
