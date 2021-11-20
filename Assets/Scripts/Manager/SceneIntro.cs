@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace Manager {
     public class SceneIntro : Manager<SceneIntro> {
-        public static string SceneToLoad = Constants.LEVEL_SELECT_SCENE;
+        public static string SceneToLoad = Constants.MAIN_MENU_SCENE;
         public Image exitPanel;
         public RectTransform exitMenu;
         public bool showMenu;

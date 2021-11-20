@@ -11,6 +11,7 @@ public static class Constants {
     //씬
     public const string STARTUP_SCENE = "SceneStartup";
     public const string INTRO_SCENE = "SceneIntro";
+    public const string MAIN_MENU_SCENE = "MainMenu";
     public const string PLAY_SCENE = "PlayScene";
     public const string LEVEL_SELECT_SCENE = "LevelSelection";
     
