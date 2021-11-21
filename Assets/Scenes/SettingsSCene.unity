@@ -2693,7 +2693,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   graphic: {fileID: 1073068212}
   transitions: 528
-  sceneToLoad: SceneIntro
+  sceneToLoad: MainMenu
   sizeMultiplier: 1.05
   color:
     serializedVersion: 2
